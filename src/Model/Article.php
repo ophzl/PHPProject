@@ -6,13 +6,8 @@ class Article extends Contenu implements \JsonSerializable {
     private $DateAjout;
     private $ImageRepository;
     private $ImageFileName;
+    private $Category;
 
-    public function firstXwords($nb){
-        $phrase = $this->getDescription();
-        $arrayWord = str_word_count($phrase,1);
-
-        return implode(" ",array_slice($arrayWord,0,$nb));
-    }
 
 
     public function SqlAdd(\PDO $bdd) {
@@ -53,6 +48,7 @@ class Article extends Contenu implements \JsonSerializable {
             }
             return $listArticle;
     }
+
     public function SqlGet(\PDO $bdd,$idArticle){
         $requete = $bdd->prepare('SELECT * FROM articles where Id = :idArticle');
         $requete->execute([
@@ -128,6 +124,13 @@ class Article extends Contenu implements \JsonSerializable {
         ];
     }
 
+
+    public function firstXwords($nb){
+        $phrase = $this->getDescription();
+        $arrayWord = str_word_count($phrase,1);
+
+        return implode(" ",array_slice($arrayWord,0,$nb));
+    }
 
     /**
      * @return mixed

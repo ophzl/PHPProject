@@ -1,5 +1,5 @@
 <?php
-// wsh les sang de la veine//
+
 session_start();
 require '../vendor/autoload.php';
 
@@ -17,6 +17,8 @@ function chargerClasse($classe){
 spl_autoload_register('chargerClasse');
 
 $router = new \src\Router\Router($_GET['url']);
+
+//Articles Methods
 $router->get('/', "Article#ListAll");
 $router->get('/Article', "Article#ListAll");
 $router->get('/Article/Update/:id', "Article#Update#id");
@@ -28,16 +30,25 @@ $router->get('/Article/Fixtures', "Article#Fixtures");
 $router->get('/Article/Write', "Article#Write");
 $router->get('/Article/Read', "Article#Read");
 $router->get('/Article/WriteOne/:id', "Article#Read#id");
+$router->get('/Article/ListAll','Article#listAll');
+$router->get('/Article/Validate/:id','Article#Validate#id'); //TODO
+
+//API Methods
 $router->get('/Api/Article', "Api#ArticleGet");
 $router->post('/Api/Article', "Api#ArticlePost");
 $router->put('/Api/Article/:id/:json', "Api#ArticlePut#id#json");
-$router->get('/Article/ListAll','Article#listAll');
-$router->get('/coucou/di/:param1/:param2','Article#test#param1#param2');
+
+//Contact Methods
 $router->get('/Contact', 'Contact#showForm');
 $router->post('/Contact/sendMail', 'Contact#sendMail');
-$router->get('/Login', 'User#loginForm');
-$router->post('/Login', 'User#loginCheck');
+
+//User Methods
+$router->get('/Login', 'User#loginForm'); //TODO: verify
+$router->post('/Login', 'User#loginCheck'); //TODO: verify
+$router->get('/Register', 'User#RegisterForm'); //TODO
+$router->post('/Register', 'User#RegisterCheck'); //TODO
 $router->get('/Logout', 'User#logout');
+$router->get('/Admin/Validate/:id', 'User#Validate#id'); //TODO
 
 
 echo $router->run();

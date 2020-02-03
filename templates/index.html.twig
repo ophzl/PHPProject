@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <title>{% block title %}CESI BLOG{% endblock %}</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/pepper-grinder/jquery-ui.css">
+    <link rel="stylesheet"
+          href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/pepper-grinder/jquery-ui.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css">
     {% block css %}{% endblock %}
@@ -14,7 +15,8 @@
 <nav class="navbar sticky-top nav-pills navbar-expand-lg navbar-dark bg-dark">
 
     <a class="navbar-brand" href="/Article/ListAll">Blog du CESI</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+            aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
@@ -28,8 +30,24 @@
                 <a class="nav-link" href="/Article/Add">Ajout d'un article</a>
             </li>
 
-        </ul>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Compte
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    {% if userConnected is defined %}
+                        <a class="dropdown-item" href="#">Approuver un article</a>
+                        <a class="dropdown-item" href="#">Gestion des membres</a>
+                        <a class="dropdown-item" href="/Logout">Se déconnecter</a>
 
+                    {% else %}
+                        <a class="dropdown-item" href="/Login">Se connecter</a>
+                        <a class="dropdown-item" href="#">S'inscrire</a>
+                    {% endif %}
+                </div>
+            </li>
+        </ul>
 
 
         <form class="form-inline" method="post" action="/Article/Show/{{ post.search }}">
@@ -63,9 +81,7 @@
 </nav>-->
 
 
-
-    {% block body %}{% endblock %}
-
+{% block body %}{% endblock %}
 
 
 <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>

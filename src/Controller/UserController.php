@@ -17,7 +17,7 @@ class UserController extends  AbstractController {
                 "options" => array("regexp"=>"/[a-zA-Z]{3,}/")
             )
         )){
-            $_SESSION['errorlogin'] = "Mpd mini 3 caractères";
+            $_SESSION['errorlogin'] = "Mot de passe trop court (3 caractères minimum)";
             header('Location:/Login');
             return;
         }
