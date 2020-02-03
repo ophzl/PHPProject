@@ -1,8 +1,8 @@
 <?php
-$hostname="localhost";
-$username="root";
-$password="";
-$dbname="cesiblog";
+$hostname="mysql-floriaaan.alwaysdata.net";
+$username="floriaaan_prphp";
+$password=file_get_contents('../db_pw.txt');
+$dbname="floriaaan_prphp";
 
 try
 {

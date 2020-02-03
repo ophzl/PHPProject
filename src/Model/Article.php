@@ -71,6 +71,31 @@ class Article extends Contenu implements \JsonSerializable {
 
     }
 
+    public function SqlGetBy(\PDO $bdd, $SQL, $param)
+    {
+        $query = $bdd->prepare($SQL);
+        $query->execute([
+            'param' => $param
+        ]);
+        $arrayArticle = $query->fetchAll();
+
+        $listArticle = [];
+        foreach ($arrayArticle as $articleSQL){
+            $article = new Article();
+            $article->setId($articleSQL['Id']);
+            $article->setTitre($articleSQL['Titre']);
+            $article->setAuteur($articleSQL['Auteur']);
+            $article->setDescription($articleSQL['Description']);
+            $article->setDateAjout($articleSQL['DateAjout']);
+            $article->setImageRepository($articleSQL['ImageRepository']);
+            $article->setImageFileName($articleSQL['ImageFileName']);
+
+            $listArticle[] = $article;
+        }
+        return $listArticle;
+    }
+
+
     public function SqlUpdate(\PDO $bdd){
         try{
             $requete = $bdd->prepare('UPDATE articles set Titre=:Titre, Description=:Description, DateAjout=:DateAjout, Auteur=:Auteur, ImageRepository=:ImageRepository, ImageFileName=:ImageFileName WHERE id=:IDARTICLE');

@@ -2,6 +2,8 @@
 
 namespace src\Controller;
 
+use src\Model\User;
+
 class UserController extends AbstractController
 {
 
@@ -39,9 +41,13 @@ class UserController extends AbstractController
             AND $_POST["Pass"] == "password" AND $_POST['crsf'] == $_SESSION['token']
         ) {
 
-            $_SESSION['USER'] = array(
-                'Name' => 'Administrateur', 'roles' => array('admin', 'redacteur')
-            );
+            $user = new User();
+            $user->setName('Administrateur')
+                ->setMail('admin@admin.com')
+                ->setPassword('password')
+                ->setRole(['admin', 'redacteur']);
+
+            $_SESSION['USER'] = $user;
             header('Location:/');
         } else {
             $_SESSION['errorlogin'] = "Erreur Authent.";
@@ -54,7 +60,7 @@ class UserController extends AbstractController
     public static function roleNeed($roleATester)
     {
         if (isset($_SESSION['USER'])) {
-            if (!in_array($roleATester, $_SESSION['USER']['roles'])) {
+            if (!in_array($roleATester, $_SESSION['USER']['Roles'])) {
                 $_SESSION['errorlogin'] = "Manque le role : " . $roleATester;
                 header('Location:/Contact');
             }

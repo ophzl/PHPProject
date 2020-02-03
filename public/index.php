@@ -31,6 +31,7 @@ $router->get('/Article/Write', "Article#Write");
 $router->get('/Article/Read', "Article#Read");
 $router->get('/Article/WriteOne/:id', "Article#Read#id");
 $router->get('/Article/ListAll','Article#listAll');
+$router->post('/Article/Search','Article#Search');
 $router->get('/Article/Validate/:id','Article#Validate#id'); //TODO
 
 //API Methods

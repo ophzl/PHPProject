@@ -106,12 +106,9 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
         </ul>
 
 
-        <form class=\"form-inline\" method=\"post\" action=\"/Article/Show/";
-        // line 54
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["post"] ?? null), "search", [], "any", false, false, false, 54), "html", null, true);
-        echo "\">
+        <form class=\"form-inline\" method=\"post\" action=\"/Article/Search/\">
             <input class=\"form-control mr-sm-2\" type=\"search\" placeholder=\"Rechercher un article\" name=\"search\">
-            <input type=\"submit\" class=\"btn btn-outline-success my-2 my-sm-0\" value=\"Rechercher\" name=\"searchSubmit\">
+            <input type=\"submit\" class=\"btn btn-outline-success my-2 my-sm-0\" value=\"Rechercher\">
         </form>
     </div>
 
@@ -198,7 +195,7 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
 
     public function getDebugInfo()
     {
-        return array (  184 => 94,  178 => 85,  172 => 11,  165 => 5,  159 => 95,  157 => 94,  147 => 86,  145 => 85,  111 => 54,  104 => 49,  99 => 46,  89 => 40,  87 => 39,  58 => 12,  56 => 11,  47 => 5,  41 => 1,);
+        return array (  181 => 94,  175 => 85,  169 => 11,  162 => 5,  156 => 95,  154 => 94,  144 => 86,  142 => 85,  104 => 49,  99 => 46,  89 => 40,  87 => 39,  58 => 12,  56 => 11,  47 => 5,  41 => 1,);
     }
 
     public function getSourceContext()
@@ -256,9 +253,9 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
         </ul>
 
 
-        <form class=\"form-inline\" method=\"post\" action=\"/Article/Show/{{ post.search }}\">
+        <form class=\"form-inline\" method=\"post\" action=\"/Article/Search/\">
             <input class=\"form-control mr-sm-2\" type=\"search\" placeholder=\"Rechercher un article\" name=\"search\">
-            <input type=\"submit\" class=\"btn btn-outline-success my-2 my-sm-0\" value=\"Rechercher\" name=\"searchSubmit\">
+            <input type=\"submit\" class=\"btn btn-outline-success my-2 my-sm-0\" value=\"Rechercher\">
         </form>
     </div>
 
