@@ -1,4 +1,4 @@
-/* ZOUZ */
+/* ZOUZOUZ */
 create table articles
 (
     Id              bigint auto_increment
