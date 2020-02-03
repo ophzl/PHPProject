@@ -43,11 +43,14 @@ class User
         $user = new User();
         $user->setUID($datas['user_UId']);
         $user->setName($datas['user_Name']);
-        $user->setRole($datas['user_Role']);
+
+
+
+        $user->setRole(explode(',', $datas['user_Role']));
+
         $user->setMail($datas['user_Email']);
         $user->setPassword($datas['user_Password']);
         $user->setValid($datas['user_Valid']);
-
         return $user;
     }
 

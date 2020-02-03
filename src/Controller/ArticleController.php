@@ -18,7 +18,6 @@ class ArticleController extends AbstractController
     {
         $article = new Article();
         $listArticle = $article->SqlGetAll(Bdd::GetInstance());
-
         //Lancer la vue TWIG
         return $this->twig->render(
             'Article/list.html.twig', [
@@ -190,8 +189,8 @@ class ArticleController extends AbstractController
     {
         $article = new Article();
 
-        $listArticle = $article->SqlGetBy(Bdd::GetInstance(), "SELECT * FROM articles WHERE Titre LIKE :param%
-                        OR Auteur LIKE :param OR Id =:param",
+        $listArticle = $article->SqlGetBy(Bdd::GetInstance(), 'SELECT * FROM articles WHERE Titre =:param
+                        OR Auteur =:param OR Id =:param',
             $_POST['search']);
 
         if ($listArticle != null) {

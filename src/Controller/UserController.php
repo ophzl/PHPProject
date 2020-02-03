@@ -20,37 +20,47 @@ class UserController extends AbstractController
     public function loginCheck()
     {
 
-        if (!filter_var(
-            $_POST['Pass'],
-            FILTER_VALIDATE_REGEXP,
-            array(
-                "options" => array("regexp" => "/[a-zA-Z]{3,}/")
-            )
-        )) {
-            $_SESSION['errorlogin'] = "Mot de passe trop court (3 caractères minimum)";
-            header('Location:/Login');
-            return;
+        if($_POST && $_POST['crsf'] == $_SESSION['token']) {
+            if (!filter_var(
+                $_POST['Pass'],
+                FILTER_VALIDATE_REGEXP,
+                array(
+                    "options" => array("regexp" => "/[a-zA-Z]{3,}/")
+                )
+            )) {
+                $_SESSION['errorlogin'] = "Mot de passe trop court (3 caractères minimum)";
+                header('Location:/Login');
+                return;
+            }
+
+            if (!filter_var($_POST['Mail'], FILTER_VALIDATE_EMAIL)) {
+                $_SESSION['errorlogin'] = "Mail invalide";
+                header('Location:/Login');
+                return;
+            }
+
+            $bdd = Bdd::GetInstance();
+            $password = $_POST['Pass'];
+
+            $requete = $bdd->prepare("SELECT user_UId, user_Password FROM users WHERE user_Email =:Email");
+            $requete->execute([
+                'Email' => $_POST['Mail']]);
+            $returnSQL = $requete->fetch();
+            if (password_verify($password, $returnSQL['user_Password'])) {
+
+                $user = new User();
+                $user = $user->SqlGet(Bdd::GetInstance(), $returnSQL['user_UId']);
+
+
+                $_SESSION['USER'] = $user;
+
+                header('Location:/');
+            } else {
+                $_SESSION['errorlogin'] = "Erreur Authent.";
+                header('Location:/Login');
+            }
         }
 
-        if (!filter_var($_POST['Mail'], FILTER_VALIDATE_EMAIL)) {
-            $_SESSION['errorlogin'] = "Mail invalide";
-            header('Location:/Login');
-            return;
-        }
-
-        if ($_POST["Mail"] == "admin@admin.com"
-            AND $_POST["Pass"] == "password" AND $_POST['crsf'] == $_SESSION['token']
-        ) {
-
-            $user = new User();
-            $user->SqlGet(Bdd::GetInstance(), 1);
-
-            $_SESSION['USER'] = $user;
-            header('Location:/');
-        } else {
-            $_SESSION['errorlogin'] = "Erreur Authent.";
-            header('Location:/Login');
-        }
 
 
     }
