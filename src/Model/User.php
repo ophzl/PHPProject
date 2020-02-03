@@ -9,6 +9,8 @@ class User
     private $Name;
     private $Mail;
     private $Password;
+
+    private $Valid;
     private $Role;
     private $UID;
 
@@ -17,10 +19,24 @@ class User
 
 
     public function SqlAdd(\PDO $bdd) {
-
+        try{
+            $requete = $bdd->prepare('INSERT INTO users (user_Name, user_Email, user_Password) VALUES(:Name, :Email, :Password)');
+            $requete->execute([
+                "Name" => $this->getName(),
+                "Email" => $this->getMail(),
+                "password" => $this->getPassword()
+            ]);
+            return array("result"=>true,"message"=>$bdd->lastInsertId());
+        }catch (\Exception $e){
+            return array("result"=>false,"message"=>$e->getMessage());
+        }
     }
 
     public function SqlGet(\PDO $bdd, $UID){
+
+    }
+
+    public function SqlGetAll(\PDO $bdd){
 
     }
 
@@ -116,6 +132,24 @@ class User
     public function setUID($UID)
     {
         $this->UID = $UID;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getValid()
+    {
+        return $this->Valid;
+    }
+
+    /**
+     * @param mixed $Valid
+     * @return User
+     */
+    public function setValid($Valid)
+    {
+        $this->Valid = $Valid;
         return $this;
     }
 }
