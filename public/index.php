@@ -1,7 +1,6 @@
 <?php
 
 session_start();
-$_SESSION['USER'] = null;
 require '../vendor/autoload.php';
 
 function chargerClasse($classe){

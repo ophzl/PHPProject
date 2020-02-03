@@ -86,26 +86,29 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
         // line 39
         if (((isset($context["userConnected"]) || array_key_exists("userConnected", $context)) && 0 !== twig_compare(($context["userConnected"] ?? null), null))) {
             // line 40
-            echo "                        <a class=\"dropdown-item\" href=\"#\">Approuver un article</a>
+            echo "                        <h6 class=\"dropdown-header\">Bonjour ";
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["userConnected"] ?? null), "Name", [], "any", false, false, false, 40), "html", null, true);
+            echo "</h6>
+                        <a class=\"dropdown-item\" href=\"#\">Approuver un article</a>
                         <a class=\"dropdown-item\" href=\"#\">Gestion des membres</a>
                         <a class=\"dropdown-item\" href=\"/Logout\">Se déconnecter</a>
 
                     ";
         } else {
-            // line 45
+            // line 46
             echo "                        <a class=\"dropdown-item\" href=\"/Login\">Se connecter</a>
                         <a class=\"dropdown-item\" href=\"#\">S'inscrire</a>
                     ";
         }
-        // line 48
+        // line 49
         echo "                </div>
             </li>
         </ul>
 
 
         <form class=\"form-inline\" method=\"post\" action=\"/Article/Show/";
-        // line 53
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["post"] ?? null), "search", [], "any", false, false, false, 53), "html", null, true);
+        // line 54
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["post"] ?? null), "search", [], "any", false, false, false, 54), "html", null, true);
         echo "\">
             <input class=\"form-control mr-sm-2\" type=\"search\" placeholder=\"Rechercher un article\" name=\"search\">
             <input type=\"submit\" class=\"btn btn-outline-success my-2 my-sm-0\" value=\"Rechercher\" name=\"searchSubmit\">
@@ -138,9 +141,9 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
 
 
 ";
-        // line 84
-        $this->displayBlock('body', $context, $blocks);
         // line 85
+        $this->displayBlock('body', $context, $blocks);
+        // line 86
         echo "
 
 <script src=\"https://code.jquery.com/jquery-3.4.0.min.js\"></script>
@@ -150,9 +153,9 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
 <script src=\"https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/jquery-ui-i18n.min.js\"></script>
 <script src=\"https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js\"></script>
 ";
-        // line 93
-        $this->displayBlock('javascript', $context, $blocks);
         // line 94
+        $this->displayBlock('javascript', $context, $blocks);
+        // line 95
         echo "</body>
 </html>
 ";
@@ -171,13 +174,13 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
         $macros = $this->macros;
     }
 
-    // line 84
+    // line 85
     public function block_body($context, array $blocks = [])
     {
         $macros = $this->macros;
     }
 
-    // line 93
+    // line 94
     public function block_javascript($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -195,7 +198,7 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
 
     public function getDebugInfo()
     {
-        return array (  181 => 93,  175 => 84,  169 => 11,  162 => 5,  156 => 94,  154 => 93,  144 => 85,  142 => 84,  108 => 53,  101 => 48,  96 => 45,  89 => 40,  87 => 39,  58 => 12,  56 => 11,  47 => 5,  41 => 1,);
+        return array (  184 => 94,  178 => 85,  172 => 11,  165 => 5,  159 => 95,  157 => 94,  147 => 86,  145 => 85,  111 => 54,  104 => 49,  99 => 46,  89 => 40,  87 => 39,  58 => 12,  56 => 11,  47 => 5,  41 => 1,);
     }
 
     public function getSourceContext()
@@ -239,6 +242,7 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
                 </a>
                 <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">
                     {% if userConnected is defined and userConnected != null %}
+                        <h6 class=\"dropdown-header\">Bonjour {{ userConnected.Name }}</h6>
                         <a class=\"dropdown-item\" href=\"#\">Approuver un article</a>
                         <a class=\"dropdown-item\" href=\"#\">Gestion des membres</a>
                         <a class=\"dropdown-item\" href=\"/Logout\">Se déconnecter</a>

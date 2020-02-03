@@ -7,9 +7,18 @@
             <div class="alert alert-danger">{{ session.errorlogin }}</div>
         {% endif %}
         <form method="post" action="/Login">
-            <input type="email" name="email">
-            <input type="password" name="password">
-            <input type="submit">
+            <div class="form-group">
+                <label for="Mail">Adresse mail</label>
+                <input type="email" class="form-control" id="Mail" name="Mail" aria-describedby="emailHelp" placeholder="Entrez votre e-mail">
+                <small id="emailHelp" class="form-text text-muted">Nous nous engageons à ne rien divulguer.</small>
+            </div>
+            <div class="form-group">
+                <label for="Pass">Mot de passe</label>
+                <input type="password" class="form-control" id="Pass" name="Pass" placeholder="Entrez votre mot de passe" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Se connecter</button>
+            <input type="hidden" name="crsf" value="{{ token }}">
         </form>
     </div>
 

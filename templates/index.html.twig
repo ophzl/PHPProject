@@ -37,6 +37,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     {% if userConnected is defined and userConnected != null %}
+                        <h6 class="dropdown-header">Bonjour {{ userConnected.Name }}</h6>
                         <a class="dropdown-item" href="#">Approuver un article</a>
                         <a class="dropdown-item" href="#">Gestion des membres</a>
                         <a class="dropdown-item" href="/Logout">Se déconnecter</a>
