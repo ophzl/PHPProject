@@ -1,7 +1,6 @@
 <?php
 
-session_start();
-require '../vendor/autoload.php';
+
 
 function chargerClasse($classe){
     $ds = DIRECTORY_SEPARATOR;
@@ -14,8 +13,12 @@ function chargerClasse($classe){
     }
 }
 
+require '../vendor/autoload.php';
+include "config.php";
+
 spl_autoload_register('chargerClasse');
 
+session_start();
 $router = new \src\Router\Router($_GET['url']);
 
 //Articles Methods

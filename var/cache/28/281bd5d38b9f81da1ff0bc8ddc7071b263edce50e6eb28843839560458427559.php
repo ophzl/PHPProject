@@ -56,6 +56,7 @@ class __TwigTemplate_c44d686a089708fe11bee4fcd3db7bfba602885046e4f56f4e50551b205
     {
         $macros = $this->macros;
         // line 5
+        echo twig_var_dump($this->env, $context, ...[0 => ($context["userConnected"] ?? null)]);
         echo "
     <div class=\"jumbotron\">
         <h1 class=\"display-4\">Liste des articles</h1>
@@ -155,7 +156,7 @@ class __TwigTemplate_c44d686a089708fe11bee4fcd3db7bfba602885046e4f56f4e50551b205
 
     public function getDebugInfo()
     {
-        return array (  137 => 43,  125 => 37,  122 => 36,  116 => 33,  110 => 31,  108 => 30,  104 => 29,  98 => 26,  94 => 25,  90 => 24,  84 => 23,  81 => 22,  77 => 21,  59 => 5,  55 => 4,  47 => 2,  36 => 1,);
+        return array (  138 => 43,  126 => 37,  123 => 36,  117 => 33,  111 => 31,  109 => 30,  105 => 29,  99 => 26,  95 => 25,  91 => 24,  85 => 23,  82 => 22,  78 => 21,  59 => 5,  55 => 4,  47 => 2,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -164,7 +165,7 @@ class __TwigTemplate_c44d686a089708fe11bee4fcd3db7bfba602885046e4f56f4e50551b205
 {% block title %} Liste des articles - {{ parent() }}{% endblock %}
 
 {% block body %}
-
+{{ dump(userConnected) }}
     <div class=\"jumbotron\">
         <h1 class=\"display-4\">Liste des articles</h1>
     </div>

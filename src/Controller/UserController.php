@@ -2,6 +2,7 @@
 
 namespace src\Controller;
 
+use src\Model\Bdd;
 use src\Model\User;
 
 class UserController extends AbstractController
@@ -42,10 +43,7 @@ class UserController extends AbstractController
         ) {
 
             $user = new User();
-            $user->setName('Administrateur')
-                ->setMail('admin@admin.com')
-                ->setPassword('password')
-                ->setRole(['admin', 'redacteur']);
+            $user->SqlGet(Bdd::GetInstance(), 1);
 
             $_SESSION['USER'] = $user;
             header('Location:/');

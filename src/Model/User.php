@@ -33,11 +33,42 @@ class User
     }
 
     public function SqlGet(\PDO $bdd, $UID){
+        $requete = $bdd->prepare('SELECT * FROM users where user_UId = :id');
+        $requete->execute([
+            'id' => $UID
+        ]);
 
+        $datas =  $requete->fetch();
+
+        $user = new User();
+        $user->setUID($datas['user_UId']);
+        $user->setName($datas['user_Name']);
+        $user->setRole($datas['user_Role']);
+        $user->setMail($datas['user_Email']);
+        $user->setPassword($datas['user_Password']);
+        $user->setValid($datas['user_Valid']);
+
+        return $user;
     }
 
     public function SqlGetAll(\PDO $bdd){
+        $requete = $bdd->prepare('SELECT * FROM users');
+        $requete->execute();
+        $arrayUser = $requete->fetchAll();
 
+        $listUser = [];
+        foreach ($arrayUser as $datas){
+            $user = new User();
+            $user->setUID($datas['user_UId']);
+            $user->setName($datas['user_Name']);
+            $user->setRole($datas['user_Role']);
+            $user->setMail($datas['user_Email']);
+            $user->setPassword($datas['user_Password']);
+            $user->setValid($datas['user_Valid']);
+
+            $listUser[] = $user;
+        }
+        return $listUser;
     }
 
     public function SqlUpdate(\PDO $bdd, $UID){
