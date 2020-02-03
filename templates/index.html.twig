@@ -36,7 +36,7 @@
                     Compte
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    {% if userConnected is defined %}
+                    {% if userConnected is defined and userConnected != null %}
                         <a class="dropdown-item" href="#">Approuver un article</a>
                         <a class="dropdown-item" href="#">Gestion des membres</a>
                         <a class="dropdown-item" href="/Logout">Se déconnecter</a>
