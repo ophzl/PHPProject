@@ -53,8 +53,8 @@ class UserController extends AbstractController
 
     public static function roleNeed($roleATester)
     {
-        if (isset($_SESSION['login'])) {
-            if (!in_array($roleATester, $_SESSION['login']['roles'])) {
+        if (isset($_SESSION['USER'])) {
+            if (!in_array($roleATester, $_SESSION['USER']['roles'])) {
                 $_SESSION['errorlogin'] = "Manque le role : " . $roleATester;
                 header('Location:/Contact');
             }
