@@ -30,9 +30,9 @@ $router->get('/Article/Add', "Article#Add");
 $router->post('/Article/Add', "Article#Add");
 $router->get('/Article/Delete/:id', "Article#Delete#id");
 $router->get('/Article/Fixtures', "Article#Fixtures");
-$router->get('/Article/Write', "Article#Write");
+$router->get('/Article/WriteAll/', "Article#Write");
+$router->get('/Article/WriteOne/:id', "Article#WriteOne#id");
 $router->get('/Article/Read', "Article#Read");
-$router->get('/Article/WriteOne/:id', "Article#Read#id");
 $router->get('/Article/ListAll','Article#listAll');
 $router->post('/Article/Search','Article#Search');
 
