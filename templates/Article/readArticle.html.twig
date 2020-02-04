@@ -1,7 +1,7 @@
 {% extends "index.html.twig" %}
 
 {% block body %}
-    <div class="container">
+    <div class="container mt-2">
         <div class="card p-3">
 
             {% if articleData.ImageFileName != '' and    file_exist('./uploads/images/'~articleData.ImageRepository~'/'~articleData.ImageFileName) %}
@@ -22,7 +22,9 @@
             </footer>
         </div>
         <div class="d-flex justify-content-between p-3">
+            {% if userConnected is defined and userConnected != null %}
             <a href="/Contact/Article/{{ articleData.id }}" class="btn btn-primary">Contacter le Rédacteur</a>
+            {% endif %}
             <a href="/Article/ListAll" class="btn btn-danger">Retour</a>
         </div>
     </div>
