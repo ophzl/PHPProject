@@ -41,6 +41,48 @@ class Category
         return $listCategory;
     }
 
+    public function SqlGet(\PDO $bdd, $idCategory){
+        $requete = $bdd->prepare('SELECT * FROM category where id=:idCategory');
+        $requete->execute([
+            'idCategory' => $idCategory
+        ]);
+
+        $datas =  $requete->fetch();
+
+        $category = new Category();
+        $category->setId($datas['category_id']);
+        $category->setLabel($datas['category_label']);
+        $category->setCodeReference($datas['category_code_reference']);
+
+        return $category;
+
+    }    public function SqlUpdate(\PDO $bdd){
+    try{
+        $requete = $bdd->prepare('UPDATE category set category_code_reference=:codeReference, category_label=:label WHERE id=:idCategory');
+        $requete->execute([
+            'codeReference' => $this->getCodeReference()
+            ,'label' => $this->getLabel()
+            ,'idCategory' => $this->getId()
+        ]);
+        return array("0", "[OK] Update");
+    }catch (\Exception $e){
+        return array("1", "[ERREUR] ".$e->getMessage());
+    }
+}
+
+
+    public function SqlDelete (\PDO $bdd, $idCategory){
+        try{
+            $requete = $bdd->prepare('DELETE FROM category where id=:idCategory');
+            $requete->execute([
+                'idCategory' => $idCategory
+            ]);
+            return true;
+        }catch (\Exception $e){
+            return false;
+        }
+    }
+
     /**
      * @return mixed
      */

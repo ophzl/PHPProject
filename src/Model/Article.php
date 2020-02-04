@@ -74,7 +74,6 @@ class Article extends Contenu implements \JsonSerializable {
 
         return $article;
 
-
     }
 
     public function SqlGetBy(\PDO $bdd, $SQL, $param)
