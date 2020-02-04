@@ -1,0 +1,22 @@
+{% extends "index.html.twig" %}
+{% block title %} Changer le rôle de {{ user.Name }}{% endblock %}
+
+{% block body %}
+    <div class="container-fluid mt-2">
+        <form method="post" action="/Admin/ChangeRoles/">
+            <div class="form-group">
+                <label for="role">Rôles</label>
+                <select multiple class="form-control" id="role" name="role[]">
+                    <option value="admin">Admin</option>
+                    <option value="modo">Modérateur</option>
+                    <option value="redacteur">Rédacteur</option>
+                    <option value="bg">Beau gosse</option>
+                </select>
+            </div>
+            <input type="submit" class="btn btn-primary" value="Changer le rôle de {{ user.Name }}">
+            <input type="hidden" name="userUID" value="{{ user.UID }}">
+            <input type="hidden" name="crsf" value="{{ token }}">
+        </form>
+    </div>
+
+{% endblock %}
