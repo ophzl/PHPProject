@@ -52,12 +52,12 @@ class Category
 
         $datas = $requete->fetch();
 
-        $category = new Category();
-        $category->setId($datas['category_id']);
-        $category->setLabel($datas['category_label']);
-        $category->setCodeReference($datas['category_code_reference']);
 
-        return $category;
+        $this->setId($datas['category_id']);
+        $this->setLabel($datas['category_label']);
+        $this->setCodeReference($datas['category_code_reference']);
+
+        return $this;
 
     }
 

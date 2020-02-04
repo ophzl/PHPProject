@@ -70,6 +70,8 @@ $router->get('/Category', "Category#ListAll");
 $router->get('/Category/ListAll', "Category#ListAll");
 $router->get('/Category/Add', "Category#Add");
 $router->post('/Category/Add', "Category#Add");
+$router->get('/Category/Update/:id', "Category#Update#id");
+$router->post('/Category/Update/:id', "Category#Update#id");
 $router->get('/Category/Delete/:id', "Category#Delete#id");
 
 
