@@ -62,6 +62,11 @@ $router->get('/Admin/ChangeRoles/:id', 'Admin#ChangeRolesForm#id');
 $router->post('/Admin/ChangeRoles/:id', 'Admin#ChangeRoles#id');
 $router->get('/Admin/ApproveArticle/:id','Article#ApproveArticle#id'); //TODO
 
+//Category Methods
+$router->get('/Category', "Category#ListAll");
+$router->get('/Category/ListAll', "Category#ListAll");
+$router->get('/Category/Add', "Category#Add");
+$router->post('/Category/Add', "Category#Add");
 
 
 

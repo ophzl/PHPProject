@@ -1,0 +1,42 @@
+{% extends "index.html.twig" %}
+{% block title %} Liste des Catégories - {{ parent() }}{% endblock %}
+
+{% block body %}
+
+    <div class="jumbotron">
+        <h1 class="display-4">Liste des catégories</h1>
+    </div>
+    <div class="container">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Libellé</th>
+                <th scope="col">Code de référence</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for category in categoryList %}
+                <tr>
+                    <th scope="row"><a href="/Article/Show/{{ category.id }}">#{{ category.id }}</a></th>
+                    <td>{{ category.label }}</td>
+                    <td>{{ category.codeReference }}</td>
+                    <td>
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            {% if "admin" in userConnected.Role %}
+                                <a class="btn btn-warning" href="/Category/Update/{{ category.id }}"><i
+                                            class="fas fa-edit"></i></a>
+                                <a class="btn btn-danger" href="/Category/Delete/{{ category.id }}"><i
+                                            class="far fa-trash-alt"></i></a>
+                            {% endif %}
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}
