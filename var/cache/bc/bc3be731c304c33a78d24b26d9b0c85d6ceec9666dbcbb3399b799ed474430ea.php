@@ -72,28 +72,36 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
         <!--<div class=\"row\">-->
 
         <ul class=\"navbar-nav mr-auto mt-2 mt-lg-0\">
-            <li class=\"nav-item\">
-                <a class=\"nav-link\" href=\"/Article/ListAll\">Liste des articles</a>
-            </li>
-            ";
-        // line 32
-        if (((twig_in_filter("redacteur", twig_get_attribute($this->env, $this->source, ($context["userConnected"] ?? null), "Role", [], "any", false, false, false, 32)) && (isset($context["userConnected"]) || array_key_exists("userConnected", $context))) && 0 !== twig_compare(($context["userConnected"] ?? null), null))) {
-            // line 33
-            echo "                <li class=\"nav-item\">
-                    <a class=\"nav-link\" href=\"/Article/Add\">Ajout d'un article</a>
-                </li>
-            ";
-        }
+            <li class=\"nav-item dropdown\">
+                <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\"
+                   data-toggle=\"dropdown\"
+                   aria-haspopup=\"true\" aria-expanded=\"false\">
+                    Articles
+                </a>
+                <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">
+                    <a class=\"dropdown-item\" href=\"/Article/ListAll\">Liste des articles</a>
+                    ";
         // line 37
-        echo "            <li class=\"nav-item\">
+        if (((twig_in_filter("redacteur", twig_get_attribute($this->env, $this->source, ($context["userConnected"] ?? null), "Role", [], "any", false, false, false, 37)) && (isset($context["userConnected"]) || array_key_exists("userConnected", $context))) && 0 !== twig_compare(($context["userConnected"] ?? null), null))) {
+            // line 38
+            echo "                        <a class=\"dropdown-item\" href=\"/Article/Add\">Ajout d'un article</a>
+                    ";
+        }
+        // line 40
+        echo "
+                </div>
+            </li>
+
+
+            <li class=\"nav-item\">
                 <a href=\"/Contact\" class=\"nav-link\">Contactez-nous</a>
             </li>
 
 
             ";
-        // line 42
-        if (twig_in_filter("admin", twig_get_attribute($this->env, $this->source, ($context["userConnected"] ?? null), "Role", [], "any", false, false, false, 42))) {
-            // line 43
+        // line 50
+        if (twig_in_filter("admin", twig_get_attribute($this->env, $this->source, ($context["userConnected"] ?? null), "Role", [], "any", false, false, false, 50))) {
+            // line 51
             echo "                <li class=\"nav-item dropdown\">
                     <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\"
                        data-toggle=\"dropdown\"
@@ -108,7 +116,7 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
                 </li>
             ";
         }
-        // line 56
+        // line 64
         echo "
             <li class=\"nav-item dropdown\">
                 <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\"
@@ -117,23 +125,23 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
                 </a>
                 <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">
                     ";
-        // line 63
+        // line 71
         if (((isset($context["userConnected"]) || array_key_exists("userConnected", $context)) && 0 !== twig_compare(($context["userConnected"] ?? null), null))) {
-            // line 64
+            // line 72
             echo "                        <h6 class=\"dropdown-header\">Bonjour ";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["userConnected"] ?? null), "Name", [], "any", false, false, false, 64), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["userConnected"] ?? null), "Name", [], "any", false, false, false, 72), "html", null, true);
             echo "</h6>
 
                         <a class=\"dropdown-item\" href=\"/Logout\">Se déconnecter</a>
 
                     ";
         } else {
-            // line 69
+            // line 77
             echo "                        <a class=\"dropdown-item\" href=\"/Login\">Se connecter</a>
                         <a class=\"dropdown-item\" href=\"/Register\">S'inscrire</a>
                     ";
         }
-        // line 72
+        // line 80
         echo "                </div>
             </li>
 
@@ -149,9 +157,9 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
 </nav>
 
 ";
-        // line 86
+        // line 94
         $this->displayBlock('body', $context, $blocks);
-        // line 87
+        // line 95
         echo "
 
 <script src=\"https://code.jquery.com/jquery-3.4.0.min.js\"></script>
@@ -161,9 +169,9 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
 <script src=\"https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/jquery-ui-i18n.min.js\"></script>
 <script src=\"https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js\"></script>
 ";
-        // line 95
+        // line 103
         $this->displayBlock('javascript', $context, $blocks);
-        // line 96
+        // line 104
         echo "</body>
 </html>
 ";
@@ -182,13 +190,13 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
         $macros = $this->macros;
     }
 
-    // line 86
+    // line 94
     public function block_body($context, array $blocks = [])
     {
         $macros = $this->macros;
     }
 
-    // line 95
+    // line 103
     public function block_javascript($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -206,7 +214,7 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
 
     public function getDebugInfo()
     {
-        return array (  192 => 95,  186 => 86,  180 => 11,  173 => 5,  167 => 96,  165 => 95,  155 => 87,  153 => 86,  137 => 72,  132 => 69,  123 => 64,  121 => 63,  112 => 56,  97 => 43,  95 => 42,  88 => 37,  82 => 33,  80 => 32,  58 => 12,  56 => 11,  47 => 5,  41 => 1,);
+        return array (  200 => 103,  194 => 94,  188 => 11,  181 => 5,  175 => 104,  173 => 103,  163 => 95,  161 => 94,  145 => 80,  140 => 77,  131 => 72,  129 => 71,  120 => 64,  105 => 51,  103 => 50,  91 => 40,  87 => 38,  85 => 37,  58 => 12,  56 => 11,  47 => 5,  41 => 1,);
     }
 
     public function getSourceContext()
@@ -239,14 +247,22 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
         <!--<div class=\"row\">-->
 
         <ul class=\"navbar-nav mr-auto mt-2 mt-lg-0\">
-            <li class=\"nav-item\">
-                <a class=\"nav-link\" href=\"/Article/ListAll\">Liste des articles</a>
+            <li class=\"nav-item dropdown\">
+                <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\"
+                   data-toggle=\"dropdown\"
+                   aria-haspopup=\"true\" aria-expanded=\"false\">
+                    Articles
+                </a>
+                <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">
+                    <a class=\"dropdown-item\" href=\"/Article/ListAll\">Liste des articles</a>
+                    {% if \"redacteur\" in userConnected.Role and userConnected is defined and userConnected != null %}
+                        <a class=\"dropdown-item\" href=\"/Article/Add\">Ajout d'un article</a>
+                    {% endif %}
+
+                </div>
             </li>
-            {% if \"redacteur\" in userConnected.Role and userConnected is defined and userConnected != null %}
-                <li class=\"nav-item\">
-                    <a class=\"nav-link\" href=\"/Article/Add\">Ajout d'un article</a>
-                </li>
-            {% endif %}
+
+
             <li class=\"nav-item\">
                 <a href=\"/Contact\" class=\"nav-link\">Contactez-nous</a>
             </li>

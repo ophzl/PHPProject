@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="utf-8">
-    <title>{% block title %}CESI BLOG{% endblock %}</title>
+    <title>{% block title %}Projet PHP{% endblock %}</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet"
           href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/pepper-grinder/jquery-ui.css">
@@ -26,14 +26,22 @@
         <!--<div class="row">-->
 
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item">
-                <a class="nav-link" href="/Article/ListAll">Liste des articles</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                   data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Articles
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/Article/ListAll">Liste des articles</a>
+                    {% if "redacteur" in userConnected.Role and userConnected is defined and userConnected != null %}
+                        <a class="dropdown-item" href="/Article/Add">Ajout d'un article</a>
+                    {% endif %}
+
+                </div>
             </li>
-            {% if "redacteur" in userConnected.Role and userConnected is defined and userConnected != null %}
-                <li class="nav-item">
-                    <a class="nav-link" href="/Article/Add">Ajout d'un article</a>
-                </li>
-            {% endif %}
+
+
             <li class="nav-item">
                 <a href="/Contact" class="nav-link">Contactez-nous</a>
             </li>

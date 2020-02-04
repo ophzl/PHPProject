@@ -76,8 +76,21 @@ class User
         return $listUser;
     }
 
-    public function SqlUpdate(\PDO $bdd, $UID){
-
+    public function SqlUpdate(\PDO $bdd){
+        try{
+            $requete = $bdd->prepare('UPDATE users SET user_Name =:Name, user_Role=:Role, user_Email=:Email, user_Password=:Password, user_Valid=:Valid WHERE user_UId =:UID');
+            $requete->execute([
+                "Name" => $this->getName(),
+                "Role" => $this->getRole(),
+                "Email" => $this->getMail(),
+                "Password" => $this->getPassword(),
+                "Valid" => $this->getValid(),
+                'UID' => $this->getUID()
+            ]);
+            return array("result"=>true);
+        }catch (\Exception $e){
+            return array("result"=>false,"message"=>$e->getMessage());
+        }
     }
 
 

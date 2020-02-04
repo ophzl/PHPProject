@@ -24,10 +24,24 @@ class AdminController extends AbstractController
     }
 
     public function ChangeRolesForm($UID) {
-
+        $user = (new User)->SqlGet(Bdd::GetInstance(), $UID);
+        $token = bin2hex(random_bytes(32));
+        $_SESSION['token'] = $token;
+        return $this->twig->render('Admin/changeroles.html.twig', [
+            'token' => $token,
+            'user' => $user
+        ]);
     }
 
-    public function ChangeRoles($UID) {
+    public function ChangeRoles() {
+        $listRoles = '';
+        foreach ($_POST['role'] as $role){
+            $listRoles .= $role.',';
+        }
+        $user = (new User)->SqlGet(Bdd::GetInstance(), $_POST['userUID']);
+        $user->setRole($listRoles);
+        $user->SqlUpdate(Bdd::GetInstance());
+        header('Location:/Admin/ListUser');
 
     }
 

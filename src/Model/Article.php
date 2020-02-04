@@ -6,7 +6,13 @@ class Article extends Contenu implements \JsonSerializable {
     private $DateAjout;
     private $ImageRepository;
     private $ImageFileName;
+
+
+
+
     private $Category;
+
+    private $Valid;
 
 
 
@@ -229,5 +235,39 @@ class Article extends Contenu implements \JsonSerializable {
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getCategory()
+    {
+        return $this->Category;
+    }
 
+    /**
+     * @param mixed $Category
+     * @return Article
+     */
+    public function setCategory($Category)
+    {
+        $this->Category = $Category;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getValid()
+    {
+        return $this->Valid;
+    }
+
+    /**
+     * @param mixed $Valid
+     * @return Article
+     */
+    public function setValid($Valid)
+    {
+        $this->Valid = $Valid;
+        return $this;
+    }
 }
