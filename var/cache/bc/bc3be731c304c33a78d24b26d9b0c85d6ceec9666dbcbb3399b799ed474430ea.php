@@ -111,12 +111,14 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
                     <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">
                         <a class=\"dropdown-item\" href=\"#\">Approuver un article</a>
                         <a class=\"dropdown-item\" href=\"/Admin/ListUser\">Gestion des membres</a>
+                        <a class=\"dropdown-item\" href=\"/Category/ListAll\">Gestion des catégories</a>
+                        <a class=\"dropdown-item\" href=\"/Category/Add\">Ajouter une catégorie</a>
 
                     </div>
                 </li>
             ";
         }
-        // line 64
+        // line 66
         echo "
             <li class=\"nav-item dropdown\">
                 <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\"
@@ -125,23 +127,23 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
                 </a>
                 <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">
                     ";
-        // line 71
+        // line 73
         if (((isset($context["userConnected"]) || array_key_exists("userConnected", $context)) && 0 !== twig_compare(($context["userConnected"] ?? null), null))) {
-            // line 72
+            // line 74
             echo "                        <h6 class=\"dropdown-header\">Bonjour ";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["userConnected"] ?? null), "Name", [], "any", false, false, false, 72), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["userConnected"] ?? null), "Name", [], "any", false, false, false, 74), "html", null, true);
             echo "</h6>
 
                         <a class=\"dropdown-item\" href=\"/Logout\">Se déconnecter</a>
 
                     ";
         } else {
-            // line 77
+            // line 79
             echo "                        <a class=\"dropdown-item\" href=\"/Login\">Se connecter</a>
                         <a class=\"dropdown-item\" href=\"/Register\">S'inscrire</a>
                     ";
         }
-        // line 80
+        // line 82
         echo "                </div>
             </li>
 
@@ -157,9 +159,9 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
 </nav>
 
 ";
-        // line 94
+        // line 96
         $this->displayBlock('body', $context, $blocks);
-        // line 95
+        // line 97
         echo "
 
 <script src=\"https://code.jquery.com/jquery-3.4.0.min.js\"></script>
@@ -169,9 +171,9 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
 <script src=\"https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/jquery-ui-i18n.min.js\"></script>
 <script src=\"https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js\"></script>
 ";
-        // line 103
+        // line 105
         $this->displayBlock('javascript', $context, $blocks);
-        // line 104
+        // line 106
         echo "</body>
 </html>
 ";
@@ -181,7 +183,7 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
     public function block_title($context, array $blocks = [])
     {
         $macros = $this->macros;
-        echo "CESI BLOG";
+        echo "Projet PHP";
     }
 
     // line 11
@@ -190,13 +192,13 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
         $macros = $this->macros;
     }
 
-    // line 94
+    // line 96
     public function block_body($context, array $blocks = [])
     {
         $macros = $this->macros;
     }
 
-    // line 103
+    // line 105
     public function block_javascript($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -214,7 +216,7 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
 
     public function getDebugInfo()
     {
-        return array (  200 => 103,  194 => 94,  188 => 11,  181 => 5,  175 => 104,  173 => 103,  163 => 95,  161 => 94,  145 => 80,  140 => 77,  131 => 72,  129 => 71,  120 => 64,  105 => 51,  103 => 50,  91 => 40,  87 => 38,  85 => 37,  58 => 12,  56 => 11,  47 => 5,  41 => 1,);
+        return array (  202 => 105,  196 => 96,  190 => 11,  183 => 5,  177 => 106,  175 => 105,  165 => 97,  163 => 96,  147 => 82,  142 => 79,  133 => 74,  131 => 73,  122 => 66,  105 => 51,  103 => 50,  91 => 40,  87 => 38,  85 => 37,  58 => 12,  56 => 11,  47 => 5,  41 => 1,);
     }
 
     public function getSourceContext()
@@ -223,7 +225,7 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
 <html lang=\"fr\">
 <head>
     <meta charset=\"utf-8\">
-    <title>{% block title %}CESI BLOG{% endblock %}</title>
+    <title>{% block title %}Projet PHP{% endblock %}</title>
     <link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\">
     <link rel=\"stylesheet\"
           href=\"https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/pepper-grinder/jquery-ui.css\">
@@ -278,6 +280,8 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
                     <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">
                         <a class=\"dropdown-item\" href=\"#\">Approuver un article</a>
                         <a class=\"dropdown-item\" href=\"/Admin/ListUser\">Gestion des membres</a>
+                        <a class=\"dropdown-item\" href=\"/Category/ListAll\">Gestion des catégories</a>
+                        <a class=\"dropdown-item\" href=\"/Category/Add\">Ajouter une catégorie</a>
 
                     </div>
                 </li>

@@ -60,6 +60,7 @@ $router->get('/Admin/ListUser/', 'Admin#ListUser');
 $router->get('/Admin/ApproveUser/:id', 'Admin#ApproveUser#id');
 $router->get('/Admin/ChangeRoles/:id', 'Admin#ChangeRolesForm#id');
 $router->post('/Admin/ChangeRoles/', 'Admin#ChangeRoles');
+$router->get('/Admin/DeleteUser/:id', 'Admin#DeleteUser#id');
 $router->get('/Admin/ApproveArticle/:id','Article#ApproveArticle#id'); //TODO
 
 //Category Methods

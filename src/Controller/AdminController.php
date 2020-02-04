@@ -46,7 +46,9 @@ class AdminController extends AbstractController
     }
 
     public function DeleteUser($UID) {
-
+        $query = Bdd::GetInstance()->prepare('DELETE FROM users where user_UId=:UID');
+        $query->execute(['UID' => $UID]);
+        header('Location:/Admin/ListUser');
     }
 
     public function ListUser(){
