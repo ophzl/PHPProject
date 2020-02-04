@@ -9,6 +9,13 @@
     <form name="contact" method="post" class="col-lg-8" enctype="multipart/form-data" action="/Contact/sendMail">
 
         <div class="form-group row">
+            <label for="author_mail" class="col-sm-2 col-form-label">Destinataire</label>
+            <div class="col-sm-10">
+                <input readonly class="form-control" value="{{ article.auteur }}"/> <!-- TODO: value = author email -->
+            </div>
+        </div>
+
+        <div class="form-group row">
             <label for="Object" class="col-sm-2 col-form-label">Objet</label>
             <div class="col-sm-10">
                 <input type="text" name="Object" class="form-control form-control-lg">
@@ -18,11 +25,7 @@
         <div class="form-group row">
             <label for="Article" class="col-sm-2 col-form-label">Article</label>
             <div class="col-sm-10">
-                <select class="form-control">
-                    {% for article in ListArticles %}
-                        <option value="{{ article.ListArticles }}"></option>
-                    {% endfor %}
-                </select>
+                <input readonly class="form-control" value="#{{ article.id }}"/>
             </div>
         </div>
 
@@ -32,7 +35,7 @@
                 <textarea name="Message" class="form-control" rows="7"></textarea>
             </div>
         </div>
-
+        <input type="hidden" name="articleId" value="{{ article.id }}">
         <input type="submit" class="btn btn-primary my-1">
     </form>
 

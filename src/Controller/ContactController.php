@@ -1,11 +1,13 @@
 <?php
+
 namespace src\Controller;
 
 use src\Model\Article;
 use src\Model\Bdd;
 use src\Model\User;
 
-class ContactController extends AbstractController{
+class ContactController extends AbstractController
+{
     private $mailer;
     private $transport;
 
@@ -19,21 +21,24 @@ class ContactController extends AbstractController{
 
     }
 
-    public function showForm(){
+    public function showForm()
+    {
         return $this->twig->render('Contact/form.html.twig');
     }
 
-    public function sendMail(){
+    public function sendMail()
+    {
         $mail = (new \Swift_Message($_POST['Object']))
-            ->setFrom($_SESSION['USER'] ->getMail())
-            ->setTo('contact@monsite.fr')
+            ->setFrom($_SESSION['USER']->getMail())
+            ->setTo('SELECT email FROM * WHERE user_Name=$_POST["Auteur"]') // TODO: setTo email to author email
             ->setBody(
                 $this->twig->render('Contact/mail.html.twig',
                     [
                         'message' => $_POST["Message"],
                         'user_email' => $_SESSION['USER']->getMail(),
+                        'article' => $_POST['articleId']
                     ])
-                ,'text/html'
+                , 'text/html'
             );
 
         $result = $this->mailer->send($mail);
@@ -41,12 +46,13 @@ class ContactController extends AbstractController{
         return $result;
     }
 
-    public function ListArticles()
+    public function formId($idArticle)
     {
         $article = new Article();
+        $article = $article->SqlGet(Bdd::GetInstance(), $idArticle);
 
-        $listArticle = $article->SqlGetAll(Bdd::GetInstance());
-        return $this->twig->render('Contact/form.html.twig', ['listArticle' => $listArticle]);
+        return $this->twig->render('Contact/form.html.twig', [
+            'article' => $article,
+        ]);
     }
-
 }
