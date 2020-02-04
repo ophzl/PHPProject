@@ -54,6 +54,8 @@ $router->post('/Register', 'User#RegisterCheck'); //TODO
 $router->get('/Logout', 'User#logout');
 $router->get('/Admin/Validate/:id', 'User#Validate#id'); //TODO
 
+$router->get('/Article/Show/:id','Article#ReadArticle#id');
+
 
 echo $router->run();
 
