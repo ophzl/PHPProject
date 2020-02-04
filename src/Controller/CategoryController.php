@@ -35,6 +35,7 @@ class CategoryController extends AbstractController
             $category = new Category();
             $category->setLabel($_POST['label']);
             $category->setCodeReference($_POST['code_reference']);
+
             $category->SqlAdd(BDD::getInstance());
             header('Location:/Category');
         } else {
@@ -48,9 +49,26 @@ class CategoryController extends AbstractController
         }
     }
 
+    public function update($categoryID)
+    {
+        $categorySQL = new Category();
+        $category = $categorySQL->SqlGet(BDD::getInstance(), $categoryID);
+
+        if ($_POST) {
+            $category->setLabel($_POST['label']);
+            $category->setCodeReference($_POST['code_reference']);
+
+            $category->SqlUpdate(BDD::getInstance());
+        }
+
+        return $this->twig->render('Category/update.html.twig', [
+            'category' => $category
+        ]);
+    }
+
     public function Delete($categoryID)
     {
-        $category= new Category();
+        $category = new Category();
         $category->SqlDelete(BDD::getInstance(), $categoryID);
 
         header('Location:/Category/');
