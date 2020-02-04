@@ -45,6 +45,7 @@ $router->put('/Api/Article/:id/:json', "Api#ArticlePut#id#json");
 //Contact Methods
 $router->get('/Contact', 'Contact#showForm');
 $router->post('/Contact/sendMail', 'Contact#sendMail');
+$router->get('/Contact/ListArticles', 'Contact#ListArticles');
 
 //User Methods
 $router->get('/Login', 'User#loginForm'); //TODO: verify
