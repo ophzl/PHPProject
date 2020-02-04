@@ -31,7 +31,8 @@
             <div class="form-group row">
                 <label for="article_auteur" class="col-sm-2 col-form-label">Auteur</label>
                 <div class="col-sm-10">
-                    <input type="text" name="Auteur" class="form-control">
+                    <input type="text" class="form-control mb-2" value="{{ userConnected.Name }}" readonly>
+                    <input type="text" name="Auteur" class="form-control" value="{{ userConnected.Mail }}" readonly>
                 </div>
             </div>
 

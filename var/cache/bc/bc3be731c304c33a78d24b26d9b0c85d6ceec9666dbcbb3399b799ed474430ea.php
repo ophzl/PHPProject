@@ -75,13 +75,41 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
             <li class=\"nav-item\">
                 <a class=\"nav-link\" href=\"/Article/ListAll\">Liste des articles</a>
             </li>
-            <li class=\"nav-item\">
-                <a class=\"nav-link\" href=\"/Article/Add\">Ajout d'un article</a>
-            </li>
-            <li class=\"nav-item\">
+            ";
+        // line 32
+        if (((twig_in_filter("redacteur", twig_get_attribute($this->env, $this->source, ($context["userConnected"] ?? null), "Role", [], "any", false, false, false, 32)) && (isset($context["userConnected"]) || array_key_exists("userConnected", $context))) && 0 !== twig_compare(($context["userConnected"] ?? null), null))) {
+            // line 33
+            echo "                <li class=\"nav-item\">
+                    <a class=\"nav-link\" href=\"/Article/Add\">Ajout d'un article</a>
+                </li>
+            ";
+        }
+        // line 37
+        echo "            <li class=\"nav-item\">
                 <a href=\"/Contact\" class=\"nav-link\">Contactez-nous</a>
             </li>
 
+
+            ";
+        // line 42
+        if (twig_in_filter("admin", twig_get_attribute($this->env, $this->source, ($context["userConnected"] ?? null), "Role", [], "any", false, false, false, 42))) {
+            // line 43
+            echo "                <li class=\"nav-item dropdown\">
+                    <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\"
+                       data-toggle=\"dropdown\"
+                       aria-haspopup=\"true\" aria-expanded=\"false\">
+                        Panneau d'administration
+                    </a>
+                    <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">
+                        <a class=\"dropdown-item\" href=\"#\">Approuver un article</a>
+                        <a class=\"dropdown-item\" href=\"/Admin/ListUser\">Gestion des membres</a>
+
+                    </div>
+                </li>
+            ";
+        }
+        // line 56
+        echo "
             <li class=\"nav-item dropdown\">
                 <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\"
                    aria-haspopup=\"true\" aria-expanded=\"false\">
@@ -89,48 +117,41 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
                 </a>
                 <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">
                     ";
-        // line 45
+        // line 63
         if (((isset($context["userConnected"]) || array_key_exists("userConnected", $context)) && 0 !== twig_compare(($context["userConnected"] ?? null), null))) {
-            // line 46
+            // line 64
             echo "                        <h6 class=\"dropdown-header\">Bonjour ";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["userConnected"] ?? null), "Name", [], "any", false, false, false, 46), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["userConnected"] ?? null), "Name", [], "any", false, false, false, 64), "html", null, true);
             echo "</h6>
-                        ";
-            // line 47
-            if (twig_in_filter("admin", twig_get_attribute($this->env, $this->source, ($context["userConnected"] ?? null), "Role", [], "any", false, false, false, 47))) {
-                // line 48
-                echo "                            <a class=\"dropdown-item\" href=\"#\">Approuver un article</a>
-                            <a class=\"dropdown-item\" href=\"#\">Gestion des membres</a>
-                        ";
-            }
-            // line 51
-            echo "                        <a class=\"dropdown-item\" href=\"/Logout\">Se déconnecter</a>
+
+                        <a class=\"dropdown-item\" href=\"/Logout\">Se déconnecter</a>
 
                     ";
         } else {
-            // line 54
+            // line 69
             echo "                        <a class=\"dropdown-item\" href=\"/Login\">Se connecter</a>
                         <a class=\"dropdown-item\" href=\"/Register\">S'inscrire</a>
                     ";
         }
-        // line 57
+        // line 72
         echo "                </div>
             </li>
+
         </ul>
 
 
         <form class=\"form-inline\" method=\"post\" action=\"/Article/Search/\">
             <input class=\"form-control mr-sm-2\" type=\"search\" placeholder=\"Rechercher un article\" name=\"search\">
-            <input type=\"submit\" class=\"btn btn-outline-success my-2 my-sm-0\" value=\"Rechercher\">
+            <input type=\"submit\" class=\"btn btn-success my-2 my-sm-0\" value=\"Rechercher\">
         </form>
     </div>
 
 </nav>
 
 ";
-        // line 70
+        // line 86
         $this->displayBlock('body', $context, $blocks);
-        // line 71
+        // line 87
         echo "
 
 <script src=\"https://code.jquery.com/jquery-3.4.0.min.js\"></script>
@@ -140,9 +161,9 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
 <script src=\"https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/jquery-ui-i18n.min.js\"></script>
 <script src=\"https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js\"></script>
 ";
-        // line 79
+        // line 95
         $this->displayBlock('javascript', $context, $blocks);
-        // line 80
+        // line 96
         echo "</body>
 </html>
 ";
@@ -161,13 +182,13 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
         $macros = $this->macros;
     }
 
-    // line 70
+    // line 86
     public function block_body($context, array $blocks = [])
     {
         $macros = $this->macros;
     }
 
-    // line 79
+    // line 95
     public function block_javascript($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -185,7 +206,7 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
 
     public function getDebugInfo()
     {
-        return array (  171 => 79,  165 => 70,  159 => 11,  152 => 5,  146 => 80,  144 => 79,  134 => 71,  132 => 70,  117 => 57,  112 => 54,  107 => 51,  102 => 48,  100 => 47,  95 => 46,  93 => 45,  58 => 12,  56 => 11,  47 => 5,  41 => 1,);
+        return array (  192 => 95,  186 => 86,  180 => 11,  173 => 5,  167 => 96,  165 => 95,  155 => 87,  153 => 86,  137 => 72,  132 => 69,  123 => 64,  121 => 63,  112 => 56,  97 => 43,  95 => 42,  88 => 37,  82 => 33,  80 => 32,  58 => 12,  56 => 11,  47 => 5,  41 => 1,);
     }
 
     public function getSourceContext()
@@ -221,12 +242,30 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
             <li class=\"nav-item\">
                 <a class=\"nav-link\" href=\"/Article/ListAll\">Liste des articles</a>
             </li>
-            <li class=\"nav-item\">
-                <a class=\"nav-link\" href=\"/Article/Add\">Ajout d'un article</a>
-            </li>
+            {% if \"redacteur\" in userConnected.Role and userConnected is defined and userConnected != null %}
+                <li class=\"nav-item\">
+                    <a class=\"nav-link\" href=\"/Article/Add\">Ajout d'un article</a>
+                </li>
+            {% endif %}
             <li class=\"nav-item\">
                 <a href=\"/Contact\" class=\"nav-link\">Contactez-nous</a>
             </li>
+
+
+            {% if \"admin\" in userConnected.Role %}
+                <li class=\"nav-item dropdown\">
+                    <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\"
+                       data-toggle=\"dropdown\"
+                       aria-haspopup=\"true\" aria-expanded=\"false\">
+                        Panneau d'administration
+                    </a>
+                    <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">
+                        <a class=\"dropdown-item\" href=\"#\">Approuver un article</a>
+                        <a class=\"dropdown-item\" href=\"/Admin/ListUser\">Gestion des membres</a>
+
+                    </div>
+                </li>
+            {% endif %}
 
             <li class=\"nav-item dropdown\">
                 <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\"
@@ -236,10 +275,7 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
                 <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">
                     {% if userConnected is defined and userConnected != null %}
                         <h6 class=\"dropdown-header\">Bonjour {{ userConnected.Name }}</h6>
-                        {% if \"admin\" in userConnected.Role %}
-                            <a class=\"dropdown-item\" href=\"#\">Approuver un article</a>
-                            <a class=\"dropdown-item\" href=\"#\">Gestion des membres</a>
-                        {% endif %}
+
                         <a class=\"dropdown-item\" href=\"/Logout\">Se déconnecter</a>
 
                     {% else %}
@@ -248,12 +284,13 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
                     {% endif %}
                 </div>
             </li>
+
         </ul>
 
 
         <form class=\"form-inline\" method=\"post\" action=\"/Article/Search/\">
             <input class=\"form-control mr-sm-2\" type=\"search\" placeholder=\"Rechercher un article\" name=\"search\">
-            <input type=\"submit\" class=\"btn btn-outline-success my-2 my-sm-0\" value=\"Rechercher\">
+            <input type=\"submit\" class=\"btn btn-success my-2 my-sm-0\" value=\"Rechercher\">
         </form>
     </div>
 

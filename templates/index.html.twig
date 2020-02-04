@@ -29,7 +29,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="/Article/ListAll">Liste des articles</a>
             </li>
-            {% if "redacteur" in userConnected.Role %}
+            {% if "redacteur" in userConnected.Role and userConnected is defined and userConnected != null %}
                 <li class="nav-item">
                     <a class="nav-link" href="/Article/Add">Ajout d'un article</a>
                 </li>
