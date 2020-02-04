@@ -58,9 +58,12 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
         echo "
 <body>
 
-<nav class=\"navbar sticky-top nav-pills navbar-expand-lg navbar-dark bg-dark\">
+<nav class=\"navbar sticky-top nav-pills navbar-expand-lg navbar-light bg-light\">
 
-    <a class=\"navbar-brand\" href=\"/Article/ListAll\">Blog du CESI</a>
+    <a class=\"navbar-brand\" href=\"/Article/ListAll\">
+        <img src=\"/doc/cesi.svg\" height=\"30\" class=\"d-inline-block align-top mr-2\" alt=\"\">
+        Projet PHP
+    </a>
     <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarTogglerDemo02\"
             aria-controls=\"navbarTogglerDemo02\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
         <span class=\"navbar-toggler-icon\"></span>
@@ -86,24 +89,31 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
                 </a>
                 <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">
                     ";
-        // line 42
+        // line 45
         if (((isset($context["userConnected"]) || array_key_exists("userConnected", $context)) && 0 !== twig_compare(($context["userConnected"] ?? null), null))) {
-            // line 43
+            // line 46
             echo "                        <h6 class=\"dropdown-header\">Bonjour ";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["userConnected"] ?? null), "Name", [], "any", false, false, false, 43), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["userConnected"] ?? null), "Name", [], "any", false, false, false, 46), "html", null, true);
             echo "</h6>
-                        <a class=\"dropdown-item\" href=\"#\">Approuver un article</a>
-                        <a class=\"dropdown-item\" href=\"#\">Gestion des membres</a>
-                        <a class=\"dropdown-item\" href=\"/Logout\">Se déconnecter</a>
+                        ";
+            // line 47
+            if (twig_in_filter("admin", twig_get_attribute($this->env, $this->source, ($context["userConnected"] ?? null), "Role", [], "any", false, false, false, 47))) {
+                // line 48
+                echo "                            <a class=\"dropdown-item\" href=\"#\">Approuver un article</a>
+                            <a class=\"dropdown-item\" href=\"#\">Gestion des membres</a>
+                        ";
+            }
+            // line 51
+            echo "                        <a class=\"dropdown-item\" href=\"/Logout\">Se déconnecter</a>
 
                     ";
         } else {
-            // line 49
+            // line 54
             echo "                        <a class=\"dropdown-item\" href=\"/Login\">Se connecter</a>
                         <a class=\"dropdown-item\" href=\"/Register\">S'inscrire</a>
                     ";
         }
-        // line 52
+        // line 57
         echo "                </div>
             </li>
         </ul>
@@ -118,9 +128,9 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
 </nav>
 
 ";
-        // line 65
+        // line 70
         $this->displayBlock('body', $context, $blocks);
-        // line 66
+        // line 71
         echo "
 
 <script src=\"https://code.jquery.com/jquery-3.4.0.min.js\"></script>
@@ -130,9 +140,9 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
 <script src=\"https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/jquery-ui-i18n.min.js\"></script>
 <script src=\"https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js\"></script>
 ";
-        // line 74
+        // line 79
         $this->displayBlock('javascript', $context, $blocks);
-        // line 75
+        // line 80
         echo "</body>
 </html>
 ";
@@ -151,13 +161,13 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
         $macros = $this->macros;
     }
 
-    // line 65
+    // line 70
     public function block_body($context, array $blocks = [])
     {
         $macros = $this->macros;
     }
 
-    // line 74
+    // line 79
     public function block_javascript($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -175,7 +185,7 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
 
     public function getDebugInfo()
     {
-        return array (  161 => 74,  155 => 65,  149 => 11,  142 => 5,  136 => 75,  134 => 74,  124 => 66,  122 => 65,  107 => 52,  102 => 49,  92 => 43,  90 => 42,  58 => 12,  56 => 11,  47 => 5,  41 => 1,);
+        return array (  171 => 79,  165 => 70,  159 => 11,  152 => 5,  146 => 80,  144 => 79,  134 => 71,  132 => 70,  117 => 57,  112 => 54,  107 => 51,  102 => 48,  100 => 47,  95 => 46,  93 => 45,  58 => 12,  56 => 11,  47 => 5,  41 => 1,);
     }
 
     public function getSourceContext()
@@ -194,9 +204,12 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
 
 <body>
 
-<nav class=\"navbar sticky-top nav-pills navbar-expand-lg navbar-dark bg-dark\">
+<nav class=\"navbar sticky-top nav-pills navbar-expand-lg navbar-light bg-light\">
 
-    <a class=\"navbar-brand\" href=\"/Article/ListAll\">Blog du CESI</a>
+    <a class=\"navbar-brand\" href=\"/Article/ListAll\">
+        <img src=\"/doc/cesi.svg\" height=\"30\" class=\"d-inline-block align-top mr-2\" alt=\"\">
+        Projet PHP
+    </a>
     <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarTogglerDemo02\"
             aria-controls=\"navbarTogglerDemo02\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
         <span class=\"navbar-toggler-icon\"></span>
@@ -223,8 +236,10 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
                 <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">
                     {% if userConnected is defined and userConnected != null %}
                         <h6 class=\"dropdown-header\">Bonjour {{ userConnected.Name }}</h6>
-                        <a class=\"dropdown-item\" href=\"#\">Approuver un article</a>
-                        <a class=\"dropdown-item\" href=\"#\">Gestion des membres</a>
+                        {% if \"admin\" in userConnected.Role %}
+                            <a class=\"dropdown-item\" href=\"#\">Approuver un article</a>
+                            <a class=\"dropdown-item\" href=\"#\">Gestion des membres</a>
+                        {% endif %}
                         <a class=\"dropdown-item\" href=\"/Logout\">Se déconnecter</a>
 
                     {% else %}
