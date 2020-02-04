@@ -189,8 +189,8 @@ class ArticleController extends AbstractController
     {
         $article = new Article();
 
-        $listArticle = $article->SqlGetBy(Bdd::GetInstance(), 'SELECT * FROM articles WHERE Titre =:param
-                        OR Auteur =:param OR Id =:param',
+        $listArticle = $article->SqlGetBy(Bdd::GetInstance(), 'SELECT * FROM articles WHERE (Titre =:param
+                        OR Auteur =:param OR Id =:param) AND article_Valid = 1',
             $_POST['search']);
 
         if ($listArticle != null) {
