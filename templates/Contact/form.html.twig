@@ -6,10 +6,10 @@
         <h1 class="display-4">Formulaire de contact</h1>
     </div>
 
-    <form name="contact" method="post" class="col-lg-8" enctype="multipart/form-data">
+    <form name="contact" method="post" class="col-lg-8" enctype="multipart/form-data" action="/Contact/sendMail">
 
         <div class="form-group row">
-            <label for="Object" class="col-sm-2 col-form-label">Object</label>
+            <label for="Object" class="col-sm-2 col-form-label">Objet</label>
             <div class="col-sm-10">
                 <input type="text" name="Object" class="form-control form-control-lg">
             </div>
@@ -19,7 +19,9 @@
             <label for="Article" class="col-sm-2 col-form-label">Article</label>
             <div class="col-sm-10">
                 <select class="form-control">
-                    <option>{{ article.Article }}</option>
+                    {% for article in ListArticles %}
+                        <option value="{{ article.ListArticles }}"></option>
+                    {% endfor %}
                 </select>
             </div>
         </div>

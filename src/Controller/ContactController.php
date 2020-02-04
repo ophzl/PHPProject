@@ -1,6 +1,10 @@
 <?php
 namespace src\Controller;
 
+use src\Model\Article;
+use src\Model\Bdd;
+use src\Model\User;
+
 class ContactController extends AbstractController{
     private $mailer;
     private $transport;
@@ -8,9 +12,9 @@ class ContactController extends AbstractController{
     public function __construct()
     {
         parent::__construct();
-        $this->transport = (new \Swift_SmtpTransport('smtp.mailtrap.io', 25))
-            ->setUsername('3dd84281bc8679')
-            ->setPassword('8a9180301c670a');
+        $this->transport = (new \Swift_SmtpTransport('smtp.mailtrap.io', 465))
+            ->setUsername('f2bbe8e05f570f')
+            ->setPassword('eed9336554ee00');
         $this->mailer = new \Swift_Mailer($this->transport);
 
     }
@@ -20,13 +24,14 @@ class ContactController extends AbstractController{
     }
 
     public function sendMail(){
-        $mail = (new \Swift_Message('Contact depuis le formulaire'))
-            ->setFrom([$_POST["email"] => $_POST["nom"]])
+        $mail = (new \Swift_Message($_POST['Object']))
+            ->setFrom($_SESSION['USER'] ->getMail())
             ->setTo('contact@monsite.fr')
             ->setBody(
                 $this->twig->render('Contact/mail.html.twig',
                     [
-                        'message' => $_POST["content"]
+                        'message' => $_POST["Message"],
+                        'user_email' => $_SESSION['USER']->getMail(),
                     ])
                 ,'text/html'
             );
@@ -34,6 +39,14 @@ class ContactController extends AbstractController{
         $result = $this->mailer->send($mail);
 
         return $result;
+    }
+
+    public function ListArticles()
+    {
+        $article = new Article();
+
+        $listArticle = $article->SqlGetAll(Bdd::GetInstance());
+        return $this->twig->render('Contact/form.html.twig', ['listArticle' => $listArticle]);
     }
 
 }
