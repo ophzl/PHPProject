@@ -75,6 +75,9 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
             <li class=\"nav-item\">
                 <a class=\"nav-link\" href=\"/Article/Add\">Ajout d'un article</a>
             </li>
+            <li class=\"nav-item\">
+                <a href=\"/Contact\" class=\"nav-link\">Contactez-nous</a>
+            </li>
 
             <li class=\"nav-item dropdown\">
                 <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\"
@@ -83,11 +86,11 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
                 </a>
                 <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">
                     ";
-        // line 39
+        // line 42
         if (((isset($context["userConnected"]) || array_key_exists("userConnected", $context)) && 0 !== twig_compare(($context["userConnected"] ?? null), null))) {
-            // line 40
+            // line 43
             echo "                        <h6 class=\"dropdown-header\">Bonjour ";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["userConnected"] ?? null), "Name", [], "any", false, false, false, 40), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["userConnected"] ?? null), "Name", [], "any", false, false, false, 43), "html", null, true);
             echo "</h6>
                         <a class=\"dropdown-item\" href=\"#\">Approuver un article</a>
                         <a class=\"dropdown-item\" href=\"#\">Gestion des membres</a>
@@ -95,12 +98,12 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
 
                     ";
         } else {
-            // line 46
+            // line 49
             echo "                        <a class=\"dropdown-item\" href=\"/Login\">Se connecter</a>
-                        <a class=\"dropdown-item\" href=\"#\">S'inscrire</a>
+                        <a class=\"dropdown-item\" href=\"/Register\">S'inscrire</a>
                     ";
         }
-        // line 49
+        // line 52
         echo "                </div>
             </li>
         </ul>
@@ -113,34 +116,11 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
     </div>
 
 </nav>
-<!--
-<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">
-    <a class=\"navbar-brand\" href=\"#\">Menu</a>
-    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
-        <span class=\"navbar-toggler-icon\"></span>
-    </button>
-
-    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">
-        <ul class=\"navbar-nav mr-auto\">
-            <li class=\"nav-item dropdown\">
-                <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">
-                    Admin
-                </a>
-                <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">
-                    <a class=\"dropdown-item\" href=\"/?controller=Article&action=ListAll\">Liste</a>
-                    <a class=\"dropdown-item\" href=\"/?controller=Article&action=Add\">Ajout</a>
-                    <div class=\"dropdown-divider\"></div>
-                </div>
-            </li>
-        </ul>
-    </div>
-</nav>-->
-
 
 ";
-        // line 85
+        // line 65
         $this->displayBlock('body', $context, $blocks);
-        // line 86
+        // line 66
         echo "
 
 <script src=\"https://code.jquery.com/jquery-3.4.0.min.js\"></script>
@@ -150,9 +130,9 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
 <script src=\"https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/jquery-ui-i18n.min.js\"></script>
 <script src=\"https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js\"></script>
 ";
-        // line 94
+        // line 74
         $this->displayBlock('javascript', $context, $blocks);
-        // line 95
+        // line 75
         echo "</body>
 </html>
 ";
@@ -171,13 +151,13 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
         $macros = $this->macros;
     }
 
-    // line 85
+    // line 65
     public function block_body($context, array $blocks = [])
     {
         $macros = $this->macros;
     }
 
-    // line 94
+    // line 74
     public function block_javascript($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -195,7 +175,7 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
 
     public function getDebugInfo()
     {
-        return array (  181 => 94,  175 => 85,  169 => 11,  162 => 5,  156 => 95,  154 => 94,  144 => 86,  142 => 85,  104 => 49,  99 => 46,  89 => 40,  87 => 39,  58 => 12,  56 => 11,  47 => 5,  41 => 1,);
+        return array (  161 => 74,  155 => 65,  149 => 11,  142 => 5,  136 => 75,  134 => 74,  124 => 66,  122 => 65,  107 => 52,  102 => 49,  92 => 43,  90 => 42,  58 => 12,  56 => 11,  47 => 5,  41 => 1,);
     }
 
     public function getSourceContext()
@@ -231,6 +211,9 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
             <li class=\"nav-item\">
                 <a class=\"nav-link\" href=\"/Article/Add\">Ajout d'un article</a>
             </li>
+            <li class=\"nav-item\">
+                <a href=\"/Contact\" class=\"nav-link\">Contactez-nous</a>
+            </li>
 
             <li class=\"nav-item dropdown\">
                 <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\"
@@ -246,7 +229,7 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
 
                     {% else %}
                         <a class=\"dropdown-item\" href=\"/Login\">Se connecter</a>
-                        <a class=\"dropdown-item\" href=\"#\">S'inscrire</a>
+                        <a class=\"dropdown-item\" href=\"/Register\">S'inscrire</a>
                     {% endif %}
                 </div>
             </li>
@@ -260,29 +243,6 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
     </div>
 
 </nav>
-<!--
-<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">
-    <a class=\"navbar-brand\" href=\"#\">Menu</a>
-    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
-        <span class=\"navbar-toggler-icon\"></span>
-    </button>
-
-    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">
-        <ul class=\"navbar-nav mr-auto\">
-            <li class=\"nav-item dropdown\">
-                <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">
-                    Admin
-                </a>
-                <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">
-                    <a class=\"dropdown-item\" href=\"/?controller=Article&action=ListAll\">Liste</a>
-                    <a class=\"dropdown-item\" href=\"/?controller=Article&action=Add\">Ajout</a>
-                    <div class=\"dropdown-divider\"></div>
-                </div>
-            </li>
-        </ul>
-    </div>
-</nav>-->
-
 
 {% block body %}{% endblock %}
 

@@ -96,8 +96,6 @@ class UserController extends AbstractController
     }
 
     public function RegisterCheck(){
-        var_dump($_SESSION);
-        var_dump($_POST);
         if($_POST && $_POST['crsf'] == $_SESSION['token']) {
 
 

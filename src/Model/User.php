@@ -20,11 +20,13 @@ class User
 
     public function SqlAdd(\PDO $bdd) {
         try{
-            $requete = $bdd->prepare('INSERT INTO users (user_Name, user_Email, user_Password) VALUES(:Name, :Email, :Password)');
+            $requete = $bdd->prepare('INSERT INTO users (user_Name, user_Role, user_Email, user_Password, user_Valid) VALUES (:Name, :Role, :Email, :Password, :Valid)');
             $requete->execute([
                 "Name" => $this->getName(),
+                "Role" => $this->getRole(),
                 "Email" => $this->getMail(),
-                "password" => $this->getPassword()
+                "Password" => $this->getPassword(),
+                "Valid" => $this->getValid()
             ]);
             return array("result"=>true,"message"=>$bdd->lastInsertId());
         }catch (\Exception $e){

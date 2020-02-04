@@ -56,7 +56,6 @@ class __TwigTemplate_c44d686a089708fe11bee4fcd3db7bfba602885046e4f56f4e50551b205
     {
         $macros = $this->macros;
         // line 5
-        echo twig_var_dump($this->env, $context, ...[0 => ($context["userConnected"] ?? null)]);
         echo "
     <div class=\"jumbotron\">
         <h1 class=\"display-4\">Liste des articles</h1>
@@ -106,7 +105,7 @@ class __TwigTemplate_c44d686a089708fe11bee4fcd3db7bfba602885046e4f56f4e50551b205
             echo "\"><i class=\"far fa-eye\"></i></a>
                             ";
             // line 30
-            if (twig_in_filter("admin", twig_get_attribute($this->env, $this->source, ($context["userConnected"] ?? null), "Roles", [], "any", false, false, false, 30))) {
+            if (twig_in_filter("admin", twig_get_attribute($this->env, $this->source, ($context["userConnected"] ?? null), "Role", [], "any", false, false, false, 30))) {
                 // line 31
                 echo "                                <a class=\"btn btn-warning\" href=\"/Article/Update/";
                 echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["article"], "id", [], "any", false, false, false, 31), "html", null, true);
@@ -156,7 +155,7 @@ class __TwigTemplate_c44d686a089708fe11bee4fcd3db7bfba602885046e4f56f4e50551b205
 
     public function getDebugInfo()
     {
-        return array (  138 => 43,  126 => 37,  123 => 36,  117 => 33,  111 => 31,  109 => 30,  105 => 29,  99 => 26,  95 => 25,  91 => 24,  85 => 23,  82 => 22,  78 => 21,  59 => 5,  55 => 4,  47 => 2,  36 => 1,);
+        return array (  137 => 43,  125 => 37,  122 => 36,  116 => 33,  110 => 31,  108 => 30,  104 => 29,  98 => 26,  94 => 25,  90 => 24,  84 => 23,  81 => 22,  77 => 21,  59 => 5,  55 => 4,  47 => 2,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -165,7 +164,7 @@ class __TwigTemplate_c44d686a089708fe11bee4fcd3db7bfba602885046e4f56f4e50551b205
 {% block title %} Liste des articles - {{ parent() }}{% endblock %}
 
 {% block body %}
-{{ dump(userConnected) }}
+
     <div class=\"jumbotron\">
         <h1 class=\"display-4\">Liste des articles</h1>
     </div>
@@ -190,7 +189,7 @@ class __TwigTemplate_c44d686a089708fe11bee4fcd3db7bfba602885046e4f56f4e50551b205
                     <td>
                         <div class=\"btn-group\" role=\"group\" aria-label=\"Basic example\">
                             <a class=\"btn btn-success\" href=\"/Article/Show/{{ article.id }}\"><i class=\"far fa-eye\"></i></a>
-                            {% if \"admin\" in userConnected.Roles %}
+                            {% if \"admin\" in userConnected.Role %}
                                 <a class=\"btn btn-warning\" href=\"/Article/Update/{{ article.id }}\"><i
                                             class=\"fas fa-edit\"></i></a>
                                 <a class=\"btn btn-danger\" href=\"/Article/Delete/{{ article.id }}\"><i
