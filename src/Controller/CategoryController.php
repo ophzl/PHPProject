@@ -47,4 +47,12 @@ class CategoryController extends AbstractController
                 ]);
         }
     }
+
+    public function Delete($categoryID)
+    {
+        $category= new Category();
+        $category->SqlDelete(BDD::getInstance(), $categoryID);
+
+        header('Location:/Category/');
+    }
 }
