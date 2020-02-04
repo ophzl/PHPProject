@@ -105,7 +105,7 @@ class __TwigTemplate_c44d686a089708fe11bee4fcd3db7bfba602885046e4f56f4e50551b205
             echo "\"><i class=\"far fa-eye\"></i></a>
                             ";
             // line 30
-            if (twig_in_filter("redacteur", twig_get_attribute($this->env, $this->source, ($context["userConnected"] ?? null), "Role", [], "any", false, false, false, 30))) {
+            if (twig_in_filter("admin", twig_get_attribute($this->env, $this->source, ($context["userConnected"] ?? null), "Role", [], "any", false, false, false, 30))) {
                 // line 31
                 echo "                                <a class=\"btn btn-warning\" href=\"/Article/Update/";
                 echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["article"], "id", [], "any", false, false, false, 31), "html", null, true);
@@ -189,7 +189,7 @@ class __TwigTemplate_c44d686a089708fe11bee4fcd3db7bfba602885046e4f56f4e50551b205
                     <td>
                         <div class=\"btn-group\" role=\"group\" aria-label=\"Basic example\">
                             <a class=\"btn btn-success\" href=\"/Article/Show/{{ article.id }}\"><i class=\"far fa-eye\"></i></a>
-                            {% if \"redacteur\" in userConnected.Role %}
+                            {% if \"admin\" in userConnected.Role %}
                                 <a class=\"btn btn-warning\" href=\"/Article/Update/{{ article.id }}\"><i
                                             class=\"fas fa-edit\"></i></a>
                                 <a class=\"btn btn-danger\" href=\"/Article/Delete/{{ article.id }}\"><i
