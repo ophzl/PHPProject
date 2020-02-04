@@ -109,7 +109,7 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
                         Panneau d'administration
                     </a>
                     <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">
-                        <a class=\"dropdown-item\" href=\"#\">Approuver un article</a>
+                        <a class=\"dropdown-item\" href=\"/Admin/ListArticlesWaiting/\">Approuver un article</a>
                         <a class=\"dropdown-item\" href=\"/Admin/ListUser\">Gestion des membres</a>
                         <a class=\"dropdown-item\" href=\"/Category/ListAll\">Gestion des catégories</a>
                         <a class=\"dropdown-item\" href=\"/Category/Add\">Ajouter une catégorie</a>
@@ -278,7 +278,7 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
                         Panneau d'administration
                     </a>
                     <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">
-                        <a class=\"dropdown-item\" href=\"#\">Approuver un article</a>
+                        <a class=\"dropdown-item\" href=\"/Admin/ListArticlesWaiting/\">Approuver un article</a>
                         <a class=\"dropdown-item\" href=\"/Admin/ListUser\">Gestion des membres</a>
                         <a class=\"dropdown-item\" href=\"/Category/ListAll\">Gestion des catégories</a>
                         <a class=\"dropdown-item\" href=\"/Category/Add\">Ajouter une catégorie</a>

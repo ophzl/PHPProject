@@ -13,6 +13,7 @@ class AdminController extends AbstractController
 
     public function ApproveUser($UID)
     {
+        self::roleNeed();
         $bdd = Bdd::GetInstance();
         $query = $bdd->prepare('SELECT user_Valid FROM users WHERE user_UId =:UID');
         $query->execute(['UID' => $UID]);
@@ -26,6 +27,7 @@ class AdminController extends AbstractController
     }
 
     public function ChangeRolesForm($UID) {
+        self::roleNeed();
         $user = (new User)->SqlGet(Bdd::GetInstance(), $UID);
         $token = bin2hex(random_bytes(32));
         $_SESSION['token'] = $token;
@@ -36,6 +38,7 @@ class AdminController extends AbstractController
     }
 
     public function ChangeRoles() {
+        self::roleNeed();
         $listRoles = '';
         foreach ($_POST['role'] as $role){
             $listRoles .= $role.',';
@@ -48,6 +51,7 @@ class AdminController extends AbstractController
     }
 
     public function DeleteUser($UID) {
+        self::roleNeed();
         $query = Bdd::GetInstance()->prepare('DELETE FROM users where user_UId=:UID');
         $query->execute(['UID' => $UID]);
         header('Location:/Admin/ListUser');
@@ -55,6 +59,7 @@ class AdminController extends AbstractController
 
     public function ListUser()
     {
+        self::roleNeed();
         $listUser = (new User)->SqlGetAll(Bdd::GetInstance());
         return $this->twig->render(
             'Admin/list.html.twig', [
@@ -63,11 +68,12 @@ class AdminController extends AbstractController
         );
     }
 
-    public function ListArticles()
+    public function ListArticlesWaiting()
     {
-        $listArticles = (new Article)->SqlGetAll(Bdd::GetInstance());
+        self::roleNeed();
+        $listArticles = (new Article)->SqlGetAllWaiting(Bdd::GetInstance());
         return $this->twig->render(
-            'Admin/articles.html.twig', [
+            'Admin/articlesWaiting.html.twig', [
                 'articleList' => $listArticles
             ]
         );
@@ -75,16 +81,30 @@ class AdminController extends AbstractController
 
     public function ApproveArticle($ArticleId)
     {
+        self::roleNeed();
         $bdd = Bdd::GetInstance();
-        $query = $bdd->prepare('SELECT article_Valid FROM articles WHERE articleId =:id');
-        $query->execute(['ArcicleId' => $ArticleId]);
+        $query = $bdd->prepare('SELECT article_Valid FROM articles WHERE Id =:id');
+        $query->execute(['id' => $ArticleId]);
         $Valid = $query->fetch();
 
         if ($Valid['article_Valid'] != 1) {
-            $query = $bdd->prepare('UPDATE article_Valid SET article_Valid = 1 WHERE articleId =:id');
-            $query->execute(['ArticleId' => $ArticleId]);
-            header('Location:/Admin/ListArticles');
+            $query = $bdd->prepare('UPDATE articles SET article_Valid = 1 WHERE Id =:id');
+            $query->execute(['id' => $ArticleId]);
+            header('Location:/Admin/ListArticlesWaiting');
         }
     }
 
+
+    public static function roleNeed()
+    {
+        if (isset($_SESSION['USER'])) {
+            if (!in_array('admin', $_SESSION['USER']->getRole())) {
+                $_SESSION['errorlogin'] = "Manque le role : Admin";
+                header('Location:/Contact');
+            }
+        } else {
+            $_SESSION['errorlogin'] = "Veuillez vous identifier";
+            header('Location:/Login');
+        }
+    }
 }

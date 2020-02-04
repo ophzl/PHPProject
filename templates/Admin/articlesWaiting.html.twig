@@ -2,7 +2,6 @@
 {% block title %} Liste des articles non-approuvés - {{ parent() }}{% endblock %}
 
 {% block body %}
-
     <div class="jumbotron">
         <h1 class="display-4">Liste des articles non-approuvés</h1>
     </div>
@@ -19,7 +18,7 @@
             </thead>
             <tbody>
             {% for article in articleList %}
-                {% if article == null %}
+                {% if article.Valid == null %}
                     <tr>
                         <th scope="row">#{{ article.id }}</th>
                         <td>{{ article.titre }}</td>

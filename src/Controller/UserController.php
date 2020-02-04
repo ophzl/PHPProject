@@ -42,11 +42,11 @@ class UserController extends AbstractController
             $bdd = Bdd::GetInstance();
             $password = $_POST['Pass'];
 
-            $requete = $bdd->prepare("SELECT user_UId, user_Password FROM users WHERE user_Email =:Email");
+            $requete = $bdd->prepare("SELECT user_UId, user_Password, user_Valid FROM users WHERE user_Email =:Email");
             $requete->execute([
                 'Email' => $_POST['Mail']]);
             $returnSQL = $requete->fetch();
-            if (password_verify($password, $returnSQL['user_Password'])) {
+            if (password_verify($password, $returnSQL['user_Password']) && $returnSQL['user_Valid'] == 1) {
 
                 $user = new User();
                 $user = $user->SqlGet(Bdd::GetInstance(), $returnSQL['user_UId']);
@@ -109,11 +109,7 @@ class UserController extends AbstractController
 
             $rSql = $user->SqlAdd($bdd);
 
-            if($rSql['result']) {
-                $user->setUID($rSql['message']);
-                $_SESSION['USER'] = $user;
-                header('Location:/');
-            }
+            header('Location:/');
         }
     }
 
