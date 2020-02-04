@@ -16,6 +16,7 @@ class CategoryController extends AbstractController
 
     public function ListAll()
     {
+        AdminController::roleNeed();
         $category = new Category();
         $listCategory = $category->SqlGetAll(Bdd::GetInstance());
         //Lancer la vue TWIG
@@ -29,7 +30,7 @@ class CategoryController extends AbstractController
     public function add()
     {
 
-        UserController::roleNeed('admin');
+        AdminController::roleNeed();
         if ($_POST AND $_SESSION['token'] == $_POST['token']) {
 
             $category = new Category();
@@ -51,6 +52,7 @@ class CategoryController extends AbstractController
 
     public function update($categoryID)
     {
+        AdminController::roleNeed();
         $categorySQL = new Category();
         $category = $categorySQL->SqlGet(BDD::getInstance(), $categoryID);
 
@@ -59,6 +61,7 @@ class CategoryController extends AbstractController
             $category->setCodeReference($_POST['code_reference']);
 
             $category->SqlUpdate(BDD::getInstance());
+            header('Location:/Category');
         }
 
         return $this->twig->render('Category/update.html.twig', [
@@ -68,6 +71,7 @@ class CategoryController extends AbstractController
 
     public function Delete($categoryID)
     {
+        AdminController::roleNeed();
         $category = new Category();
         $category->SqlDelete(BDD::getInstance(), $categoryID);
 
