@@ -105,7 +105,7 @@ class UserController extends AbstractController
             $user = new User();
             $user->setName($_POST['rName'])
                 ->setMail($_POST['rMail'])
-                ->setPassword($_POST['rPass']);
+                ->setPassword($password);
 
             $rSql = $user->SqlAdd($bdd);
 

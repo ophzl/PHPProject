@@ -56,8 +56,10 @@ $router->post('/Register', 'User#RegisterCheck'); //TODO
 $router->get('/Logout', 'User#logout');
 
 
-$router->get('/Admin/ListUser/', 'Admin#ListUser'); //TODO
-$router->get('/Admin/ApproveUser/:id', 'Admin#ApproveUser#id'); //TODO
+$router->get('/Admin/ListUser/', 'Admin#ListUser');
+$router->get('/Admin/ApproveUser/:id', 'Admin#ApproveUser#id');
+$router->get('/Admin/ChangeRoles/:id', 'Admin#ChangeRolesForm#id');
+$router->post('/Admin/ChangeRoles/:id', 'Admin#ChangeRoles#id');
 $router->get('/Admin/ApproveArticle/:id','Article#ApproveArticle#id'); //TODO
 
 
