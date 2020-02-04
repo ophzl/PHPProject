@@ -204,4 +204,15 @@ class ArticleController extends AbstractController
         }
 
     }
+
+    public function ReadArticle($idArticle)
+    {
+        $article = new Article();
+        $articleData = $article->SqlGet(Bdd::GetInstance(), $idArticle);
+
+        return $this->twig->render('Article/readArticle.html.twig', [
+            'articleData' => $articleData
+        ]);
+    }
+
 }

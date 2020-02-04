@@ -2,7 +2,7 @@
 <head></head>
 <body>
 <h1>Demande de contact</h1>
-<p>Bonjour, il y'a quelqu'un qui a écrit quelque chose :</p>
+<p>Bonjour, l'utilisateur {{ user_email }} vous a laissé un message{% if article %} sur l'article {{ article }}{% endif %} :</p>
 <p>
     {{ message }}
 </p>

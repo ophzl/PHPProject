@@ -45,6 +45,7 @@ $router->put('/Api/Article/:id/:json', "Api#ArticlePut#id#json");
 //Contact Methods
 $router->get('/Contact', 'Contact#showForm');
 $router->post('/Contact/sendMail', 'Contact#sendMail');
+$router->get('/Contact/ListArticles', 'Contact#ListArticles');
 
 //User Methods
 $router->get('/Login', 'User#loginForm'); //TODO: verify
@@ -53,6 +54,8 @@ $router->get('/Register', 'User#RegisterForm'); //TODO
 $router->post('/Register', 'User#RegisterCheck'); //TODO
 $router->get('/Logout', 'User#logout');
 $router->get('/Admin/Validate/:id', 'User#Validate#id'); //TODO
+
+$router->get('/Article/Show/:id','Article#ReadArticle#id');
 
 
 echo $router->run();
