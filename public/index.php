@@ -35,7 +35,8 @@ $router->get('/Article/Read', "Article#Read");
 $router->get('/Article/WriteOne/:id', "Article#Read#id");
 $router->get('/Article/ListAll','Article#listAll');
 $router->post('/Article/Search','Article#Search');
-$router->get('/Article/Validate/:id','Article#Validate#id'); //TODO
+
+$router->get('/Article/Show/:id','Article#ReadArticle#id');
 
 //API Methods
 $router->get('/Api/Article', "Api#ArticleGet");
@@ -53,9 +54,14 @@ $router->post('/Login', 'User#loginCheck'); //TODO: verify
 $router->get('/Register', 'User#RegisterForm'); //TODO
 $router->post('/Register', 'User#RegisterCheck'); //TODO
 $router->get('/Logout', 'User#logout');
-$router->get('/Admin/Validate/:id', 'User#Validate#id'); //TODO
 
-$router->get('/Article/Show/:id','Article#ReadArticle#id');
+
+$router->get('/Admin/ListUser/', 'Admin#ListUser'); //TODO
+$router->get('/Admin/ApproveUser/:id', 'Admin#ApproveUser#id'); //TODO
+$router->get('/Admin/ApproveArticle/:id','Article#ApproveArticle#id'); //TODO
+
+
+
 
 
 echo $router->run();

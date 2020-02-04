@@ -29,12 +29,30 @@
             <li class="nav-item">
                 <a class="nav-link" href="/Article/ListAll">Liste des articles</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/Article/Add">Ajout d'un article</a>
-            </li>
+            {% if "redacteur" in userConnected.Role %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/Article/Add">Ajout d'un article</a>
+                </li>
+            {% endif %}
             <li class="nav-item">
                 <a href="/Contact" class="nav-link">Contactez-nous</a>
             </li>
+
+
+            {% if "admin" in userConnected.Role %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Panneau d'administration
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Approuver un article</a>
+                        <a class="dropdown-item" href="/Admin/ListUser">Gestion des membres</a>
+
+                    </div>
+                </li>
+            {% endif %}
 
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -44,10 +62,7 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     {% if userConnected is defined and userConnected != null %}
                         <h6 class="dropdown-header">Bonjour {{ userConnected.Name }}</h6>
-                        {% if "admin" in userConnected.Role %}
-                            <a class="dropdown-item" href="#">Approuver un article</a>
-                            <a class="dropdown-item" href="#">Gestion des membres</a>
-                        {% endif %}
+
                         <a class="dropdown-item" href="/Logout">Se déconnecter</a>
 
                     {% else %}
@@ -56,12 +71,13 @@
                     {% endif %}
                 </div>
             </li>
+
         </ul>
 
 
         <form class="form-inline" method="post" action="/Article/Search/">
             <input class="form-control mr-sm-2" type="search" placeholder="Rechercher un article" name="search">
-            <input type="submit" class="btn btn-outline-success my-2 my-sm-0" value="Rechercher">
+            <input type="submit" class="btn btn-success my-2 my-sm-0" value="Rechercher">
         </form>
     </div>
 
