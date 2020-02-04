@@ -55,12 +55,13 @@ $router->get('/Register', 'User#RegisterForm'); //TODO
 $router->post('/Register', 'User#RegisterCheck'); //TODO
 $router->get('/Logout', 'User#logout');
 
-
+// Admin Methods
 $router->get('/Admin/ListUser/', 'Admin#ListUser');
+$router->get('/Admin/ListArticles', 'Admin#ListArticles');
 $router->get('/Admin/ApproveUser/:id', 'Admin#ApproveUser#id');
+$router->get('/Admin/ApproveArticle/:id','Article#ApproveArticle#id');
 $router->get('/Admin/ChangeRoles/:id', 'Admin#ChangeRolesForm#id');
 $router->post('/Admin/ChangeRoles/:id', 'Admin#ChangeRoles#id');
-$router->get('/Admin/ApproveArticle/:id','Article#ApproveArticle#id'); //TODO
 
 //Category Methods
 $router->get('/Category', "Category#ListAll");
