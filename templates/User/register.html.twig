@@ -1,0 +1,44 @@
+{% extends "index.html.twig" %}
+{% block title %}{{ parent() }} - S'inscrire {% endblock %}
+{% block body %}
+    {% if session.errorlogin is defined %}
+        <div class="alert alert-danger">{{ session.errorlogin }}</div>
+    {% endif %}
+
+    <div class="container-fluid mt-2">
+        <form class="form" method="post" action="/Register">
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <div class="col-md-4">
+                        <input name="rName" type="text" placeholder="Nom" class="form-control input-md" required>
+
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <div class="col-md-4">
+                        <input name="rMail" type="text" placeholder="Adresse mail" class="form-control input-md" required>
+
+                    </div>
+                </div>
+
+                <!-- Password input-->
+                <div class="form-group">
+                    <div class="col-md-4">
+                        <input name="rPass" type="password" placeholder="Mot de passe" class="form-control input-md" required>
+
+                    </div>
+                </div>
+
+                <!-- Button (Double) -->
+                <div class="form-group">
+                    <div class="col-md-8">
+                        <input type="submit" value="Se créer un compte" class="btn btn-success">
+                    </div>
+                </div>
+            <input type="hidden" name="crsf" value="{{ token }}">
+        </form>
+    </div>
+{% endblock %}

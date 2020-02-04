@@ -68,7 +68,7 @@ class UserController extends AbstractController
     public static function roleNeed($roleATester)
     {
         if (isset($_SESSION['USER'])) {
-            if (!in_array($roleATester, $_SESSION['USER']['Roles'])) {
+            if (!in_array($roleATester, $_SESSION['USER']->getRole())) {
                 $_SESSION['errorlogin'] = "Manque le role : " . $roleATester;
                 header('Location:/Contact');
             }
@@ -83,6 +83,40 @@ class UserController extends AbstractController
         unset($_SESSION['USER']);
         unset($_SESSION['errorlogin']);
         header('Location:/');
+    }
+
+
+    public function RegisterForm()
+    {
+        $token = bin2hex(random_bytes(32));
+        $_SESSION['token'] = $token;
+        return $this->twig->render('User/register.html.twig', [
+            'token' => $token
+        ]);
+    }
+
+    public function RegisterCheck(){
+        var_dump($_SESSION);
+        var_dump($_POST);
+        if($_POST && $_POST['crsf'] == $_SESSION['token']) {
+
+
+            $bdd = Bdd::GetInstance();
+            $password = password_hash($_POST['rPass'], PASSWORD_BCRYPT);
+
+            $user = new User();
+            $user->setName($_POST['rName'])
+                ->setMail($_POST['rMail'])
+                ->setPassword($_POST['rPass']);
+
+            $rSql = $user->SqlAdd($bdd);
+
+            if($rSql['result']) {
+                $user->setUID($rSql['message']);
+                $_SESSION['USER'] = $user;
+                header('Location:/');
+            }
+        }
     }
 
 }
