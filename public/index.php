@@ -54,7 +54,11 @@ $router->post('/Login', 'User#loginCheck'); //TODO: verify
 $router->get('/Register', 'User#RegisterForm'); //TODO
 $router->post('/Register', 'User#RegisterCheck'); //TODO
 $router->get('/Logout', 'User#logout');
-$router->get('/Admin/Validate/:id', 'User#Validate#id'); //TODO
+
+$router->get('/Admin/ListUser/', 'Admin#ListUser'); //TODO
+$router->get('/Admin/ApproveUser/:id', 'Admin#ApproveUser#id'); //TODO
+$router->get('/Admin/ApproveArticle/:id','Article#ApproveArticle#id'); //TODO
+
 
 
 

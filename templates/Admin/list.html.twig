@@ -1,0 +1,55 @@
+{% extends "index.html.twig" %}
+{% block title %} Liste des membres - {{ parent() }}{% endblock %}
+
+{% block body %}
+
+    <div class="jumbotron">
+        <h1 class="display-4">Liste des articles</h1>
+    </div>
+    <div class="container">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Role</th>
+                <th scope="col">Email</th>
+                <th scope="col">Approuvé</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in userList %}
+                <tr>
+                    <th scope="row">#{{ user.UID }}</th>
+                    <td>{{ user.Name }}</td>
+                    <td>{{ user.Role }}</td>
+                    <td>{{ user.Mail }}</td>
+                    <td>{% if user.Valid %} <i class="fas fa-check-circle"></i> {% else %}<i
+                                class="fas fa-times-circle"></i> {% endif %}</td>
+                    <td>
+
+                        <div class="btn-group" role="group">
+
+
+                            <a class="btn btn-warning" href="/Admin/ChangeRoles/{{ user.UID }}"><i
+                                        class="fas fa-theater-masks"></i></a>
+
+                            <a class="btn btn-danger" href="/Admin/DeleteUser/{{ user.UID }}"><i
+                                        class="far fa-trash-alt"></i></a>
+
+
+                        </div>
+                        {% if not user.Valid %}
+                            <a class="btn btn-success" href="/Admin/ApproveUser/{{ user.UID }}"><i
+                                        class="fas fa-user-check"></i></a> {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+
+
+{% endblock %}
