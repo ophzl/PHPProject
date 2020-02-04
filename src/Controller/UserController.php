@@ -113,4 +113,11 @@ class UserController extends AbstractController
         }
     }
 
+    public function Profile() {
+        if(isset($_SESSION['USER'])) {
+            return $this->twig->render('User/profile.html.twig');
+        }
+        header('Location:/');
+    }
+
 }

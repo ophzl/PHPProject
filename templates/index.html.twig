@@ -73,6 +73,7 @@
                     {% if userConnected is defined and userConnected != null %}
                         <h6 class="dropdown-header">Bonjour {{ userConnected.Name }}</h6>
 
+                        <a class="dropdown-item" href="/Profile">Mon profil</a>
                         <a class="dropdown-item" href="/Logout">Se déconnecter</a>
 
                     {% else %}

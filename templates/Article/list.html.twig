@@ -7,6 +7,7 @@
         <h1 class="display-4">Liste des articles</h1>
     </div>
     <div class="container">
+        {% if articleList is not empty %}
         <table class="table table-striped">
             <thead>
             <tr>
@@ -43,6 +44,9 @@
 
             </tbody>
         </table>
+        {% else %}
+            <div class="display-2 ml-5">Pas d'articles</div>
+        {% endif %}
     </div>
 
 
