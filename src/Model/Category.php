@@ -13,7 +13,7 @@ class Category
     public function SqlAdd(\PDO $bdd)
     {
         try {
-            $requete = $bdd->prepare('INSERT INTO Category (category_code_reference, category_label) VALUES(:code_reference, :label)');
+            $requete = $bdd->prepare('INSERT INTO category (category_code_reference, category_label) VALUES(:code_reference, :label)');
             $requete->execute([
                 "code_reference" => $this->getCodeReference(),
                 "label" => $this->getLabel()
@@ -27,7 +27,7 @@ class Category
 
     public function SqlGetAll(\PDO $bdd)
     {
-        $requete = $bdd->prepare('SELECT * FROM Category');
+        $requete = $bdd->prepare('SELECT * FROM category');
         $requete->execute();
         $arrayCategory = $requete->fetchAll();
 
@@ -45,7 +45,7 @@ class Category
 
     public function SqlGet(\PDO $bdd, $idCategory)
     {
-        $requete = $bdd->prepare('SELECT * FROM Category where category_id=:idCategory');
+        $requete = $bdd->prepare('SELECT * FROM category where category_id=:idCategory');
         $requete->execute([
             'idCategory' => $idCategory
         ]);
@@ -63,7 +63,7 @@ class Category
     public function SqlUpdate(\PDO $bdd)
     {
         try {
-            $requete = $bdd->prepare('UPDATE Category set category_code_reference=:codeReference, category_label=:label WHERE category_id=:idCategory');
+            $requete = $bdd->prepare('UPDATE category set category_code_reference=:codeReference, category_label=:label WHERE category_id=:idCategory');
             $requete->execute([
                 'codeReference' => $this->getCodeReference()
                 , 'label' => $this->getLabel()
@@ -79,7 +79,7 @@ class Category
     public function SqlDelete(\PDO $bdd, $idCategory)
     {
         try {
-            $requete = $bdd->prepare('DELETE FROM Category where category_id=:idCategory');
+            $requete = $bdd->prepare('DELETE FROM category where category_id=:idCategory');
             $requete->execute([
                 'idCategory' => $idCategory
             ]);

@@ -82,10 +82,12 @@ class CategoryController extends AbstractController
     public function ListArticle($categoryID)
     {
         AdminController::roleNeed();
+        $category = (new Category)->SqlGet(Bdd::GetInstance(), $categoryID);
         $listArticle = (new Article)->SqlGetBy(Bdd::GetInstance(),
             'SELECT * FROM articles WHERE articles_category_id=:param', $categoryID);
-        return $this->twig->render('Category/update.html.twig', [
-            'articleList' => $listArticle
+        return $this->twig->render('Category/listarticle.html.twig', [
+            'articleList' => $listArticle,
+            'category' => $category
         ]);
     }
 }

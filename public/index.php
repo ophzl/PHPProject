@@ -73,7 +73,7 @@ $router->post('/Admin/ChangeTheme/','Admin#ChangeTheme');
 //Category Methods
 $router->get('/Category/', "Category#ListAll");
 $router->get('/Category/ListAll', "Category#ListAll");
-$router->get('/Category/:id', "Category#ListArticle");
+$router->get('/Category/Article/:id', "Category#ListArticle");
 $router->get('/Category/Add', "Category#Add");
 $router->post('/Category/Add', "Category#Add");
 $router->get('/Category/Update/:id', "Category#Update#id");
