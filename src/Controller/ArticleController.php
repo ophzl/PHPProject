@@ -159,7 +159,7 @@ class ArticleController extends AbstractController
                 ->setDateAjout($dateajout->format('Y-m-d'))
                 ->setAuteur($arrayAuteur[0])
                 ->setValid($Valid);
-            $article->SqlAdd(BDD::getInstance());
+                 $article->SqlAdd(BDD::getInstance());
         }
         header('Location:/Article');
     }
