@@ -5,6 +5,8 @@ namespace src\Controller;
 use src\Model\Article;
 use src\Model\Bdd;
 use DateTime;
+use src\Model\Category;
+use src\Model\User;
 
 class ArticleController extends AbstractController
 {
@@ -52,7 +54,10 @@ class ArticleController extends AbstractController
                 ->setAuteur($_POST['Auteur'])
                 ->setDateAjout($_POST['DateAjout'])
                 ->setImageRepository($sqlRepository)
-                ->setImageFileName($nomImage);
+                ->setImageFileName($nomImage)
+                ->setCategory((new Category)->SqlGet(Bdd::GetInstance(), $_POST['categoryId']))
+                ->setUser((new User)->SqlGet(Bdd::GetInstance(), $_POST['categoryId']));
+
             $article->SqlAdd(BDD::getInstance());
             header('Location:/Article');
         } else {
@@ -98,7 +103,9 @@ class ArticleController extends AbstractController
                 ->setAuteur($_POST['Auteur'])
                 ->setDateAjout($_POST['DateAjout'])
                 ->setImageRepository($sqlRepository)
-                ->setImageFileName($nomImage);
+                ->setImageFileName($nomImage)
+                ->setCategory((new Category)->SqlGet(Bdd::GetInstance(), $_POST['categoryId']))
+                ->setUser((new User)->SqlGet(Bdd::GetInstance(), $_POST['categoryId']));
 
             $article->SqlUpdate(BDD::getInstance());
         }
