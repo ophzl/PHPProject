@@ -202,7 +202,7 @@ class Article extends Contenu implements \JsonSerializable {
                 'Valid' => $this->getValid(),
                 'IDARTICLE' => $this->getId(),
                 "category_id" => $idCategory->getId(),
-                "users_id" => $idUsers->getId()
+                "users_id" => $idUsers->getUID()
             ]);
             return array("0", "[OK] Update");
         } catch (\Exception $e) {
@@ -249,7 +249,7 @@ class Article extends Contenu implements \JsonSerializable {
              'Auteur' => $this->getAuteur(),
             'Valid' => $this->getValid(),
             'Category' => $idCategory->getId(),
-            'User' => $idUser->getId()
+            'User' => $idUser->getUID()
         ];
     }
 

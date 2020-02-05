@@ -54,6 +54,7 @@ class UserController extends AbstractController
 
 
                 $_SESSION['USER'] = $user;
+                unset($_SESSION['errorlogin']);
 
                 header('Location:/');
             } else {
@@ -81,6 +82,7 @@ class UserController extends AbstractController
     public function logout()
     {
         unset($_SESSION['USER']);
+        unset($_SESSION['success']);
         unset($_SESSION['errorlogin']);
         header('Location:/');
     }

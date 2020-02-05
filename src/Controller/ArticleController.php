@@ -54,9 +54,9 @@ class ArticleController extends AbstractController
                 ->setAuteur($_POST['Auteur'])
                 ->setDateAjout($_POST['DateAjout'])
                 ->setCategory((new Category)->SqlGet(Bdd::GetInstance(),$_POST['Categorie']))
-                ->setUser((new User)->SqlGet(Bdd::GetInstance(), $_POST['User']))
-                ->setImageRepository($sqlRepository)
-                ->setImageFileName($nomImage);
+                ->setUser((new User)->SqlGet(Bdd::GetInstance(), $_POST['User']));
+                //->setImageRepository($sqlRepository)
+                //->setImageFileName($nomImage);
 
 
             $article->SqlAdd(BDD::getInstance());
@@ -107,9 +107,9 @@ class ArticleController extends AbstractController
                 ->setAuteur($_POST['Auteur'])
                 ->setDateAjout($_POST['DateAjout'])
                 ->setCategory((new Category)->SqlGet(Bdd::GetInstance(),$_POST['Categorie']))
-                ->setUser((new User)->SqlGet(Bdd::GetInstance(), $_POST['User']))
-                ->setImageRepository($sqlRepository)
-                ->setImageFileName($nomImage);
+                ->setUser((new User)->SqlGet(Bdd::GetInstance(), $_POST['User']));
+                //->setImageRepository($sqlRepository)
+                //->setImageFileName($nomImage);
 
 
             $article->SqlUpdate(BDD::getInstance());
