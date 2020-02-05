@@ -1,0 +1,26 @@
+{% extends "index.html.twig" %}
+{% block title %}{{ parent() }} - Connectez vous {% endblock %}
+{% block body %}
+
+    <div class="container-fluid mt-2">
+
+        <div class="card-columns">
+            {% for article in articleList %}
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ article.Titre }}</h5>
+                        <p class="card-text">{{ article.Description }}</p>
+                        <p class="card-text"><small class="text-muted">Publié le {{ article.DateAjout|date('d-m-Y') }}</small></p>
+                        <footer class="blockquote-footer">
+                            <small class="text-muted">
+                                Ecrit par <cite>{{ article.Auteur }}</cite>
+                            </small>
+                        </footer>
+                        <a href="/Article/Show/{{ article.Id }}" class="card-link">Voir l'article #{{ article.Id }}</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

@@ -15,7 +15,7 @@
 
 <nav class="navbar sticky-top nav-pills navbar-expand-lg navbar-light bg-light">
 
-    <a class="navbar-brand" href="/Article/ListAll">
+    <a class="navbar-brand" href="/Home">
         <img src="/doc/cesi.svg" height="30" class="d-inline-block align-top mr-2" alt="">
         Projet PHP
     </a>
@@ -42,7 +42,6 @@
                     <h6 class="dropdown-header">Catégories</h6>
                     <a class="dropdown-item" href="/Category/">Liste des catégories</a>
                     {% if "admin" in userConnected.Role and userConnected is defined and userConnected != null %}
-                        <a class="dropdown-item" href="/Category/ListAll">Gestion des catégories</a>
                         <a class="dropdown-item" href="/Category/Add">Ajouter une catégorie</a>
                     {% endif %}
                 </div>

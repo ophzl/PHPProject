@@ -22,7 +22,8 @@ session_start();
 $router = new \src\Router\Router($_GET['url']);
 
 //Articles Methods
-$router->get('/', "Article#ListAll");
+$router->get('/', "Article#Home");
+$router->get('/Home', "Article#Home");
 $router->get('/Article', "Article#ListAll");
 $router->get('/Article/Update/:id', "Article#Update#id");
 $router->post('/Article/Update/:id', "Article#Update#id");

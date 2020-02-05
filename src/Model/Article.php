@@ -18,7 +18,7 @@ class Article extends Contenu implements \JsonSerializable {
             $idCategory = (new Category)->SqlGet(Bdd::GetInstance(), $this->getId());
             $idUsers = (new User)->SqlGet(Bdd::GetInstance(), $this->getId());
 
-            $requete = $bdd->prepare('INSERT INTO articles (Titre, Description, DateAjout, Auteur, ImageRepository, ImageFileName, articles_category_id, articles_users_id ) VALUES(:Titre, :Description, :DateAjout, :Auteur, :ImageRepository, :ImageFileName, :category_id, :users_id)');
+            $requete = $bdd->prepare('INSERT INTO articles (Titre, Description, DateAjout, Auteur, ImageRepository, ImageFileName, article_Valid, articles_category_id, articles_users_id ) VALUES(:Titre, :Description, :DateAjout, :Auteur, :ImageRepository, :ImageFileName, :Valid, :category_id, :users_id)');
             $requete->execute([
                 "Titre" => $this->getTitre(),
                 "Description" => $this->getDescription(),
@@ -26,6 +26,7 @@ class Article extends Contenu implements \JsonSerializable {
                 "Auteur" => $this->getAuteur(),
                 "ImageRepository" => $this->getImageRepository(),
                 "ImageFileName" => $this->getImageFileName(),
+                "Valid" => $this->getValid(),
                 "category_id" => $idCategory->getId(),
                 "users_id" => $idUsers->getUID()
             ]);
@@ -258,8 +259,9 @@ class Article extends Contenu implements \JsonSerializable {
     {
         $phrase = $this->getDescription();
         $arrayWord = str_word_count($phrase,1);
-
-        return implode(" ",array_slice($arrayWord,0,$nb));
+        $str = implode(" ",array_slice($arrayWord,0,$nb));
+        $str .= ' ...';
+        return $str;
     }
 
     /**
