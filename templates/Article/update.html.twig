@@ -3,6 +3,7 @@
 
 
 {% block body %}
+    <script src="//cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
 <div class="container-fluid mt-2">
     <h2 class="display-3">Mise à jour d'un article</h2>
     <hr class="my-4">
@@ -17,7 +18,7 @@
 
             <div class="card-body">
                 <h5 class="card-title">{{ article.Titre }}</h5>
-                <p class="card-text">{{ article.Description }}</p>
+                <p class="card-text">{{ article.Description | raw }}</p>
             </div>
         </div>
 
@@ -37,6 +38,9 @@
                     <textarea name="Description" class="form-control" rows="7">{{ article.Description | nl2br }}</textarea>
                 </div>
             </div>
+            <script>
+                CKEDITOR.replace( 'Description' );
+            </script>
 
             <div class="form-group row">
                 <label for="DateAjout" class="col-sm-2 col-form-label">Date</label>

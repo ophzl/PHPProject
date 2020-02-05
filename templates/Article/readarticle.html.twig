@@ -4,16 +4,9 @@
     <div class="container mt-2">
         <div class="card p-3">
 
-            {% if articleData.ImageFileName != '' and    file_exist('./uploads/images/'~articleData.ImageRepository~'/'~articleData.ImageFileName) %}
-                <img class='card-img-top' alt='Article'
-                     src='/uploads/images/{{ articleData.ImageRepository }}/{{ articleData.ImageFileName }}'/>
-            {% else %}
-                <h6 class="display-4">Pas d'image</h6>
-            {% endif %}
-
             <div class="card-body">
                 <h5 class="card-title">{{ articleData.Titre }}</h5>
-                <p class="card-text">{{ articleData.Description }}</p>
+                <p class="card-text">{{ articleData.Description  | raw }}</p>
             </div>
             <footer class="blockquote-footer">
                 <medium class="text-muted">
