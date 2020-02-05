@@ -15,8 +15,8 @@ class Article extends Contenu implements \JsonSerializable {
     public function SqlAdd(\PDO $bdd)
     {
         try {
-            $idCategory = $this->Category;
-            $idUsers = $this->user;
+            $idCategory = (new Category)->SqlGet(Bdd::GetInstance(), $this->getId());
+            $idUsers = (new User)->SqlGet(Bdd::GetInstance(), $this->getId());
 
             $requete = $bdd->prepare('INSERT INTO articles (Titre, Description, DateAjout, Auteur, ImageRepository, ImageFileName, articles_category_id, articles_users_id ) VALUES(:Titre, :Description, :DateAjout, :Auteur, :ImageRepository, :ImageFileName, :category_id, :users_id)');
             $requete->execute([
@@ -27,7 +27,7 @@ class Article extends Contenu implements \JsonSerializable {
                 "ImageRepository" => $this->getImageRepository(),
                 "ImageFileName" => $this->getImageFileName(),
                 "category_id" => $idCategory->getId(),
-                "users_id" => $idUsers->getId()
+                "users_id" => $idUsers->getUID()
             ]);
             return array("result" => true, "message" => $bdd->lastInsertId());
         } catch (\Exception $e) {
@@ -188,8 +188,8 @@ class Article extends Contenu implements \JsonSerializable {
     public function SqlUpdate(\PDO $bdd)
     {
         try {
-            $idCategory = $this->Category;
-            $idUsers = $this->user;
+            $idCategory = (new Category)->SqlGet(Bdd::GetInstance(), $this->getId());
+            $idUsers = (new User)->SqlGet(Bdd::GetInstance(), $this->getId());
 
             $requete = $bdd->prepare('UPDATE articles set Titre=:Titre, Description=:Description, DateAjout=:DateAjout, Auteur=:Auteur, ImageRepository=:ImageRepository, ImageFileName=:ImageFileName, article_Valid=:Valid, articles_category_id=:category_id , articles_users_id=:users_id WHERE id=:IDARTICLE');
             $requete->execute([
@@ -236,8 +236,8 @@ class Article extends Contenu implements \JsonSerializable {
 
     public function jsonSerialize()
     {
-        $idCategory = $this->getCategory();
-        $idUser = $this->getUser();
+        $idCategory = (new Category)->SqlGet(Bdd::GetInstance(), $this->getId());
+        $idUser = (new User)->SqlGet(Bdd::GetInstance(), $this->getId());
 
         return [
             'Id' => $this->getId(),
