@@ -100,9 +100,10 @@ class AdminController extends AbstractController
     public function ChangeTheme()
     {
         self::roleNeed();
-
+        header('Content-Type: text/html');
         if ($_POST && $_POST['crsf'] == $_SESSION['token']) {
-
+            file_put_contents('./css/projet.css', $_POST['css']);
+            header('Location:/Admin/ChangeTheme');
         }
 
 

@@ -51,10 +51,11 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
           href=\"https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/pepper-grinder/jquery-ui.css\">
     <link rel=\"stylesheet\" href=\"https://use.fontawesome.com/releases/v5.8.1/css/all.css\">
     <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css\">
+    <link rel=\"stylesheet\" href=\"./css/projet.css\">
     ";
-        // line 11
-        $this->displayBlock('css', $context, $blocks);
         // line 12
+        $this->displayBlock('css', $context, $blocks);
+        // line 13
         echo "
 <body>
 
@@ -81,13 +82,13 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
                 <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">
                     <a class=\"dropdown-item\" href=\"/Article/ListAll\">Liste des articles</a>
                     ";
-        // line 37
-        if (((twig_in_filter("redacteur", twig_get_attribute($this->env, $this->source, ($context["userConnected"] ?? null), "Role", [], "any", false, false, false, 37)) && (isset($context["userConnected"]) || array_key_exists("userConnected", $context))) && 0 !== twig_compare(($context["userConnected"] ?? null), null))) {
-            // line 38
+        // line 38
+        if (((twig_in_filter("redacteur", twig_get_attribute($this->env, $this->source, ($context["userConnected"] ?? null), "Role", [], "any", false, false, false, 38)) && (isset($context["userConnected"]) || array_key_exists("userConnected", $context))) && 0 !== twig_compare(($context["userConnected"] ?? null), null))) {
+            // line 39
             echo "                        <a class=\"dropdown-item\" href=\"/Article/Add\">Ajout d'un article</a>
                     ";
         }
-        // line 40
+        // line 41
         echo "
                 </div>
             </li>
@@ -95,9 +96,9 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
 
 
             ";
-        // line 46
-        if (twig_in_filter("admin", twig_get_attribute($this->env, $this->source, ($context["userConnected"] ?? null), "Role", [], "any", false, false, false, 46))) {
-            // line 47
+        // line 47
+        if (twig_in_filter("admin", twig_get_attribute($this->env, $this->source, ($context["userConnected"] ?? null), "Role", [], "any", false, false, false, 47))) {
+            // line 48
             echo "                <li class=\"nav-item dropdown\">
                     <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\"
                        data-toggle=\"dropdown\"
@@ -123,7 +124,7 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
                 </li>
             ";
         }
-        // line 71
+        // line 72
         echo "
             <li class=\"nav-item dropdown\">
                 <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\"
@@ -132,11 +133,11 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
                 </a>
                 <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">
                     ";
-        // line 78
+        // line 79
         if (((isset($context["userConnected"]) || array_key_exists("userConnected", $context)) && 0 !== twig_compare(($context["userConnected"] ?? null), null))) {
-            // line 79
+            // line 80
             echo "                        <h6 class=\"dropdown-header\">Bonjour ";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["userConnected"] ?? null), "Name", [], "any", false, false, false, 79), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["userConnected"] ?? null), "Name", [], "any", false, false, false, 80), "html", null, true);
             echo "</h6>
 
                         <a class=\"dropdown-item\" href=\"/Profile\">Mon profil</a>
@@ -147,12 +148,12 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
 
                     ";
         } else {
-            // line 88
+            // line 89
             echo "                        <a class=\"dropdown-item\" href=\"/Login\">Se connecter</a>
                         <a class=\"dropdown-item\" href=\"/Register\">S'inscrire</a>
                     ";
         }
-        // line 91
+        // line 92
         echo "                </div>
             </li>
 
@@ -168,9 +169,9 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
 </nav>
 
 ";
-        // line 105
-        $this->displayBlock('body', $context, $blocks);
         // line 106
+        $this->displayBlock('body', $context, $blocks);
+        // line 107
         echo "
 
 <script src=\"https://code.jquery.com/jquery-3.4.0.min.js\"></script>
@@ -180,9 +181,9 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
 <script src=\"https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/jquery-ui-i18n.min.js\"></script>
 <script src=\"https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js\"></script>
 ";
-        // line 114
-        $this->displayBlock('javascript', $context, $blocks);
         // line 115
+        $this->displayBlock('javascript', $context, $blocks);
+        // line 116
         echo "</body>
 </html>
 ";
@@ -195,19 +196,19 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
         echo "Projet PHP";
     }
 
-    // line 11
+    // line 12
     public function block_css($context, array $blocks = [])
     {
         $macros = $this->macros;
     }
 
-    // line 105
+    // line 106
     public function block_body($context, array $blocks = [])
     {
         $macros = $this->macros;
     }
 
-    // line 114
+    // line 115
     public function block_javascript($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -225,7 +226,7 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
 
     public function getDebugInfo()
     {
-        return array (  211 => 114,  205 => 105,  199 => 11,  192 => 5,  186 => 115,  184 => 114,  174 => 106,  172 => 105,  156 => 91,  151 => 88,  138 => 79,  136 => 78,  127 => 71,  101 => 47,  99 => 46,  91 => 40,  87 => 38,  85 => 37,  58 => 12,  56 => 11,  47 => 5,  41 => 1,);
+        return array (  212 => 115,  206 => 106,  200 => 12,  193 => 5,  187 => 116,  185 => 115,  175 => 107,  173 => 106,  157 => 92,  152 => 89,  139 => 80,  137 => 79,  128 => 72,  102 => 48,  100 => 47,  92 => 41,  88 => 39,  86 => 38,  59 => 13,  57 => 12,  47 => 5,  41 => 1,);
     }
 
     public function getSourceContext()
@@ -240,6 +241,7 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
           href=\"https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/pepper-grinder/jquery-ui.css\">
     <link rel=\"stylesheet\" href=\"https://use.fontawesome.com/releases/v5.8.1/css/all.css\">
     <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css\">
+    <link rel=\"stylesheet\" href=\"./css/projet.css\">
     {% block css %}{% endblock %}
 
 <body>

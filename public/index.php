@@ -68,7 +68,7 @@ $router->post('/Admin/ChangeRoles/', 'Admin#ChangeRoles');
 $router->get('/Admin/DeleteUser/:id', 'Admin#DeleteUser#id');
 $router->get('/Admin/ApproveArticle/:id','Admin#ApproveArticle#id');
 $router->get('/Admin/ChangeTheme/','Admin#ChangeTheme');
-$router->post('/Admin/ChangeTheme/','Article#ChangeTheme');
+$router->post('/Admin/ChangeTheme/','Admin#ChangeTheme');
 
 //Category Methods
 $router->get('/Category', "Category#ListAll");
