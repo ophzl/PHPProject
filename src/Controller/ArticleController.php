@@ -5,6 +5,8 @@ namespace src\Controller;
 use src\Model\Article;
 use src\Model\Bdd;
 use DateTime;
+use src\Model\Category;
+use src\Model\User;
 
 class ArticleController extends AbstractController
 {
@@ -51,6 +53,7 @@ class ArticleController extends AbstractController
                 ->setDescription($_POST['Description'])
                 ->setAuteur($_POST['Auteur'])
                 ->setDateAjout($_POST['DateAjout'])
+                ->setCategory((new Category)->SqlGet(Bdd::GetInstance(),$_POST['Categorie']))
                 ->setImageRepository($sqlRepository)
                 ->setImageFileName($nomImage);
             $article->SqlAdd(BDD::getInstance());
@@ -59,10 +62,13 @@ class ArticleController extends AbstractController
             // Génération d'un TOKEN
             $token = bin2hex(random_bytes(32));
             $_SESSION['token'] = $token;
-            return $this->twig->render('Article/add.html.twig',
-                [
-                    'token' => $token
-                ]);
+
+            $listCategory = (new Category)->SqlGetAll(Bdd::GetInstance());
+
+            return $this->twig->render('Article/add.html.twig', [
+                'token' => $token,
+                'listCategory' => $listCategory
+            ]);
         }
     }
 
@@ -70,7 +76,7 @@ class ArticleController extends AbstractController
     {
         $articleSQL = new Article();
         $article = $articleSQL->SqlGet(BDD::getInstance(), $articleID);
-        if ($_POST) {
+        if ($_POST && $_POST['crsf'] == $_SESSION['token']) {
             $sqlRepository = null;
             $nomImage = null;
             if (!empty($_FILES['image']['name'])) {
@@ -97,14 +103,22 @@ class ArticleController extends AbstractController
                 ->setDescription($_POST['Description'])
                 ->setAuteur($_POST['Auteur'])
                 ->setDateAjout($_POST['DateAjout'])
+                ->setCategory((new Category)->SqlGet(Bdd::GetInstance(),$_POST['Categorie']))
                 ->setImageRepository($sqlRepository)
                 ->setImageFileName($nomImage);
 
             $article->SqlUpdate(BDD::getInstance());
         }
 
+        $token = bin2hex(random_bytes(32));
+        $_SESSION['token'] = $token;
+
+        $listCategory = (new Category)->SqlGetAll(Bdd::GetInstance());
+
         return $this->twig->render('Article/update.html.twig', [
-            'article' => $article
+            'article' => $article,
+            'token' => $token,
+            'listCategory' => $listCategory
         ]);
     }
 

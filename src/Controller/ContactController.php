@@ -43,7 +43,7 @@ class ContactController extends AbstractController
 
         $result = $this->mailer->send($mail);
 
-        return $result;
+        header('Location:/');
     }
 
     public function formId($idArticle)

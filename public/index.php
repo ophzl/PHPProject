@@ -39,6 +39,7 @@ $router->get('/Article/Show/:id','Article#ReadArticle#id');
 
 //API Methods
 $router->get('/Api/Article', "Api#ArticleGet");
+$router->get('/Api/Article/Five', "Api#ArticleFive");
 $router->post('/Api/Article', "Api#ArticlePost");
 $router->put('/Api/Article/:id/:json', "Api#ArticlePut#id#json");
 
@@ -54,6 +55,7 @@ $router->get('/Register', 'User#RegisterForm'); //TODO
 $router->post('/Register', 'User#RegisterCheck'); //TODO
 $router->get('/Logout', 'User#logout');
 $router->get('/Profile', 'User#Profile');
+$router->post('/Profile', 'User#Profile');
 
 
 

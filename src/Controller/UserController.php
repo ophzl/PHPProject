@@ -2,6 +2,7 @@
 
 namespace src\Controller;
 
+use src\Model\Article;
 use src\Model\Bdd;
 use src\Model\User;
 
@@ -20,7 +21,7 @@ class UserController extends AbstractController
     public function loginCheck()
     {
 
-        if($_POST && $_POST['crsf'] == $_SESSION['token']) {
+        if ($_POST && $_POST['crsf'] == $_SESSION['token']) {
             if (!filter_var(
                 $_POST['Pass'],
                 FILTER_VALIDATE_REGEXP,
@@ -62,7 +63,6 @@ class UserController extends AbstractController
         }
 
 
-
     }
 
     public static function roleNeed($roleATester)
@@ -95,8 +95,9 @@ class UserController extends AbstractController
         ]);
     }
 
-    public function RegisterCheck(){
-        if($_POST && $_POST['crsf'] == $_SESSION['token']) {
+    public function RegisterCheck()
+    {
+        if ($_POST && $_POST['crsf'] == $_SESSION['token']) {
 
 
             $bdd = Bdd::GetInstance();
@@ -113,9 +114,34 @@ class UserController extends AbstractController
         }
     }
 
-    public function Profile() {
-        if(isset($_SESSION['USER'])) {
-            return $this->twig->render('User/profile.html.twig');
+    public function Profile()
+    {
+        if (isset($_SESSION['USER'])) {
+            if ($_POST && $_POST['crsf'] == $_SESSION['token']) {
+                if(password_verify($_POST['oPass'], $_SESSION['USER']->getPassword())){
+                    $query = Bdd::GetInstance()->prepare('UPDATE users SET user_Password =:Pass where user_Email=:Email');
+                    $query->execute([
+                        'Pass' => password_hash($_POST['nPass'], PASSWORD_BCRYPT),
+                        'Email' => $_SESSION['USER']->getMail()
+                    ]);
+                    $_SESSION['success'] = "Mot de passe changé";
+                    header('Location:/Profile');
+                    return;
+                } else {
+                    $_SESSION['errorlogin'] = "Mauvais mot de passe";
+                    header('Location:/Profile');
+                    return;
+                }
+
+            } else {
+                $token = bin2hex(random_bytes(32));
+                $_SESSION['token'] = $token;
+                return $this->twig->render('User/profile.html.twig', [
+                    'token' => $token,
+                    'articleList' => (new Article)->SqlGetAllUser(Bdd::GetInstance(), $_SESSION['USER']->getUID())
+                ]);
+            }
+
         }
         header('Location:/');
     }

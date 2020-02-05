@@ -100,6 +100,28 @@ class Article extends Contenu implements \JsonSerializable {
         return $listArticle;
     }
 
+    public function SqlGetAllUser(\PDO $bdd, $UID){
+        $requete = $bdd->prepare('SELECT * FROM articles where articles_users_id =:UID');
+        $requete->execute(['UID' => $UID]);
+        $arrayArticle = $requete->fetchAll();
+
+        $listArticle = [];
+        foreach ($arrayArticle as $articleSQL){
+            $article = new Article();
+            $article->setId($articleSQL['Id']);
+            $article->setTitre($articleSQL['Titre']);
+            $article->setAuteur($articleSQL['Auteur']);
+            $article->setDescription($articleSQL['Description']);
+            $article->setDateAjout($articleSQL['DateAjout']);
+            $article->setImageRepository($articleSQL['ImageRepository']);
+            $article->setImageFileName($articleSQL['ImageFileName']);
+            $article->setValid($articleSQL['article_Valid']);
+
+            $listArticle[] = $article;
+        }
+        return $listArticle;
+    }
+
     public function SqlGet(\PDO $bdd,$idArticle){
         $requete = $bdd->prepare('SELECT * FROM articles where Id = :idArticle');
         $requete->execute([

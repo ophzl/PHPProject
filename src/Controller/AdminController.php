@@ -73,7 +73,7 @@ class AdminController extends AbstractController
         self::roleNeed();
         $listArticles = (new Article)->SqlGetAllWaiting(Bdd::GetInstance());
         return $this->twig->render(
-            'Admin/articlesWaiting.html.twig', [
+            'Admin/articleswaiting.html.twig', [
                 'articleList' => $listArticles
             ]
         );
