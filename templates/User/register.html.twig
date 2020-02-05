@@ -8,37 +8,87 @@
     <div class="container-fluid mt-2">
         <form class="form" method="post" action="/Register">
 
-                <!-- Text input-->
-                <div class="form-group">
-                    <div class="col-md-4">
-                        <input name="rName" type="text" placeholder="Nom" class="form-control input-md" required>
+            <!-- Text input-->
+            <div class="form-group">
+                <div class="col-md-4">
+                    <input name="rName" type="text" placeholder="Nom" class="form-control input-md" required>
 
-                    </div>
                 </div>
+            </div>
 
-                <!-- Text input-->
-                <div class="form-group">
-                    <div class="col-md-4">
-                        <input name="rMail" type="text" placeholder="Adresse mail" class="form-control input-md" required>
+            <!-- Email input-->
+            <div class="form-group">
+                <div class="col-md-4">
+                    <input name="rMail" type="email" placeholder="Adresse mail" class="form-control input-md" required>
 
-                    </div>
                 </div>
+            </div>
 
-                <!-- Password input-->
-                <div class="form-group">
-                    <div class="col-md-4">
-                        <input name="rPass" type="password" placeholder="Mot de passe" class="form-control input-md" required>
+            <!-- Password input-->
+            <div class="form-group">
+                <div class="col-md-4">
+                    <input name="rPass" type="password" placeholder="Mot de passe" class="form-control input-md"
+                           required>
 
-                    </div>
                 </div>
+            </div>
 
-                <!-- Button (Double) -->
-                <div class="form-group">
-                    <div class="col-md-8">
-                        <input type="submit" value="Se créer un compte" class="btn btn-success">
-                    </div>
+            <!-- ReCAPTCHA -->
+            <script type="text/javascript">
+                var onloadCallback = function () {
+                    grecaptcha.render('html_element', {
+                        'sitekey': '6Ld79NUUAAAAAJl3JeWDMZps3clvNxwFETGMc5ca',
+                        'callback': 'enableSubmitBtn',
+                    });
+                };
+
+                function enableSubmitBtn(){
+                    document.getElementById('submit-button').disabled = false;
+                }
+
+                if (grecaptcha.getResponse() === true) {
+                    document.getElementById('submit-button').disabled = false;
+                }
+
+                function checkReCaptcha() {
+                    var response = grecaptcha.getResponse();
+                    if (response.length === 0) {
+                        //reCAPTCHA not verified
+                        console.log("CAPTCHA non vérifié");
+                    }
+                }
+
+                function backend_API_challenge() {
+                    var response = grecaptcha.getResponse();
+                    $.ajax({
+                        type: "POST",
+                        url: 'https://www.google.com/recaptcha/api/siteverify',
+                        data: {
+                            "secret": "(6Ld79NUUAAAAACHtrjE94_FSusESBPZYhbv0s_kU)",
+                            "response": response,
+                            "remoteip": "localhost"
+                        },
+                        contentType: 'application/x-www-form-urlencoded',
+                        success: function (data) {
+                            console.log(data);
+                        }
+                    });
+                }
+            </script>
+
+            <!-- Button (Double) -->
+            <div class="form-group">
+                <div class="col-md-8">
+                    <div id="html_element" class="mb-3"></div>
+                    <input type="submit" id="submit-button" value="Se créer un compte" class="btn btn-success"
+                           onclick="checkReCaptcha()" disabled>
                 </div>
+            </div>
             <input type="hidden" name="crsf" value="{{ token }}">
         </form>
+        <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+                async defer>
+        </script>
     </div>
+
 {% endblock %}

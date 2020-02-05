@@ -14,7 +14,7 @@
 
 <nav class="navbar sticky-top nav-pills navbar-expand-lg navbar-light bg-light">
 
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/Article/ListAll">
         <img src="/doc/cesi.svg" height="30" class="d-inline-block align-top mr-2" alt="">
         Projet PHP
     </a>
@@ -41,11 +41,10 @@
                 </div>
             </li>
 
-            {% if userConnected %}
-                <li class="nav-item">
-                    <a href="/Contact" class="nav-link">Contactez-nous</a>
-                </li>
-            {% endif %}
+
+            <li class="nav-item">
+                <a href="/Contact" class="nav-link">Contactez-nous</a>
+            </li>
 
 
             {% if "admin" in userConnected.Role %}
@@ -56,10 +55,19 @@
                         Panneau d'administration
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/Admin/ListArticlesWaiting/">Approuver un article</a>
+                        <h6 class="dropdown-header">Membres</h6>
                         <a class="dropdown-item" href="/Admin/ListUser">Gestion des membres</a>
+                        <div class="dropdown-divider"></div>
+                        <h6 class="dropdown-header">Articles</h6>
+                        <a class="dropdown-item" href="/Article/Add">Ajout d'un article</a>
+                        <a class="dropdown-item" href="/Admin/ListArticlesWaiting/">Approuver un article</a>
+                        <div class="dropdown-divider"></div>
+                        <h6 class="dropdown-header">Catégories</h6>
                         <a class="dropdown-item" href="/Category/ListAll">Gestion des catégories</a>
                         <a class="dropdown-item" href="/Category/Add">Ajouter une catégorie</a>
+                        <div class="dropdown-divider"></div>
+                        <h6 class="dropdown-header">Préférences</h6>
+                        <a class="dropdown-item" href="/Admin/ChangeTheme">Gestion du thème</a>
 
                     </div>
                 </li>
@@ -75,6 +83,9 @@
                         <h6 class="dropdown-header">Bonjour {{ userConnected.Name }}</h6>
 
                         <a class="dropdown-item" href="/Profile">Mon profil</a>
+                        <div class="dropdown-divider"></div>
+                        <h6 class="dropdown-header">Préférences</h6>
+                        <a class="dropdown-item" href="/Contact" class="nav-link">Contactez-nous</a>
                         <a class="dropdown-item" href="/Logout">Se déconnecter</a>
 
                     {% else %}

@@ -26,7 +26,8 @@ class AdminController extends AbstractController
         }
     }
 
-    public function ChangeRolesForm($UID) {
+    public function ChangeRolesForm($UID)
+    {
         self::roleNeed();
         $user = (new User)->SqlGet(Bdd::GetInstance(), $UID);
         $token = bin2hex(random_bytes(32));
@@ -37,11 +38,12 @@ class AdminController extends AbstractController
         ]);
     }
 
-    public function ChangeRoles() {
+    public function ChangeRoles()
+    {
         self::roleNeed();
         $listRoles = '';
-        foreach ($_POST['role'] as $role){
-            $listRoles .= $role.',';
+        foreach ($_POST['role'] as $role) {
+            $listRoles .= $role . ',';
         }
         $user = (new User)->SqlGet(Bdd::GetInstance(), $_POST['userUID']);
         $user->setRole($listRoles);
@@ -50,7 +52,8 @@ class AdminController extends AbstractController
 
     }
 
-    public function DeleteUser($UID) {
+    public function DeleteUser($UID)
+    {
         self::roleNeed();
         $query = Bdd::GetInstance()->prepare('DELETE FROM users where user_UId=:UID');
         $query->execute(['UID' => $UID]);
@@ -73,7 +76,7 @@ class AdminController extends AbstractController
         self::roleNeed();
         $listArticles = (new Article)->SqlGetAllWaiting(Bdd::GetInstance());
         return $this->twig->render(
-            'Admin/articlesWaiting.html.twig', [
+            'Admin/articleswaiting.html.twig', [
                 'articleList' => $listArticles
             ]
         );
@@ -92,6 +95,26 @@ class AdminController extends AbstractController
             $query->execute(['id' => $ArticleId]);
             header('Location:/Admin/ListArticlesWaiting');
         }
+    }
+
+    public function ChangeTheme()
+    {
+        self::roleNeed();
+
+        if ($_POST && $_POST['crsf'] == $_SESSION['token']) {
+
+        }
+
+
+        $token = bin2hex(random_bytes(32));
+        $_SESSION['token'] = $token;
+        $CSS = file_get_contents('./css/projet.css');
+
+        return $this->twig->render('Admin/changecss.html.twig', [
+            'css' => $CSS,
+            'token' => $token
+        ]);
+
     }
 
 

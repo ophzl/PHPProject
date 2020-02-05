@@ -1,9 +1,7 @@
 <?php
-
 namespace src\Model;
 
-class Article extends Contenu implements \JsonSerializable
-{
+class Article extends Contenu implements \JsonSerializable {
     private $Auteur;
     private $DateAjout;
     private $ImageRepository;
@@ -113,14 +111,35 @@ class Article extends Contenu implements \JsonSerializable
         return $listArticle;
     }
 
-    public function SqlGet(\PDO $bdd, $idArticle)
-    {
+    public function SqlGetAllUser(\PDO $bdd, $UID){
+        $requete = $bdd->prepare('SELECT * FROM articles where articles_users_id =:UID');
+        $requete->execute(['UID' => $UID]);
+        $arrayArticle = $requete->fetchAll();
+
+        $listArticle = [];
+        foreach ($arrayArticle as $articleSQL){
+            $article = new Article();
+            $article->setId($articleSQL['Id']);
+            $article->setTitre($articleSQL['Titre']);
+            $article->setAuteur($articleSQL['Auteur']);
+            $article->setDescription($articleSQL['Description']);
+            $article->setDateAjout($articleSQL['DateAjout']);
+            $article->setImageRepository($articleSQL['ImageRepository']);
+            $article->setImageFileName($articleSQL['ImageFileName']);
+            $article->setValid($articleSQL['article_Valid']);
+
+            $listArticle[] = $article;
+        }
+        return $listArticle;
+    }
+
+    public function SqlGet(\PDO $bdd,$idArticle){
         $requete = $bdd->prepare('SELECT * FROM articles where Id = :idArticle');
         $requete->execute([
             'idArticle' => $idArticle
         ]);
 
-        $datas = $requete->fetch();
+        $datas =  $requete->fetch();
 
         $article = new Article();
         $article->setId($datas['Id']);
@@ -147,7 +166,7 @@ class Article extends Contenu implements \JsonSerializable
         $arrayArticle = $query->fetchAll();
 
         $listArticle = [];
-        foreach ($arrayArticle as $articleSQL) {
+        foreach ($arrayArticle as $articleSQL){
             $article = new Article();
             $article->setId($articleSQL['Id']);
             $article->setTitre($articleSQL['Titre']);
@@ -238,9 +257,9 @@ class Article extends Contenu implements \JsonSerializable
     public function firstXwords($nb)
     {
         $phrase = $this->getDescription();
-        $arrayWord = str_word_count($phrase, 1);
+        $arrayWord = str_word_count($phrase,1);
 
-        return implode(" ", array_slice($arrayWord, 0, $nb));
+        return implode(" ",array_slice($arrayWord,0,$nb));
     }
 
     /**
