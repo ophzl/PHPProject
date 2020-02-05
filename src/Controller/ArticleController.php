@@ -55,7 +55,10 @@ class ArticleController extends AbstractController
                 ->setDateAjout($_POST['DateAjout'])
                 ->setCategory((new Category)->SqlGet(Bdd::GetInstance(),$_POST['Categorie']))
                 ->setImageRepository($sqlRepository)
-                ->setImageFileName($nomImage);
+                ->setImageFileName($nomImage)
+                ->setCategory((new Category)->SqlGet(Bdd::GetInstance(), $_POST['categoryId']))
+                ->setUser((new User)->SqlGet(Bdd::GetInstance(), $_POST['categoryId']));
+
             $article->SqlAdd(BDD::getInstance());
             header('Location:/Article');
         } else {
@@ -105,7 +108,9 @@ class ArticleController extends AbstractController
                 ->setDateAjout($_POST['DateAjout'])
                 ->setCategory((new Category)->SqlGet(Bdd::GetInstance(),$_POST['Categorie']))
                 ->setImageRepository($sqlRepository)
-                ->setImageFileName($nomImage);
+                ->setImageFileName($nomImage)
+                ->setCategory((new Category)->SqlGet(Bdd::GetInstance(), $_POST['categoryId']))
+                ->setUser((new User)->SqlGet(Bdd::GetInstance(), $_POST['categoryId']));
 
             $article->SqlUpdate(BDD::getInstance());
         }
