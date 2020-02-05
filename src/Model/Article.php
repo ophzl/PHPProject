@@ -18,7 +18,7 @@ class Article extends Contenu implements \JsonSerializable {
             $idCategory = (new Category)->SqlGet(Bdd::GetInstance(), $this->getId());
             $idUsers = (new User)->SqlGet(Bdd::GetInstance(), $this->getId());
 
-            $requete = $bdd->prepare('INSERT INTO articles (Titre, Description, DateAjout, Auteur, ImageRepository, ImageFileName, article_Valid, articles_category_id, articles_users_id ) VALUES(:Titre, :Description, :DateAjout, :Auteur, :ImageRepository, :ImageFileName, :Valid, :category_id, :users_id)');
+            $requete = $bdd->prepare('INSERT INTO articles (Titre, Description, DateAjout, Auteur, ImageRepository, ImageFileName, article_Valid ) VALUES(:Titre, :Description, :DateAjout, :Auteur, :ImageRepository, :ImageFileName, :Valid)');
             $requete->execute([
                 "Titre" => $this->getTitre(),
                 "Description" => $this->getDescription(),
@@ -26,10 +26,8 @@ class Article extends Contenu implements \JsonSerializable {
                 "Auteur" => $this->getAuteur(),
                 "ImageRepository" => $this->getImageRepository(),
                 "ImageFileName" => $this->getImageFileName(),
-                "Valid" => $this->getValid(),
-                "category_id" => $idCategory->getId(),
-                "users_id" => $idUsers->getUID()
-            ]);
+                "Valid" => $this->getValid()
+            ]); //TODO: set user, and category
             return array("result" => true, "message" => $bdd->lastInsertId());
         } catch (\Exception $e) {
             return array("result" => false, "message" => $e->getMessage());
