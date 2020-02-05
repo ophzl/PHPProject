@@ -134,16 +134,17 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["userConnected"] ?? null), "Name", [], "any", false, false, false, 74), "html", null, true);
             echo "</h6>
 
+                        <a class=\"dropdown-item\" href=\"/Profile\">Mon profil</a>
                         <a class=\"dropdown-item\" href=\"/Logout\">Se déconnecter</a>
 
                     ";
         } else {
-            // line 79
+            // line 80
             echo "                        <a class=\"dropdown-item\" href=\"/Login\">Se connecter</a>
                         <a class=\"dropdown-item\" href=\"/Register\">S'inscrire</a>
                     ";
         }
-        // line 82
+        // line 83
         echo "                </div>
             </li>
 
@@ -159,9 +160,9 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
 </nav>
 
 ";
-        // line 96
-        $this->displayBlock('body', $context, $blocks);
         // line 97
+        $this->displayBlock('body', $context, $blocks);
+        // line 98
         echo "
 
 <script src=\"https://code.jquery.com/jquery-3.4.0.min.js\"></script>
@@ -171,9 +172,9 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
 <script src=\"https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/jquery-ui-i18n.min.js\"></script>
 <script src=\"https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js\"></script>
 ";
-        // line 105
-        $this->displayBlock('javascript', $context, $blocks);
         // line 106
+        $this->displayBlock('javascript', $context, $blocks);
+        // line 107
         echo "</body>
 </html>
 ";
@@ -192,13 +193,13 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
         $macros = $this->macros;
     }
 
-    // line 96
+    // line 97
     public function block_body($context, array $blocks = [])
     {
         $macros = $this->macros;
     }
 
-    // line 105
+    // line 106
     public function block_javascript($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -216,7 +217,7 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
 
     public function getDebugInfo()
     {
-        return array (  202 => 105,  196 => 96,  190 => 11,  183 => 5,  177 => 106,  175 => 105,  165 => 97,  163 => 96,  147 => 82,  142 => 79,  133 => 74,  131 => 73,  122 => 66,  105 => 51,  103 => 50,  91 => 40,  87 => 38,  85 => 37,  58 => 12,  56 => 11,  47 => 5,  41 => 1,);
+        return array (  203 => 106,  197 => 97,  191 => 11,  184 => 5,  178 => 107,  176 => 106,  166 => 98,  164 => 97,  148 => 83,  143 => 80,  133 => 74,  131 => 73,  122 => 66,  105 => 51,  103 => 50,  91 => 40,  87 => 38,  85 => 37,  58 => 12,  56 => 11,  47 => 5,  41 => 1,);
     }
 
     public function getSourceContext()
@@ -296,6 +297,7 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
                     {% if userConnected is defined and userConnected != null %}
                         <h6 class=\"dropdown-header\">Bonjour {{ userConnected.Name }}</h6>
 
+                        <a class=\"dropdown-item\" href=\"/Profile\">Mon profil</a>
                         <a class=\"dropdown-item\" href=\"/Logout\">Se déconnecter</a>
 
                     {% else %}

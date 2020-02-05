@@ -35,7 +35,6 @@ $router->get('/Article/WriteOne/:id', "Article#WriteOne#id");
 $router->get('/Article/Read', "Article#Read");
 $router->get('/Article/ListAll','Article#listAll');
 $router->post('/Article/Search','Article#Search');
-
 $router->get('/Article/Show/:id','Article#ReadArticle#id');
 
 //API Methods
@@ -54,6 +53,8 @@ $router->post('/Login', 'User#loginCheck'); //TODO: verify
 $router->get('/Register', 'User#RegisterForm'); //TODO
 $router->post('/Register', 'User#RegisterCheck'); //TODO
 $router->get('/Logout', 'User#logout');
+$router->get('/Profile', 'User#Profile');
+
 
 
 $router->get('/Admin/ListUser/', 'Admin#ListUser');

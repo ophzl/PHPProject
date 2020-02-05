@@ -1,0 +1,28 @@
+{% extends "index.html.twig" %}
+
+{% block body %}
+
+    <div class="container-fluid">
+        <div class="card p-3">
+
+            <h5 class="card-title">{{ userConnected.Name }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{ userConnected.Mail }}</h6>
+
+            <div class="card-body">
+                <h5 class="card-title">{{ articleData.Titre }}</h5>
+                <p class="card-text">{{ articleData.Description }}</p>
+            </div>
+            <footer class="blockquote-footer">
+                <medium class="text-muted">
+                    Rôles :
+                    {% for role in userConnected.Role %}
+                        {% if role == "admin" %} Administrateur, {% elseif role == "redacteur" %} Rédacteur,
+                        {% elseif role == "modo" %} Modérateur, {% elseif role == "bg" %} Beau gosse,
+                        {% endif %}
+                    {% endfor %}
+                </medium>
+            </footer>
+        </div>
+    </div>
+
+{% endblock %}
