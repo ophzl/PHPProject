@@ -52,7 +52,6 @@ class Category
 
         $datas = $requete->fetch();
 
-
         $this->setId($datas['category_id']);
         $this->setLabel($datas['category_label']);
         $this->setCodeReference($datas['category_code_reference']);
