@@ -54,10 +54,10 @@ class ArticleController extends AbstractController
                 ->setAuteur($_POST['Auteur'])
                 ->setDateAjout($_POST['DateAjout'])
                 ->setCategory((new Category)->SqlGet(Bdd::GetInstance(),$_POST['Categorie']))
+                ->setUser((new User)->SqlGet(Bdd::GetInstance(), $_POST['User']))
                 ->setImageRepository($sqlRepository)
-                ->setImageFileName($nomImage)
-                ->setCategory((new Category)->SqlGet(Bdd::GetInstance(), $_POST['categoryId']))
-                ->setUser((new User)->SqlGet(Bdd::GetInstance(), $_POST['categoryId']));
+                ->setImageFileName($nomImage);
+
 
             $article->SqlAdd(BDD::getInstance());
             header('Location:/Article');
@@ -107,10 +107,10 @@ class ArticleController extends AbstractController
                 ->setAuteur($_POST['Auteur'])
                 ->setDateAjout($_POST['DateAjout'])
                 ->setCategory((new Category)->SqlGet(Bdd::GetInstance(),$_POST['Categorie']))
+                ->setUser((new User)->SqlGet(Bdd::GetInstance(), $_POST['User']))
                 ->setImageRepository($sqlRepository)
-                ->setImageFileName($nomImage)
-                ->setCategory((new Category)->SqlGet(Bdd::GetInstance(), $_POST['categoryId']))
-                ->setUser((new User)->SqlGet(Bdd::GetInstance(), $_POST['categoryId']));
+                ->setImageFileName($nomImage);
+
 
             $article->SqlUpdate(BDD::getInstance());
         }
@@ -231,7 +231,7 @@ class ArticleController extends AbstractController
         $article = new Article();
         $articleData = $article->SqlGet(Bdd::GetInstance(), $idArticle);
 
-        return $this->twig->render('Article/readArticle.html.twig', [
+        return $this->twig->render('Article/readarticle.html.twig', [
             'articleData' => $articleData
         ]);
     }

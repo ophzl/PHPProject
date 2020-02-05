@@ -49,16 +49,16 @@ $router->post('/Contact/sendMail', 'Contact#sendMail');
 $router->get('/Contact/Article/:id', 'Contact#FormId#id');
 
 //User Methods
-$router->get('/Login', 'User#loginForm'); //TODO: verify
-$router->post('/Login', 'User#loginCheck'); //TODO: verify
-$router->get('/Register', 'User#RegisterForm'); //TODO
-$router->post('/Register', 'User#RegisterCheck'); //TODO
+$router->get('/Login', 'User#loginForm');
+$router->post('/Login', 'User#loginCheck');
+$router->get('/Register', 'User#RegisterForm');
+$router->post('/Register', 'User#RegisterCheck');
 $router->get('/Logout', 'User#logout');
 $router->get('/Profile', 'User#Profile');
 $router->post('/Profile', 'User#Profile');
 
 
-
+//Admin methods
 $router->get('/Admin/ListUser/', 'Admin#ListUser');
 $router->get('/Admin/ListArticlesWaiting/', 'Admin#ListArticlesWaiting');
 $router->get('/Admin/ApproveUser/:id', 'Admin#ApproveUser#id');
@@ -66,7 +66,9 @@ $router->get('/Admin/ApproveArticle/:id','Admin#ApproveArticle#id');
 $router->get('/Admin/ChangeRoles/:id', 'Admin#ChangeRolesForm#id');
 $router->post('/Admin/ChangeRoles/', 'Admin#ChangeRoles');
 $router->get('/Admin/DeleteUser/:id', 'Admin#DeleteUser#id');
-$router->get('/Admin/ApproveArticle/:id','Article#ApproveArticle#id'); //TODO
+$router->get('/Admin/ApproveArticle/:id','Admin#ApproveArticle#id');
+$router->get('/Admin/ChangeTheme/','Admin#ChangeTheme');
+$router->post('/Admin/ChangeTheme/','Article#ChangeTheme');
 
 //Category Methods
 $router->get('/Category', "Category#ListAll");

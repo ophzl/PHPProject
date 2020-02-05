@@ -93,15 +93,11 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
             </li>
 
 
-            <li class=\"nav-item\">
-                <a href=\"/Contact\" class=\"nav-link\">Contactez-nous</a>
-            </li>
-
 
             ";
-        // line 50
-        if (twig_in_filter("admin", twig_get_attribute($this->env, $this->source, ($context["userConnected"] ?? null), "Role", [], "any", false, false, false, 50))) {
-            // line 51
+        // line 46
+        if (twig_in_filter("admin", twig_get_attribute($this->env, $this->source, ($context["userConnected"] ?? null), "Role", [], "any", false, false, false, 46))) {
+            // line 47
             echo "                <li class=\"nav-item dropdown\">
                     <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\"
                        data-toggle=\"dropdown\"
@@ -109,16 +105,25 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
                         Panneau d'administration
                     </a>
                     <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">
-                        <a class=\"dropdown-item\" href=\"/Admin/ListArticlesWaiting/\">Approuver un article</a>
+                        <h6 class=\"dropdown-header\">Membres</h6>
                         <a class=\"dropdown-item\" href=\"/Admin/ListUser\">Gestion des membres</a>
+                        <div class=\"dropdown-divider\"></div>
+                        <h6 class=\"dropdown-header\">Articles</h6>
+                        <a class=\"dropdown-item\" href=\"/Article/Add\">Ajout d'un article</a>
+                        <a class=\"dropdown-item\" href=\"/Admin/ListArticlesWaiting/\">Approuver un article</a>
+                        <div class=\"dropdown-divider\"></div>
+                        <h6 class=\"dropdown-header\">Catégories</h6>
                         <a class=\"dropdown-item\" href=\"/Category/ListAll\">Gestion des catégories</a>
                         <a class=\"dropdown-item\" href=\"/Category/Add\">Ajouter une catégorie</a>
+                        <div class=\"dropdown-divider\"></div>
+                        <h6 class=\"dropdown-header\">Préférences</h6>
+                        <a class=\"dropdown-item\" href=\"/Admin/ChangeTheme\">Gestion du thème</a>
 
                     </div>
                 </li>
             ";
         }
-        // line 66
+        // line 71
         echo "
             <li class=\"nav-item dropdown\">
                 <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\"
@@ -127,24 +132,27 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
                 </a>
                 <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">
                     ";
-        // line 73
+        // line 78
         if (((isset($context["userConnected"]) || array_key_exists("userConnected", $context)) && 0 !== twig_compare(($context["userConnected"] ?? null), null))) {
-            // line 74
+            // line 79
             echo "                        <h6 class=\"dropdown-header\">Bonjour ";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["userConnected"] ?? null), "Name", [], "any", false, false, false, 74), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["userConnected"] ?? null), "Name", [], "any", false, false, false, 79), "html", null, true);
             echo "</h6>
 
                         <a class=\"dropdown-item\" href=\"/Profile\">Mon profil</a>
+                        <div class=\"dropdown-divider\"></div>
+                        <h6 class=\"dropdown-header\">Préférences</h6>
+                        <a class=\"dropdown-item\" href=\"/Contact\" class=\"nav-link\">Contactez-nous</a>
                         <a class=\"dropdown-item\" href=\"/Logout\">Se déconnecter</a>
 
                     ";
         } else {
-            // line 80
+            // line 88
             echo "                        <a class=\"dropdown-item\" href=\"/Login\">Se connecter</a>
                         <a class=\"dropdown-item\" href=\"/Register\">S'inscrire</a>
                     ";
         }
-        // line 83
+        // line 91
         echo "                </div>
             </li>
 
@@ -160,9 +168,9 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
 </nav>
 
 ";
-        // line 97
+        // line 105
         $this->displayBlock('body', $context, $blocks);
-        // line 98
+        // line 106
         echo "
 
 <script src=\"https://code.jquery.com/jquery-3.4.0.min.js\"></script>
@@ -172,9 +180,9 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
 <script src=\"https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/jquery-ui-i18n.min.js\"></script>
 <script src=\"https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js\"></script>
 ";
-        // line 106
+        // line 114
         $this->displayBlock('javascript', $context, $blocks);
-        // line 107
+        // line 115
         echo "</body>
 </html>
 ";
@@ -193,13 +201,13 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
         $macros = $this->macros;
     }
 
-    // line 97
+    // line 105
     public function block_body($context, array $blocks = [])
     {
         $macros = $this->macros;
     }
 
-    // line 106
+    // line 114
     public function block_javascript($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -217,7 +225,7 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
 
     public function getDebugInfo()
     {
-        return array (  203 => 106,  197 => 97,  191 => 11,  184 => 5,  178 => 107,  176 => 106,  166 => 98,  164 => 97,  148 => 83,  143 => 80,  133 => 74,  131 => 73,  122 => 66,  105 => 51,  103 => 50,  91 => 40,  87 => 38,  85 => 37,  58 => 12,  56 => 11,  47 => 5,  41 => 1,);
+        return array (  211 => 114,  205 => 105,  199 => 11,  192 => 5,  186 => 115,  184 => 114,  174 => 106,  172 => 105,  156 => 91,  151 => 88,  138 => 79,  136 => 78,  127 => 71,  101 => 47,  99 => 46,  91 => 40,  87 => 38,  85 => 37,  58 => 12,  56 => 11,  47 => 5,  41 => 1,);
     }
 
     public function getSourceContext()
@@ -266,10 +274,6 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
             </li>
 
 
-            <li class=\"nav-item\">
-                <a href=\"/Contact\" class=\"nav-link\">Contactez-nous</a>
-            </li>
-
 
             {% if \"admin\" in userConnected.Role %}
                 <li class=\"nav-item dropdown\">
@@ -279,10 +283,19 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
                         Panneau d'administration
                     </a>
                     <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">
-                        <a class=\"dropdown-item\" href=\"/Admin/ListArticlesWaiting/\">Approuver un article</a>
+                        <h6 class=\"dropdown-header\">Membres</h6>
                         <a class=\"dropdown-item\" href=\"/Admin/ListUser\">Gestion des membres</a>
+                        <div class=\"dropdown-divider\"></div>
+                        <h6 class=\"dropdown-header\">Articles</h6>
+                        <a class=\"dropdown-item\" href=\"/Article/Add\">Ajout d'un article</a>
+                        <a class=\"dropdown-item\" href=\"/Admin/ListArticlesWaiting/\">Approuver un article</a>
+                        <div class=\"dropdown-divider\"></div>
+                        <h6 class=\"dropdown-header\">Catégories</h6>
                         <a class=\"dropdown-item\" href=\"/Category/ListAll\">Gestion des catégories</a>
                         <a class=\"dropdown-item\" href=\"/Category/Add\">Ajouter une catégorie</a>
+                        <div class=\"dropdown-divider\"></div>
+                        <h6 class=\"dropdown-header\">Préférences</h6>
+                        <a class=\"dropdown-item\" href=\"/Admin/ChangeTheme\">Gestion du thème</a>
 
                     </div>
                 </li>
@@ -298,6 +311,9 @@ class __TwigTemplate_3cdfc1a19307d1ac08547958dcbd18b32c2bc42d1d9e60324f7f338a763
                         <h6 class=\"dropdown-header\">Bonjour {{ userConnected.Name }}</h6>
 
                         <a class=\"dropdown-item\" href=\"/Profile\">Mon profil</a>
+                        <div class=\"dropdown-divider\"></div>
+                        <h6 class=\"dropdown-header\">Préférences</h6>
+                        <a class=\"dropdown-item\" href=\"/Contact\" class=\"nav-link\">Contactez-nous</a>
                         <a class=\"dropdown-item\" href=\"/Logout\">Se déconnecter</a>
 
                     {% else %}
