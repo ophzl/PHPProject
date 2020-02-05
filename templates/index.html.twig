@@ -14,7 +14,7 @@
 
 <nav class="navbar sticky-top nav-pills navbar-expand-lg navbar-light bg-light">
 
-    <a class="navbar-brand" href="/Article/ListAll">
+    <a class="navbar-brand" href="/">
         <img src="/doc/cesi.svg" height="30" class="d-inline-block align-top mr-2" alt="">
         Projet PHP
     </a>
@@ -41,10 +41,11 @@
                 </div>
             </li>
 
-
-            <li class="nav-item">
-                <a href="/Contact" class="nav-link">Contactez-nous</a>
-            </li>
+            {% if userConnected %}
+                <li class="nav-item">
+                    <a href="/Contact" class="nav-link">Contactez-nous</a>
+                </li>
+            {% endif %}
 
 
             {% if "admin" in userConnected.Role %}
