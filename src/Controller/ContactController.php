@@ -30,7 +30,7 @@ class ContactController extends AbstractController
     {
         $mail = (new \Swift_Message($_POST['Object']))
             ->setFrom($_SESSION['USER']->getMail())
-            ->setTo('contact@project.com') // TODO: setTo email to author email
+            ->setTo($_POST['author-email'])
             ->setBody(
                 $this->twig->render('Contact/mail.html.twig',
                     [
