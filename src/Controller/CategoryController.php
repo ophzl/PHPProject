@@ -4,6 +4,7 @@
 namespace src\Controller;
 
 
+use src\Model\Article;
 use src\Model\Bdd;
 use src\Model\Category;
 
@@ -65,7 +66,7 @@ class CategoryController extends AbstractController
         }
 
         return $this->twig->render('Category/update.html.twig', [
-            'category' => $category
+            'Category' => $category
         ]);
     }
 
@@ -76,5 +77,15 @@ class CategoryController extends AbstractController
         $category->SqlDelete(BDD::getInstance(), $categoryID);
 
         header('Location:/Category/');
+    }
+
+    public function ListArticle($categoryID)
+    {
+        AdminController::roleNeed();
+        $listArticle = (new Article)->SqlGetBy(Bdd::GetInstance(),
+            'SELECT * FROM articles WHERE articles_category_id=:param', $categoryID);
+        return $this->twig->render('Category/update.html.twig', [
+            'articleList' => $listArticle
+        ]);
     }
 }

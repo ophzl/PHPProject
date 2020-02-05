@@ -38,7 +38,13 @@
                     {% if "redacteur" in userConnected.Role and userConnected is defined and userConnected != null %}
                         <a class="dropdown-item" href="/Article/Add">Ajout d'un article</a>
                     {% endif %}
-
+                    <div class="dropdown-divider"></div>
+                    <h6 class="dropdown-header">Catégories</h6>
+                    <a class="dropdown-item" href="/Category/">Liste des catégories</a>
+                    {% if "admin" in userConnected.Role and userConnected is defined and userConnected != null %}
+                        <a class="dropdown-item" href="/Category/ListAll">Gestion des catégories</a>
+                        <a class="dropdown-item" href="/Category/Add">Ajouter une catégorie</a>
+                    {% endif %}
                 </div>
             </li>
 

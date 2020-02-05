@@ -32,8 +32,8 @@ class ArticleController extends AbstractController
     {
         UserController::roleNeed('redacteur');
         if ($_POST AND $_SESSION['token'] == $_POST['token']) {
-            $sqlRepository = null;
-            $nomImage = null;
+            $sqlRepository = '';
+            $nomImage = '';
             if (!empty($_FILES['image']['name'])) {
                 $tabExt = array('jpg', 'gif', 'png', 'jpeg');    // Extensions autorisees
                 $extension = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
