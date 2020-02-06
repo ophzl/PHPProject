@@ -3,23 +3,23 @@
 
 {% block body %}
 
-<div class="container-fluid mt-2">
+    <div class="container-fluid mt-2">
 
-    <div class="card p-3">
+        <div class="card p-3">
 
-        <form action="/Admin/ChangeTheme/" method="post">
-            <div class="form-group">
-                <label for="css">Feuille de style du site</label>
-                <textarea class="form-control" id="css" name="css" rows="20">{{ css }}</textarea>
-            </div>
+            <form action="/Admin/ChangeTheme/" method="post">
+                <div class="form-group">
+                    <label for="css">Feuille de style du site</label>
+                    <textarea class="form-control" id="css" name="css" rows="20">{{ css }}</textarea>
+                </div>
 
 
-            <input type="hidden" name="crsf" value="{{ token }}">
-            <input class="btn btn-success" type="submit" value="Enregistrer le thème">
-        </form>
+                <input type="hidden" name="crsf" value="{{ token }}">
+                <input class="btn btn-success" type="submit" value="Enregistrer le thème">
+            </form>
+
+        </div>
 
     </div>
-
-</div>
 
 {% endblock %}

@@ -11,7 +11,12 @@ class Article extends Contenu implements \JsonSerializable {
     private $Category;
     private $Valid;
 
-
+    /**
+     * insert a new Article
+     *
+     * @param \PDO $bdd
+     * @return array
+     */
     public function SqlAdd(\PDO $bdd)
     {
         try {
@@ -29,7 +34,7 @@ class Article extends Contenu implements \JsonSerializable {
                 "Valid" => $this->getValid(),
                 "Category" => $cat->getCid(),
                 "User" => $user->getUID()
-            ]); //TODO: set user, and category
+            ]);
             return array("result" => true, "message" => $bdd->lastInsertId());
         } catch (\Exception $e) {
             return array("result" => false, "message" => $e->getMessage());
@@ -37,6 +42,11 @@ class Article extends Contenu implements \JsonSerializable {
 
     }
 
+    /**
+     * Select all article in the db
+     * @param \PDO $bdd
+     * @return array
+     */
     public function SqlGetAll(\PDO $bdd)
     {
         $requete = $bdd->prepare('SELECT * FROM articles');
@@ -62,6 +72,11 @@ class Article extends Contenu implements \JsonSerializable {
         return $listArticle;
     }
 
+    /**
+     * Select all article in the db where article_Valid is null
+     * @param \PDO $bdd
+     * @return array
+     */
     public function SqlGetAllWaiting(\PDO $bdd)
     {
         $requete = $bdd->prepare('SELECT * FROM articles where article_Valid IS NULL');
@@ -87,6 +102,11 @@ class Article extends Contenu implements \JsonSerializable {
         return $listArticle;
     }
 
+    /**
+     * Select all article in the db where article_Valid = 1
+     * @param \PDO $bdd
+     * @return array
+     */
     public function SqlGetAllApproved(\PDO $bdd)
     {
         $requete = $bdd->prepare('SELECT * FROM articles where article_Valid = 1');
@@ -112,6 +132,12 @@ class Article extends Contenu implements \JsonSerializable {
         return $listArticle;
     }
 
+    /**
+     * Select all article in the db where articles_users_id = user id
+     * @param \PDO $bdd
+     * @param $UID
+     * @return array
+     */
     public function SqlGetAllUser(\PDO $bdd, $UID){
         $requete = $bdd->prepare('SELECT * FROM articles where articles_users_id =:UID');
         $requete->execute(['UID' => $UID]);
@@ -136,6 +162,13 @@ class Article extends Contenu implements \JsonSerializable {
         return $listArticle;
     }
 
+    /**
+     * Select all articles in the db where Id = $idArticle
+     *
+     * @param \PDO $bdd
+     * @param $idArticle
+     * @return Article
+     */
     public function SqlGet(\PDO $bdd,$idArticle){
         $requete = $bdd->prepare('SELECT * FROM articles where Id = :idArticle');
         $requete->execute([
@@ -160,6 +193,13 @@ class Article extends Contenu implements \JsonSerializable {
 
     }
 
+    /**
+     *
+     * @param \PDO $bdd
+     * @param $SQL ->the sql request
+     * @param $param -> all sql parameters
+     * @return array
+     */
     public function SqlGetBy(\PDO $bdd, $SQL, $param)
     {
         $query = $bdd->prepare($SQL);
@@ -187,6 +227,12 @@ class Article extends Contenu implements \JsonSerializable {
         return $listArticle;
     }
 
+    /**
+     * @param \PDO $bdd
+     * @param $SQL
+     * @param $param
+     * @return array
+     */
     public function SqlGetByLike(\PDO $bdd, $SQL, $param)
     {
         $query = $bdd->prepare($SQL);
@@ -214,7 +260,11 @@ class Article extends Contenu implements \JsonSerializable {
         return $listArticle;
     }
 
-
+    /**
+     * update one article in the db
+     * @param \PDO $bdd
+     * @return array
+     */
     public function SqlUpdate(\PDO $bdd)
     {
         try {
@@ -240,6 +290,12 @@ class Article extends Contenu implements \JsonSerializable {
         }
     }
 
+    /**
+     * delete one article in the db
+     * @param \PDO $bdd
+     * @param $idArticle
+     * @return bool
+     */
     public function SqlDelete(\PDO $bdd, $idArticle)
     {
         try {
@@ -253,6 +309,11 @@ class Article extends Contenu implements \JsonSerializable {
         }
     }
 
+    /**
+     * empty artcle table
+     * @param \PDO $bdd
+     * @return bool
+     */
     public function SqlTruncate(\PDO $bdd)
     {
         try {
@@ -264,11 +325,14 @@ class Article extends Contenu implements \JsonSerializable {
         }
     }
 
+    /**
+     * encode an article in json
+     * @return array|mixed
+     */
     public function jsonSerialize()
     {
-        $idCategory = (new Category)->SqlGet(Bdd::GetInstance(), $this->getId());
-        $idUser = (new User)->SqlGet(Bdd::GetInstance(), $this->getId());
-
+        $cat=$this->getCategory();
+        $user=$this->getUser();
         return [
             'Id' => $this->getId(),
              'Titre' => $this->getTitre(),
@@ -278,12 +342,16 @@ class Article extends Contenu implements \JsonSerializable {
              'ImageFileName' => $this->getImageFileName(),
              'Auteur' => $this->getAuteur(),
             'Valid' => $this->getValid(),
-            'Category' => $idCategory->getCid(),
-            'User' => $idUser->getUID()
+            'Category' => $cat->getCid(),
+            'User' => $user->getUID()
         ];
     }
 
-
+    /**
+     * return n word in a string
+     * @param $nb
+     * @return string
+     */
     public function firstXwords($nb)
     {
         $phrase = $this->getDescription();

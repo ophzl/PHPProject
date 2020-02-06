@@ -33,7 +33,6 @@ class UserController extends AbstractController
      */
     public function loginCheck()
     {
-
         if ($_POST && $_POST['crsf'] == $_SESSION['token']) {
             if (!filter_var(
                 $_POST['Pass'],
@@ -159,7 +158,7 @@ class UserController extends AbstractController
     {
         if (isset($_SESSION['USER'])) {
             if ($_POST && $_POST['crsf'] == $_SESSION['token']) {
-                if(password_verify($_POST['oPass'], $_SESSION['USER']->getPassword())){
+                if (password_verify($_POST['oPass'], $_SESSION['USER']->getPassword())) {
                     $query = Bdd::GetInstance()->prepare('UPDATE users SET user_Password =:Pass where user_Email=:Email');
                     $query->execute([
                         'Pass' => password_hash($_POST['nPass'], PASSWORD_BCRYPT),
@@ -177,14 +176,24 @@ class UserController extends AbstractController
             } else {
                 $token = bin2hex(random_bytes(32));
                 $_SESSION['token'] = $token;
+                $user = new User();
+                $tokenAPI = $user->getTokenAPI();
                 return $this->twig->render('User/profile.html.twig', [
                     'token' => $token,
-                    'articleList' => (new Article)->SqlGetAllUser(Bdd::GetInstance(), $_SESSION['USER']->getUID())
+                    'articleList' => (new Article)->SqlGetAllUser(Bdd::GetInstance(), $_SESSION['USER']->getUID()),
+                    'tokenAPI'=>$tokenAPI
                 ]);
             }
 
         }
         header('Location:/');
     }
+
+    public function setTokenAPI(){
+        $user = new User();
+        $user->createTokenAPI();
+        header('Location:/Profile');
+    }
+
 
 }

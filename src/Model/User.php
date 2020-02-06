@@ -14,12 +14,14 @@ class User
     private $Role;
     private $UID;
 
-
-
-
-
-    public function SqlAdd(\PDO $bdd) {
-        try{
+    /**
+     * insert one User in the db
+     * @param \PDO $bdd
+     * @return array
+     */
+    public function SqlAdd(\PDO $bdd)
+    {
+        try {
             $requete = $bdd->prepare('INSERT INTO users (user_Name, user_Role, user_Email, user_Password, user_Valid) VALUES (:Name, :Role, :Email, :Password, :Valid)');
             $requete->execute([
                 "Name" => $this->getName(),
@@ -28,24 +30,30 @@ class User
                 "Password" => $this->getPassword(),
                 "Valid" => $this->getValid()
             ]);
-            return array("result"=>true,"message"=>$bdd->lastInsertId());
-        }catch (\Exception $e){
-            return array("result"=>false,"message"=>$e->getMessage());
+            return array("result" => true, "message" => $bdd->lastInsertId());
+        } catch (\Exception $e) {
+            return array("result" => false, "message" => $e->getMessage());
         }
     }
 
-    public function SqlGet(\PDO $bdd, $UID){
+    /**
+     * Select one User in the db by user id
+     * @param \PDO $bdd
+     * @param $UID
+     * @return User
+     */
+    public function SqlGet(\PDO $bdd, $UID)
+    {
         $requete = $bdd->prepare('SELECT * FROM users where user_UId = :id');
         $requete->execute([
             'id' => $UID
         ]);
 
-        $datas =  $requete->fetch();
+        $datas = $requete->fetch();
 
         $user = new User();
         $user->setUID($datas['user_UId']);
         $user->setName($datas['user_Name']);
-
 
 
         $user->setRole(explode(',', $datas['user_Role']));
@@ -56,13 +64,19 @@ class User
         return $user;
     }
 
-    public function SqlGetAll(\PDO $bdd){
+    /**
+     * Select all User in the db
+     * @param \PDO $bdd
+     * @return array
+     */
+    public function SqlGetAll(\PDO $bdd)
+    {
         $requete = $bdd->prepare('SELECT * FROM users');
         $requete->execute();
         $arrayUser = $requete->fetchAll();
 
         $listUser = [];
-        foreach ($arrayUser as $datas){
+        foreach ($arrayUser as $datas) {
             $user = new User();
             $user->setUID($datas['user_UId']);
             $user->setName($datas['user_Name']);
@@ -76,8 +90,14 @@ class User
         return $listUser;
     }
 
-    public function SqlUpdate(\PDO $bdd){
-        try{
+    /**
+     * update one User in the db
+     * @param \PDO $bdd
+     * @return array
+     */
+    public function SqlUpdate(\PDO $bdd)
+    {
+        try {
             $requete = $bdd->prepare('UPDATE users SET user_Name =:Name, user_Role=:Role, user_Email=:Email, user_Password=:Password, user_Valid=:Valid WHERE user_UId =:UID');
             $requete->execute([
                 "Name" => $this->getName(),
@@ -87,10 +107,49 @@ class User
                 "Valid" => $this->getValid(),
                 'UID' => $this->getUID()
             ]);
-            return array("result"=>true);
-        }catch (\Exception $e){
-            return array("result"=>false,"message"=>$e->getMessage());
+            return array("result" => true);
+        } catch (\Exception $e) {
+            return array("result" => false, "message" => $e->getMessage());
         }
+    }
+
+    /**
+     * select the user_token in db
+     * @return mixed
+     */
+    public function getTokenAPI()
+    {
+        if (isset($_SESSION['USER'])) {
+            $query = Bdd::GetInstance()->prepare('SELECT user_token FROM users WHERE user_UId =:id');
+            $query->execute([
+                'id' => $_SESSION['USER']->getUID()
+            ]);
+            return $query->fetch(\PDO::FETCH_ASSOC);
+        }
+    }
+
+    /**
+     * create (update a null propertie) a new token for the user
+     * @return array
+     */
+    public function createTokenAPI()
+    {
+        try {
+            if (isset($_SESSION['USER'])) {
+
+                $tokenAPI = hash('md5', uniqid());
+                $sqlToken = Bdd::GetInstance()->prepare('UPDATE users SET user_token=:token WHERE user_UId =:id ');
+                $sqlToken->execute([
+                    'token' => $tokenAPI,
+                    'id' => $_SESSION['USER']->getUID()
+                ]);
+
+                return array("result" => true);
+            }
+        } catch (\Exception $e) {
+            return array("result" => $tokenAPI, "message" => $e->getMessage());
+        }
+
     }
 
 

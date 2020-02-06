@@ -11,6 +11,10 @@ use src\Model\Article;
 class AdminController extends AbstractController
 {
 
+    /**
+     * @param $UID
+     * Change User_Valid in SQL to 1, redirect to Admin#ListUser
+     */
     public function ApproveUser($UID)
     {
         self::roleNeed();
@@ -26,6 +30,15 @@ class AdminController extends AbstractController
         }
     }
 
+    /**
+     * @param $UID
+     * @return string
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     * Return Twig Render that prints ChangeRole form
+     * CRSF-proof
+     */
     public function ChangeRolesForm($UID)
     {
         self::roleNeed();
@@ -38,20 +51,31 @@ class AdminController extends AbstractController
         ]);
     }
 
+    /**
+     * Update Roles in SQL, erase old roles
+     * CRSF-proof
+     */
     public function ChangeRoles()
     {
         self::roleNeed();
-        $listRoles = '';
-        foreach ($_POST['role'] as $role) {
-            $listRoles .= $role . ',';
+        if($_POST && $_POST['crsf'] == $_SESSION['token']) {
+
+            $listRoles = '';
+            foreach ($_POST['role'] as $role) {
+                $listRoles .= $role . ',';
+            }
+            $user = (new User)->SqlGet(Bdd::GetInstance(), $_POST['userUID']);
+            $user->setRole($listRoles);
+            $user->SqlUpdate(Bdd::GetInstance());
         }
-        $user = (new User)->SqlGet(Bdd::GetInstance(), $_POST['userUID']);
-        $user->setRole($listRoles);
-        $user->SqlUpdate(Bdd::GetInstance());
         header('Location:/Admin/ListUser');
 
     }
 
+    /**
+     * @param $UID
+     * Delete User in SQL
+     */
     public function DeleteUser($UID)
     {
         self::roleNeed();
@@ -60,6 +84,13 @@ class AdminController extends AbstractController
         header('Location:/Admin/ListUser');
     }
 
+    /**
+     * @return string
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     * Return Twig Render that prints all Users
+     */
     public function ListUser()
     {
         self::roleNeed();
@@ -71,6 +102,13 @@ class AdminController extends AbstractController
         );
     }
 
+    /**
+     * @return string
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     * Return Twig Render that prints all waiting articles
+     */
     public function ListArticlesWaiting()
     {
         self::roleNeed();
@@ -82,6 +120,10 @@ class AdminController extends AbstractController
         );
     }
 
+    /**
+     * @param $ArticleId
+     * Change User_Valid in SQL to 1, redirect to Admin#ListArticlesWaiting
+     */
     public function ApproveArticle($ArticleId)
     {
         self::roleNeed();
@@ -97,6 +139,14 @@ class AdminController extends AbstractController
         }
     }
 
+    /**
+     * @return string
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     * Return Twig Render that prints form to change CSS file of the blog
+     * CRSF-proof
+     */
     public function ChangeTheme()
     {
         self::roleNeed();
@@ -119,6 +169,9 @@ class AdminController extends AbstractController
     }
 
 
+    /**
+     * Verify that USER.Roles in SESSION is "Admin"
+     */
     public static function roleNeed()
     {
         if (isset($_SESSION['USER'])) {

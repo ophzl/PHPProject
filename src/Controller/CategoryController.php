@@ -10,11 +10,21 @@ use src\Model\Category;
 
 class CategoryController extends AbstractController
 {
+    /**
+     * list All category
+     * @return string
+     */
     public function Index()
     {
         return $this->ListAll();
     }
 
+    /**
+     * @return string
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     */
     public function ListAll()
     {
         AdminController::roleNeed();
@@ -28,6 +38,13 @@ class CategoryController extends AbstractController
         );
     }
 
+    /**
+     * return twig render that print add a new Category
+     * @return string
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     */
     public function add()
     {
 
@@ -51,6 +68,14 @@ class CategoryController extends AbstractController
         }
     }
 
+    /**
+     * return twig render that print update a Category
+     * @param $categoryID
+     * @return string
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     */
     public function update($categoryID)
     {
         AdminController::roleNeed();
@@ -70,6 +95,10 @@ class CategoryController extends AbstractController
         ]);
     }
 
+    /**
+     * delete a Category and redirect to /Category/
+     * @param $categoryID
+     */
     public function Delete($categoryID)
     {
         AdminController::roleNeed();
@@ -79,6 +108,14 @@ class CategoryController extends AbstractController
         header('Location:/Category/');
     }
 
+    /**
+     * return twig render that print all articles of on Category
+     * @param $categoryID
+     * @return string
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     */
     public function ListArticle($categoryID)
     {
         AdminController::roleNeed();

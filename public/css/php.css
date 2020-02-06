@@ -1,0 +1,4 @@
+.wall {
+    background: url("../doc/wall-white.svg") no-repeat fixed;
+    background-size: cover;
+}

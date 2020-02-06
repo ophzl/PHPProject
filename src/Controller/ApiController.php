@@ -4,10 +4,14 @@ namespace src\Controller;
 
 use src\Model\Article;
 use src\Model\Bdd;
+use src\Model\Category;
+use src\Model\User;
 
 class ApiController
 {
-
+    /*
+     * Encode in JSON all articles from SQL
+     */
     public function ArticleGet()
     {
         $article = new Article();
@@ -15,6 +19,10 @@ class ApiController
         return json_encode($listArticle);
     }
 
+    /**
+     * @return false|string
+     * Add in SQL the article JSON passed in Post request
+     */
     public function ArticlePost()
     {
         $article = new Article();
@@ -27,6 +35,12 @@ class ApiController
         return json_encode($result);
     }
 
+    /**
+     * @param $idArticle
+     * @param $json
+     * @return false|string
+     * Update Article corresponding to idArticle param, with JSON article content
+     */
     public function ArticlePut($idArticle, $json)
     {
         $jsonData = json_decode($json);
@@ -51,9 +65,14 @@ class ApiController
 
     }
 
+    /**
+     * @param $token
+     * @return false|string
+     * Return Five Last Article added in SQL if token is verified (verifToken)
+     */
     public function ArticleFive($token)
     {
-        $isvalid = verifToken($token);
+        $isvalid = $this->verifToken($token);
         if ($isvalid == true) {
             $query = Bdd::GetInstance()->prepare('SELECT * FROM articles ORDER BY Id DESC LIMIT 5');
             $query->execute();
@@ -71,6 +90,9 @@ class ApiController
                 $article->setImageRepository($articleSQL['ImageRepository']);
                 $article->setImageFileName($articleSQL['ImageFileName']);
                 $article->setValid($articleSQL['article_Valid']);
+                $article->setCategory((new Category)->SqlGet(Bdd::GetInstance(), $articleSQL['articles_category_id']));
+                $article->setUser((new User)->SqlGet(Bdd::GetInstance(), $articleSQL['articles_users_id']));
+
 
                 $listArticle[] = $article;
             }
@@ -80,12 +102,18 @@ class ApiController
         }
         return 'invalid Token';
     }
+
+    /**
+     * @param $token
+     * @return bool
+     * Verify if token param is corresponding to User_Token is SQL
+     */
     private function verifToken($token){
-        $sqlToken = Bdd::GetInstance()->prepare('SELECT user_token FROM user');
+        $sqlToken = Bdd::GetInstance()->prepare('SELECT user_token FROM users');
         $sqlToken->execute();
-        $arrayToken = $sqlToken->fetchAll();
+        $arrayToken = $sqlToken->fetchAll(\PDO::FETCH_ASSOC);
         foreach ($arrayToken as $value){
-            if ($value == $token){
+            if ($value['user_token'] == $token){
                 return true;
             }
 
