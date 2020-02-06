@@ -218,8 +218,8 @@ class Article extends Contenu implements \JsonSerializable {
     public function SqlUpdate(\PDO $bdd)
     {
         try {
-            $idCategory = (new Category)->SqlGet(Bdd::GetInstance(), $this->getId());
-            $idUsers = (new User)->SqlGet(Bdd::GetInstance(), $this->getId());
+            $cat=$this->getCategory();
+            $user=$this->getUser();
 
             $requete = $bdd->prepare('UPDATE articles set Titre=:Titre, Description=:Description, DateAjout=:DateAjout, Auteur=:Auteur, ImageRepository=:ImageRepository, ImageFileName=:ImageFileName, article_Valid=:Valid, articles_category_id=:category_id , articles_users_id=:users_id WHERE id=:IDARTICLE');
             $requete->execute([
@@ -231,8 +231,8 @@ class Article extends Contenu implements \JsonSerializable {
                 'ImageFileName' => $this->getImageFileName(),
                 'Valid' => $this->getValid(),
                 'IDARTICLE' => $this->getId(),
-                "category_id" => $idCategory->getCid(),
-                "users_id" => $idUsers->getUID()
+                "category_id" => $cat->getCid(),
+                "users_id" => $user->getUID()
             ]);
             return array("0", "[OK] Update");
         } catch (\Exception $e) {
