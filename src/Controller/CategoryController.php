@@ -91,7 +91,7 @@ class CategoryController extends AbstractController
         }
 
         return $this->twig->render('Category/update.html.twig', [
-            'Category' => $category
+            'category' => $category
         ]);
     }
 

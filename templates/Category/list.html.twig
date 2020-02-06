@@ -25,9 +25,9 @@
                     <td>
                         <div class="btn-group" role="group" aria-label="Basic example">
                             {% if "admin" in userConnected.Role %}
-                                <a class="btn btn-warning" href="/Category/Update/{{ category.id }}"><i
+                                <a class="btn btn-warning" href="/Category/Update/{{ category.cid }}"><i
                                             class="fas fa-edit"></i></a>
-                                <a class="btn btn-danger" href="/Category/Delete/{{ category.id }}"><i
+                                <a class="btn btn-danger" href="/Category/Delete/{{ category.cid }}"><i
                                             class="far fa-trash-alt"></i></a>
                             {% endif %}
                         </div>

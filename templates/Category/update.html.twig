@@ -3,11 +3,12 @@
 {% block body %}
     <div class="container-fluid mt-2">
 
-        <h2 class="display-3">Ajout d'une catégorie</h2>
+        <div class="jumbotron"><h2 class="display-3">Mise à jour d'une catégorie</h2></div>
+
         <hr class="my-4">
-        <form name="addArticle" method="post" enctype="multipart/form-data">
+        <form method="post" enctype="multipart/form-data">
             <div class="form-group row">
-                <label for="label" class="col-sm-2 col-form-label">libellé </label>
+                <label for="label" class="col-sm-2 col-form-label">Libellé </label>
                 <div class="col-sm-10">
                     <input type="text" name="label" class="form-control form-control-lg" value="{{ category.label }}">
                 </div>
@@ -15,7 +16,7 @@
 
 
             <div class="form-group row">
-                <label for="code_reference" class="col-sm-2 col-form-label">code de référence</label>
+                <label for="code_reference" class="col-sm-2 col-form-label">Code de référence</label>
                 <div class="col-sm-10">
                     <input type="text" name="code_reference" class="form-control" value="{{ category.codeReference }}">
                 </div>
