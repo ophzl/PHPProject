@@ -11,6 +11,10 @@ class ContactController extends AbstractController
     private $mailer;
     private $transport;
 
+    /**
+     * ContactController constructor.
+     * Transport class is used to communicate with a service in order to deliver a message.
+     */
     public function __construct()
     {
         parent::__construct();
@@ -21,11 +25,26 @@ class ContactController extends AbstractController
 
     }
 
+    /**
+     * @return string
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     *
+     * Form twig render
+     */
     public function showForm()
     {
         return $this->twig->render('Contact/form.html.twig');
     }
 
+    /**
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     *
+     * Function used to send email using SwiftMailer
+     */
     public function sendMail()
     {
         $mail = (new \Swift_Message($_POST['Object']))
@@ -46,6 +65,15 @@ class ContactController extends AbstractController
         header('Location:/');
     }
 
+    /**
+     * @param $idArticle
+     * @return string
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     *
+     * Function used to get article ID in order to send a mail from an article
+     */
     public function formId($idArticle)
     {
         $article = new Article();

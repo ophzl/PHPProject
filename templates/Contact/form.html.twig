@@ -13,10 +13,10 @@
             <div class="col-sm-10">
                 {% if article.id %}
                     <input readonly class="form-control"
-                           value="{{ article.auteur }}"/> <!-- TODO: value = author email -->
+                           value="{{ article.auteur }}"/>
                 {% endif %}
                 {% if not article.id %}
-                    <input type="email" class="form-control" name="mail"/>
+                    <input readonly type="email" class="form-control" value="admin@admin.fr"/>
                 {% endif %}
             </div>
         </div>
@@ -45,7 +45,6 @@
             </div>
         </div>
         <input type="submit" class="btn btn-primary my-1">
-
         <input type="hidden" name="author-email" value="{{ article.user.Mail }}">
     </form>
 

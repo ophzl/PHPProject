@@ -9,6 +9,14 @@ use src\Model\User;
 class UserController extends AbstractController
 {
 
+    /**
+     * @return string
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     *
+     * Return login form with token
+     */
     public function loginForm()
     {
         $token = bin2hex(random_bytes(32));
@@ -18,6 +26,11 @@ class UserController extends AbstractController
         ]);
     }
 
+    /**
+     * Compare the password in post with password in DB using password_verify
+     * !! if verified set session user
+     * !! else redirect to login form
+     */
     public function loginCheck()
     {
 
@@ -66,6 +79,11 @@ class UserController extends AbstractController
 
     }
 
+    /**
+     * @param $roleATester
+     *
+     * Verify if a user have necessary rights to do something
+     */
     public static function roleNeed($roleATester)
     {
         if (isset($_SESSION['USER'])) {
@@ -79,6 +97,9 @@ class UserController extends AbstractController
         }
     }
 
+    /**
+     * Function to logout of a session
+     */
     public function logout()
     {
         unset($_SESSION['USER']);
@@ -87,7 +108,14 @@ class UserController extends AbstractController
         header('Location:/');
     }
 
-
+    /**
+     * @return string
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     *
+     * Register twig render
+     */
     public function RegisterForm()
     {
         $token = bin2hex(random_bytes(32));
@@ -97,6 +125,9 @@ class UserController extends AbstractController
         ]);
     }
 
+    /**
+     * Register form which generate a new token to create a new user
+     */
     public function RegisterCheck()
     {
         if ($_POST && $_POST['crsf'] == $_SESSION['token']) {
@@ -116,6 +147,14 @@ class UserController extends AbstractController
         }
     }
 
+    /**
+     * @return string|void
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     *
+     * Return profile page of an user where he can change his password
+     */
     public function Profile()
     {
         if (isset($_SESSION['USER'])) {
