@@ -51,32 +51,47 @@ class ApiController
 
     }
 
-    public function ArticleFive()
+    public function ArticleFive($token)
     {
-        $query = Bdd::GetInstance()->prepare('SELECT * FROM articles ORDER BY Id DESC LIMIT 5');
-        $query->execute();
+        $isvalid = verifToken($token);
+        if ($isvalid == true) {
+            $query = Bdd::GetInstance()->prepare('SELECT * FROM articles ORDER BY Id DESC LIMIT 5');
+            $query->execute();
 
-        $arrayArticle = $query->fetchAll();
+            $arrayArticle = $query->fetchAll();
 
-        $listArticle = [];
-        foreach ($arrayArticle as $articleSQL){
-            $article = new Article();
-            $article->setId($articleSQL['Id']);
-            $article->setTitre($articleSQL['Titre']);
-            $article->setAuteur($articleSQL['Auteur']);
-            $article->setDescription($articleSQL['Description']);
-            $article->setDateAjout($articleSQL['DateAjout']);
-            $article->setImageRepository($articleSQL['ImageRepository']);
-            $article->setImageFileName($articleSQL['ImageFileName']);
-            $article->setValid($articleSQL['article_Valid']);
+            $listArticle = [];
+            foreach ($arrayArticle as $articleSQL) {
+                $article = new Article();
+                $article->setId($articleSQL['Id']);
+                $article->setTitre($articleSQL['Titre']);
+                $article->setAuteur($articleSQL['Auteur']);
+                $article->setDescription($articleSQL['Description']);
+                $article->setDateAjout($articleSQL['DateAjout']);
+                $article->setImageRepository($articleSQL['ImageRepository']);
+                $article->setImageFileName($articleSQL['ImageFileName']);
+                $article->setValid($articleSQL['article_Valid']);
 
-            $listArticle[] = $article;
+                $listArticle[] = $article;
+            }
+
+            return json_encode($listArticle);
+
         }
-
-        return json_encode($listArticle);
-
+        return 'invalid Token';
     }
+    private function verifToken($token){
+        $sqlToken = Bdd::GetInstance()->prepare('SELECT user_token FROM user');
+        $sqlToken->execute();
+        $arrayToken = $sqlToken->fetchAll();
+        foreach ($arrayToken as $value){
+            if ($value == $token){
+                return true;
+            }
 
+        }
+        return false;
+    }
 }
 
 
