@@ -27,7 +27,6 @@ class CategoryController extends AbstractController
      */
     public function ListAll()
     {
-        AdminController::roleNeed();
         $category = new Category();
         $listCategory = $category->SqlGetAll(Bdd::GetInstance());
         //Lancer la vue TWIG
@@ -118,7 +117,6 @@ class CategoryController extends AbstractController
      */
     public function ListArticle($categoryID)
     {
-        AdminController::roleNeed();
         $category = (new Category)->SqlGet(Bdd::GetInstance(), $categoryID);
         $listArticle = (new Article)->SqlGetBy(Bdd::GetInstance(),
             'SELECT * FROM articles WHERE articles_category_id=:param', $categoryID);

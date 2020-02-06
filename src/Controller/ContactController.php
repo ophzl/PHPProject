@@ -35,7 +35,9 @@ class ContactController extends AbstractController
      */
     public function showForm()
     {
-        return $this->twig->render('Contact/form.html.twig');
+        return $this->twig->render('Contact/form.html.twig', [
+            'mail' => 'admin@admin.fr'
+        ]);
     }
 
     /**
@@ -78,9 +80,11 @@ class ContactController extends AbstractController
     {
         $article = new Article();
         $article = $article->SqlGet(Bdd::GetInstance(), $idArticle);
+        $user = $article->getUser();
 
         return $this->twig->render('Contact/form.html.twig', [
             'article' => $article,
+            'mail' => $user->getMail()
         ]);
     }
 }
