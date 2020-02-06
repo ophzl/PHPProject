@@ -16,6 +16,13 @@ class ArticleController extends AbstractController
         return $this->ListAll();
     }
 
+    /**
+     * @return string
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     * Return Twig Render that prints the list of all articles in Db
+     */
     public function ListAll()
     {
         $article = new Article();
@@ -28,6 +35,14 @@ class ArticleController extends AbstractController
         );
     }
 
+    /*
+     * !!IF POST!!
+     * Verify that SESSION USER is "redacteur"
+     * Add the Article in Db
+     * !!ELSE!!
+     * Return Twig Render that prints the form to add an article
+     * CRSF-proof
+     */
     public function add()
     {
         UserController::roleNeed('redacteur');
@@ -75,6 +90,19 @@ class ArticleController extends AbstractController
         }
     }
 
+    /**
+     * @param $articleID
+     * @return string
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     * !!IF POST!!
+     * Verify that SESSION USER is "redacteur"
+     * Update the Article in Db corresponding to idArticle
+     * !!ELSE!!
+     * Return Twig Render that prints the form to update an article
+     * CRSF-proof
+     */
     public function update($articleID)
     {
         $articleSQL = new Article();
@@ -127,6 +155,11 @@ class ArticleController extends AbstractController
         ]);
     }
 
+    /**
+     * @param $articleID
+     * Delete article in Db corresponding to idArticle
+     * Redirects to Article#ListArticle
+     */
     public function Delete($articleID)
     {
         $articleSQL = new Article();
@@ -139,6 +172,11 @@ class ArticleController extends AbstractController
         header('Location:/');
     }
 
+    /**
+     * @throws \Exception
+     * Fill Db with fictive articles
+     * Redirects to Article#
+     */
     public function fixtures()
     {
 
@@ -174,7 +212,10 @@ class ArticleController extends AbstractController
         header('Location:/Article');
     }
 
-
+    /**
+     * Export to file all articles content to article.json
+     * Redirects to Article#
+     */
     public function Write()
     {
 
@@ -191,6 +232,13 @@ class ArticleController extends AbstractController
         header('location:/Article/');
     }
 
+    /**
+     * @return string
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     * Return Twig Render that prints the content of article.json decoded by json_decode
+     */
     public function Read()
     {
         $file = 'article.json';
@@ -202,6 +250,11 @@ class ArticleController extends AbstractController
         ]);
     }
 
+    /**
+     * @param $idArticle
+     * Export to file article that corresponds to idArticle
+     * Redirects to Article#
+     */
     public function WriteOne($idArticle)
     {
         $article = new Article();
@@ -216,6 +269,14 @@ class ArticleController extends AbstractController
         header('location:/Article/');
     }
 
+    /**
+     * @return string
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     * Search all article that corresponds to Post.Search with SqlGetByLike
+     * Return Twig Render that prints the result of the Search
+     */
     public function Search()
     {
         $article = new Article();
@@ -236,6 +297,14 @@ class ArticleController extends AbstractController
 
     }
 
+    /**
+     * @param $idArticle
+     * @return string
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     * Return Twig Render that prints the article content that corresponds to idArticle
+     */
     public function ReadArticle($idArticle)
     {
         $article = new Article();
@@ -246,6 +315,13 @@ class ArticleController extends AbstractController
         ]);
     }
 
+    /**
+     * @return string
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     * Return Twig Render that prints the Home page
+     */
     public function Home()
     {
         $article = new Article();

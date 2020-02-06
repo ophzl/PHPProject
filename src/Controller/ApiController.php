@@ -9,7 +9,9 @@ use src\Model\User;
 
 class ApiController
 {
-
+    /*
+     * Encode in JSON all articles from SQL
+     */
     public function ArticleGet()
     {
         $article = new Article();
@@ -17,6 +19,10 @@ class ApiController
         return json_encode($listArticle);
     }
 
+    /**
+     * @return false|string
+     * Add in SQL the article JSON passed in Post request
+     */
     public function ArticlePost()
     {
         $article = new Article();
@@ -29,6 +35,12 @@ class ApiController
         return json_encode($result);
     }
 
+    /**
+     * @param $idArticle
+     * @param $json
+     * @return false|string
+     * Update Article corresponding to idArticle param, with JSON article content
+     */
     public function ArticlePut($idArticle, $json)
     {
         $jsonData = json_decode($json);
@@ -53,6 +65,11 @@ class ApiController
 
     }
 
+    /**
+     * @param $token
+     * @return false|string
+     * Return Five Last Article added in SQL if token is verified (verifToken)
+     */
     public function ArticleFive($token)
     {
         $isvalid = $this->verifToken($token);
@@ -85,6 +102,12 @@ class ApiController
         }
         return 'invalid Token';
     }
+
+    /**
+     * @param $token
+     * @return bool
+     * Verify if token param is corresponding to User_Token is SQL
+     */
     private function verifToken($token){
         $sqlToken = Bdd::GetInstance()->prepare('SELECT user_token FROM users');
         $sqlToken->execute();
