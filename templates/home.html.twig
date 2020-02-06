@@ -2,24 +2,39 @@
 {% block title %}{{ parent() }} - Accueil {% endblock %}
 {% block body %}
 
-    <div class="container-fluid mt-2">
+    <div class="container-fluid mt-2 wall">
 
-        <div class="card-columns">
-            {% for article in articleList %}
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ article.Titre }}</h5>
-                        <p class="card-text">{{ article.Description | raw }}</p>
-                        <p class="card-text"><small class="text-muted">Publié le {{ article.DateAjout|date('d-m-Y') }}</small></p>
-                        <footer class="blockquote-footer">
-                            <small class="text-muted">
-                                Ecrit par <cite>{{ article.Auteur }}</cite>
-                            </small>
-                        </footer>
-                        <a href="/Article/Show/{{ article.Id }}" class="card-link">Voir l'article #{{ article.Id }}</a>
+        <div class="row">
+            <div class="jumbotron col-lg-6">
+                <h2 class="display-4">Bienvenue sur le blog PHP Project</h2>
+                <p class="lead">Ce blog, réalisé avec une architecture MVC, a été fait avec Amour et sueurs.</p>
+                <hr class="my-4">
+                <p>Réalisé par <strong>Ophélie Zeitel</strong>, <strong>Anatole Godard</strong> et <strong>Florian Leroux</strong></p>
+                <p class="lead">
+                    <a class="btn btn-primary btn-lg" href="/Article/ListAll" role="button">Liste des articles</a>
+                </p>
+            </div>
+
+
+            <div class="card-columns col">
+                {% for article in articleList %}
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ article.Titre }}</h5>
+                            <p class="card-text">{{ article.Description | raw }}</p>
+                            <p class="card-text"><small class="text-muted">Publié
+                                    le {{ article.DateAjout|date('d-m-Y') }}</small></p>
+                            <footer class="blockquote-footer">
+                                <small class="text-muted">
+                                    Ecrit par <cite>{{ article.Auteur }}</cite>
+                                </small>
+                            </footer>
+                            <a href="/Article/Show/{{ article.Id }}" class="card-link">Voir l'article
+                                #{{ article.Id }}</a>
+                        </div>
                     </div>
-                </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
     </div>
 
