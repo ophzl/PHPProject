@@ -14,7 +14,11 @@ class User
     private $Role;
     private $UID;
 
-
+    /**
+     * insert one User in the db
+     * @param \PDO $bdd
+     * @return array
+     */
     public function SqlAdd(\PDO $bdd)
     {
         try {
@@ -32,6 +36,12 @@ class User
         }
     }
 
+    /**
+     * Select one User in the db by user id
+     * @param \PDO $bdd
+     * @param $UID
+     * @return User
+     */
     public function SqlGet(\PDO $bdd, $UID)
     {
         $requete = $bdd->prepare('SELECT * FROM users where user_UId = :id');
@@ -54,6 +64,11 @@ class User
         return $user;
     }
 
+    /**
+     * Select all User in the db
+     * @param \PDO $bdd
+     * @return array
+     */
     public function SqlGetAll(\PDO $bdd)
     {
         $requete = $bdd->prepare('SELECT * FROM users');
@@ -75,6 +90,11 @@ class User
         return $listUser;
     }
 
+    /**
+     * update one User in the db
+     * @param \PDO $bdd
+     * @return array
+     */
     public function SqlUpdate(\PDO $bdd)
     {
         try {
@@ -93,6 +113,10 @@ class User
         }
     }
 
+    /**
+     * select the user_token in db
+     * @return mixed
+     */
     public function getTokenAPI()
     {
         if (isset($_SESSION['USER'])) {
@@ -104,6 +128,10 @@ class User
         }
     }
 
+    /**
+     * create (update a null propertie) a new token for the user
+     * @return array
+     */
     public function createTokenAPI()
     {
         try {

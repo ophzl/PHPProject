@@ -4,6 +4,9 @@ use PDO;
 class Bdd {
     private static $_instance = null;
 
+    /**
+     * init a PDO connection
+     */
     public static function InitInstance(){
         $hostname="mysql-floriaaan.alwaysdata.net";
         $username="floriaaan_prphp";
@@ -22,6 +25,10 @@ class Bdd {
 
     }
 
+    /**
+     * init a PDO connection if Instance is null or just return Instance if is already set
+     * @return PDO
+     */
     public static function GetInstance(){
         if(self::$_instance == null ){
            self::InitInstance();

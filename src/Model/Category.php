@@ -10,6 +10,11 @@ class Category
     private $label;
     private $codeReference;
 
+    /**
+     * insert a new Category
+     * @param \PDO $bdd
+     * @return array
+     */
     public function SqlAdd(\PDO $bdd)
     {
         try {
@@ -25,6 +30,11 @@ class Category
 
     }
 
+    /**
+     * Select all Category in the db
+     * @param \PDO $bdd
+     * @return array
+     */
     public function SqlGetAll(\PDO $bdd)
     {
         $requete = $bdd->prepare('SELECT * FROM category');
@@ -43,6 +53,12 @@ class Category
         return $listCategory;
     }
 
+    /**
+     * Select all articles in the db where Id = $idCategory
+     * @param \PDO $bdd
+     * @param $idCategory
+     * @return $this
+     */
     public function SqlGet(\PDO $bdd, $idCategory)
     {
         $requete = $bdd->prepare('SELECT * FROM category where category_id=:idCategory');
@@ -60,6 +76,11 @@ class Category
 
     }
 
+    /**
+     * update one Category in the db
+     * @param \PDO $bdd
+     * @return array
+     */
     public function SqlUpdate(\PDO $bdd)
     {
         try {
@@ -75,7 +96,12 @@ class Category
         }
     }
 
-
+    /**
+     * delete one Category in the db
+     * @param \PDO $bdd
+     * @param $idCategory
+     * @return bool
+     */
     public function SqlDelete(\PDO $bdd, $idCategory)
     {
         try {
