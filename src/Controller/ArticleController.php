@@ -249,6 +249,7 @@ class ArticleController extends AbstractController
         for ($k = 0; $k < count($listArticle); $k++){
             $listArticle[$k]->setDescription($listArticle[$k]->firstXwords(10));
         }
+        //var_dump($listArticle);
             //Lancer la vue TWIG
             return $this->twig->render(
                 'home.html.twig', [
