@@ -5,7 +5,10 @@
 {% block body %}
     <script src="//cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
 <div class="container-fluid mt-2">
-    <h2 class="display-3">Mise à jour d'un article</h2>
+    <div class="jumbotron">
+        <h2 class="display-3">Mise à jour d'un article</h2>
+    </div>
+
     <hr class="my-4">
     <div class="row">
         <div class="card col-lg-4 ml" style="width: 15rem;">
@@ -87,7 +90,7 @@
 
             <input type="hidden" name="crsf" value="{{ token }}">
             <input type="hidden" name="User" value="{{ userConnected.UID }}">
-            <input type="submit" class="btn btn-primary my-1">
+            <input type="submit" class="btn btn-primary my-1 mb-5">
         </form>
     </div>
 

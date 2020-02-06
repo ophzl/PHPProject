@@ -4,8 +4,10 @@
 {% block body %}
     <script src="//cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
     <div class="container-fluid mt-2">
+        <div class="jumbotron">
+            <h2 class="display-3">Ajout d'un article</h2>
+        </div>
 
-        <h2 class="display-3">Ajout d'un article</h2>
         <hr class="my-4">
         <form name="addArticle" method="post" enctype="multipart/form-data">
             <div class="form-group row">
@@ -62,7 +64,7 @@
             </div>
             <input type="hidden" name="User" value="{{ userConnected.UID }}">
             <input type="hidden" name="token" value="{{ token }}">
-            <input type="submit" class="btn btn-primary my-1">
+            <input type="submit" class="btn btn-primary my-1 mb-5">
         </form>
     </div>
 
