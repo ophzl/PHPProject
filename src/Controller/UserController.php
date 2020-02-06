@@ -139,7 +139,6 @@ class UserController extends AbstractController
                 $_SESSION['token'] = $token;
                 $user = new User();
                 $tokenAPI = $user->getTokenAPI();
-                var_dump($tokenAPI);
                 return $this->twig->render('User/profile.html.twig', [
                     'token' => $token,
                     'articleList' => (new Article)->SqlGetAllUser(Bdd::GetInstance(), $_SESSION['USER']->getUID()),

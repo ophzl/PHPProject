@@ -17,6 +17,14 @@
             <div class="card-body">
                 <h5 class="card-title">{{ articleData.Titre }}</h5>
                 <p class="card-text">{{ articleData.Description }}</p>
+                {% if tokenAPI.user_token == null %}
+                    <a class="btn btn-primary" href="/CreateToken">Créer son token API </a>
+                {% else %}
+                    <div class="form-group">
+                        <label for="tok">Token API</label>
+                        <input class="form-control" readonly type="text" id="tok" value="{{ tokenAPI.user_token }}">
+                    </div>
+                {% endif %}
             </div>
             <footer class="blockquote-footer">
                 <medium class="text-muted">
@@ -99,14 +107,7 @@
                 <input type="hidden" name="crsf" value="{{ token }}">
             </form>
         </div>
-{{ dump (tokenAPI.user_token) }}
-        <div class="card p-3 mt-2 m-2">
-            {% if tokenAPI.user_token == null %}
-                <a class="btn btn-primary" href="/CreateToken">Créer son tokenAPI </a>
-            {% else %}
-                <input type="text" value="{{ tokenAPI.user_token }}">
-            {% endif %}
-        </div>
+
     </div>
 
 {% endblock %}
