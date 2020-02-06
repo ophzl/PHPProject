@@ -15,10 +15,10 @@ class Article extends Contenu implements \JsonSerializable {
     public function SqlAdd(\PDO $bdd)
     {
         try {
-            $idCategory = (new Category)->SqlGet(Bdd::GetInstance(), $this->getId());
-            $idUsers = (new User)->SqlGet(Bdd::GetInstance(), $this->getId());
+            $cat=$this->getCategory();
+            $user=$this->getUser();
 
-            $requete = $bdd->prepare('INSERT INTO articles (Titre, Description, DateAjout, Auteur, ImageRepository, ImageFileName, article_Valid ) VALUES(:Titre, :Description, :DateAjout, :Auteur, :ImageRepository, :ImageFileName, :Valid)');
+            $requete = $bdd->prepare('INSERT INTO articles (Titre, Description, DateAjout, Auteur, ImageRepository, ImageFileName, article_Valid, articles_category_id, articles_users_id) VALUES(:Titre, :Description, :DateAjout, :Auteur, :ImageRepository, :ImageFileName, :Valid, :Category, :User)');
             $requete->execute([
                 "Titre" => $this->getTitre(),
                 "Description" => $this->getDescription(),
@@ -26,7 +26,9 @@ class Article extends Contenu implements \JsonSerializable {
                 "Auteur" => $this->getAuteur(),
                 "ImageRepository" => $this->getImageRepository(),
                 "ImageFileName" => $this->getImageFileName(),
-                "Valid" => $this->getValid()
+                "Valid" => $this->getValid(),
+                "Category" => $cat->getCid(),
+                "User" => $user->getUID()
             ]); //TODO: set user, and category
             return array("result" => true, "message" => $bdd->lastInsertId());
         } catch (\Exception $e) {
@@ -229,7 +231,7 @@ class Article extends Contenu implements \JsonSerializable {
                 'ImageFileName' => $this->getImageFileName(),
                 'Valid' => $this->getValid(),
                 'IDARTICLE' => $this->getId(),
-                "category_id" => $idCategory->getId(),
+                "category_id" => $idCategory->getCid(),
                 "users_id" => $idUsers->getUID()
             ]);
             return array("0", "[OK] Update");
@@ -276,7 +278,7 @@ class Article extends Contenu implements \JsonSerializable {
              'ImageFileName' => $this->getImageFileName(),
              'Auteur' => $this->getAuteur(),
             'Valid' => $this->getValid(),
-            'Category' => $idCategory->getId(),
+            'Category' => $idCategory->getCid(),
             'User' => $idUser->getUID()
         ];
     }
@@ -396,6 +398,8 @@ class Article extends Contenu implements \JsonSerializable {
         $this->Category = $Category;
         return $this;
     }
+
+
 
     /**
      * @return mixed

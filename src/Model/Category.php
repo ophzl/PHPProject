@@ -6,7 +6,7 @@ namespace src\Model;
 
 class Category
 {
-    private $id;
+    private $cid;
     private $label;
     private $codeReference;
 
@@ -34,7 +34,7 @@ class Category
         $listCategory = [];
         foreach ($arrayCategory as $categorySQL) {
             $category = new Category();
-            $category->setId($categorySQL['category_id']);
+            $category->setCid($categorySQL['category_id']);
             $category->setLabel($categorySQL['category_label']);
             $category->setCodeReference($categorySQL['category_code_reference']);
 
@@ -52,7 +52,7 @@ class Category
 
         $datas = $requete->fetch();
 
-        $this->setId($datas['category_id']);
+        $this->setCid($datas['category_id']);
         $this->setLabel($datas['category_label']);
         $this->setCodeReference($datas['category_code_reference']);
 
@@ -67,7 +67,7 @@ class Category
             $requete->execute([
                 'codeReference' => $this->getCodeReference()
                 , 'label' => $this->getLabel()
-                , 'idCategory' => $this->getId()
+                , 'idCategory' => $this->getCid()
             ]);
             return array("0", "[OK] Update");
         } catch (\Exception $e) {
@@ -92,17 +92,17 @@ class Category
     /**
      * @return mixed
      */
-    public function getId()
+    public function getCid()
     {
-        return $this->id;
+        return $this->cid;
     }
 
     /**
-     * @param mixed $id
+     * @param mixed $cid
      */
-    public function setId($id)
+    public function setCId($cid)
     {
-        $this->id = $id;
+        $this->cid = $cid;
     }
 
     /**
