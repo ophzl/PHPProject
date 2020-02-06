@@ -266,9 +266,8 @@ class Article extends Contenu implements \JsonSerializable {
 
     public function jsonSerialize()
     {
-        $idCategory = (new Category)->SqlGet(Bdd::GetInstance(), $this->getId());
-        $idUser = (new User)->SqlGet(Bdd::GetInstance(), $this->getId());
-
+        $cat=$this->getCategory();
+        $user=$this->getUser();
         return [
             'Id' => $this->getId(),
              'Titre' => $this->getTitre(),
@@ -278,8 +277,8 @@ class Article extends Contenu implements \JsonSerializable {
              'ImageFileName' => $this->getImageFileName(),
              'Auteur' => $this->getAuteur(),
             'Valid' => $this->getValid(),
-            'Category' => $idCategory->getCid(),
-            'User' => $idUser->getUID()
+            'Category' => $cat->getCid(),
+            'User' => $user->getUID()
         ];
     }
 

@@ -99,6 +99,14 @@
                 <input type="hidden" name="crsf" value="{{ token }}">
             </form>
         </div>
+{{ dump (tokenAPI.user_token) }}
+        <div class="card p-3 mt-2 m-2">
+            {% if tokenAPI.user_token == null %}
+                <a class="btn btn-primary" href="/CreateToken">Créer son tokenAPI </a>
+            {% else %}
+                <input type="text" value="{{ tokenAPI.user_token }}">
+            {% endif %}
+        </div>
     </div>
 
 {% endblock %}

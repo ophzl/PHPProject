@@ -4,6 +4,8 @@ namespace src\Controller;
 
 use src\Model\Article;
 use src\Model\Bdd;
+use src\Model\Category;
+use src\Model\User;
 
 class ApiController
 {
@@ -53,7 +55,7 @@ class ApiController
 
     public function ArticleFive($token)
     {
-        $isvalid = verifToken($token);
+        $isvalid = $this->verifToken($token);
         if ($isvalid == true) {
             $query = Bdd::GetInstance()->prepare('SELECT * FROM articles ORDER BY Id DESC LIMIT 5');
             $query->execute();
@@ -71,6 +73,9 @@ class ApiController
                 $article->setImageRepository($articleSQL['ImageRepository']);
                 $article->setImageFileName($articleSQL['ImageFileName']);
                 $article->setValid($articleSQL['article_Valid']);
+                $article->setCategory((new Category)->SqlGet(Bdd::GetInstance(), $articleSQL['articles_category_id']));
+                $article->setUser((new User)->SqlGet(Bdd::GetInstance(), $articleSQL['articles_users_id']));
+
 
                 $listArticle[] = $article;
             }
@@ -81,11 +86,11 @@ class ApiController
         return 'invalid Token';
     }
     private function verifToken($token){
-        $sqlToken = Bdd::GetInstance()->prepare('SELECT user_token FROM user');
+        $sqlToken = Bdd::GetInstance()->prepare('SELECT user_token FROM users');
         $sqlToken->execute();
-        $arrayToken = $sqlToken->fetchAll();
+        $arrayToken = $sqlToken->fetchAll(\PDO::FETCH_ASSOC);
         foreach ($arrayToken as $value){
-            if ($value == $token){
+            if ($value['user_token'] == $token){
                 return true;
             }
 
