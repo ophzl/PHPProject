@@ -81,16 +81,19 @@ class CategoryController extends AbstractController
         $categorySQL = new Category();
         $category = $categorySQL->SqlGet(BDD::getInstance(), $categoryID);
 
-        if ($_POST) {
+        if ($_POST && $_POST['crsf'] == $_SESSION['token']) {
             $category->setLabel($_POST['label']);
             $category->setCodeReference($_POST['code_reference']);
 
             $category->SqlUpdate(BDD::getInstance());
             header('Location:/Category');
         }
-
+        // Génération d'un TOKEN
+        $token = bin2hex(random_bytes(32));
+        $_SESSION['token'] = $token;
         return $this->twig->render('Category/update.html.twig', [
-            'category' => $category
+            'category' => $category,
+            'token' => $token
         ]);
     }
 

@@ -35,8 +35,11 @@ class ContactController extends AbstractController
      */
     public function showForm()
     {
+        $token = bin2hex(random_bytes(32));
+        $_SESSION['token'] = $token;
         return $this->twig->render('Contact/form.html.twig', [
-            'mail' => 'admin@admin.fr'
+            'mail' => 'admin@admin.fr',
+            'token' => $token
         ]);
     }
 
@@ -49,20 +52,23 @@ class ContactController extends AbstractController
      */
     public function sendMail()
     {
-        $mail = (new \Swift_Message($_POST['Object']))
-            ->setFrom($_SESSION['USER']->getMail())
-            ->setTo($_POST['author-email'])
-            ->setBody(
-                $this->twig->render('Contact/mail.html.twig',
-                    [
-                        'message' => $_POST["Message"],
-                        'user_email' => $_SESSION['USER']->getMail(),
-                        'article' => $_POST['articleId']
-                    ])
-                , 'text/html'
-            );
+        if($_POST && $_POST['crsf'] == $_SESSION['crsf']) {
+            $mail = (new \Swift_Message($_POST['Object']))
+                ->setFrom($_SESSION['USER']->getMail())
+                ->setTo($_POST['author-email'])
+                ->setBody(
+                    $this->twig->render('Contact/mail.html.twig',
+                        [
+                            'message' => $_POST["Message"],
+                            'user_email' => $_SESSION['USER']->getMail(),
+                            'article' => $_POST['articleId']
+                        ])
+                    , 'text/html'
+                );
 
-        $result = $this->mailer->send($mail);
+            $result = $this->mailer->send($mail);
+        }
+
 
         header('Location:/');
     }
@@ -78,13 +84,17 @@ class ContactController extends AbstractController
      */
     public function formId($idArticle)
     {
+        $token = bin2hex(random_bytes(32));
+        $_SESSION['token'] = $token;
+
         $article = new Article();
         $article = $article->SqlGet(Bdd::GetInstance(), $idArticle);
         $user = $article->getUser();
 
         return $this->twig->render('Contact/form.html.twig', [
             'article' => $article,
-            'mail' => $user->getMail()
+            'mail' => $user->getMail(),
+            'token' => $token
         ]);
     }
 }

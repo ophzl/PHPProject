@@ -46,6 +46,7 @@
         </div>
         <input type="submit" class="btn btn-primary my-1">
         <input type="hidden" name="author-email" value="{{ mail }}">
+        <input type="hidden" name="crsf" value="{{ token }}">
     </form>
 
 {% endblock %}
