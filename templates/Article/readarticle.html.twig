@@ -16,12 +16,14 @@
         </div>
         <div class="d-flex justify-content-between p-3">
             {% if userConnected is defined and userConnected != null %}
-            <a href="/Contact/Article/{{ articleData.id }}" class="btn btn-primary">Contacter le Rédacteur</a>
+                <a href="/Contact/Article/{{ articleData.id }}" class="btn btn-primary">Contacter le Rédacteur</a>
             {% endif %}
 
+            {% if not userConnected %}
                 <medium class="text-muted">
                     Si vous voulez nous contacter, <strong>connectez-vous</strong> !
                 </medium>
+            {% endif %}
 
             <a href="/Article/ListAll" class="btn btn-danger">Retour</a>
         </div>
