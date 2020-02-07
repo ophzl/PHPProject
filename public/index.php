@@ -27,16 +27,20 @@ $router->get('/Home', "Article#Home");
 $router->get('/Article', "Article#ListAll");
 $router->get('/Article/Update/:id', "Article#Update#id");
 $router->post('/Article/Update/:id', "Article#Update#id");
+$router->get('/Article/Update','Error#ErrorId');
 $router->get('/Article/Add', "Article#Add");
 $router->post('/Article/Add', "Article#Add");
 $router->get('/Article/Delete/:id', "Article#Delete#id");
+$router->get('/Article/Delete','Error#ErrorId');
 $router->get('/Article/Fixtures', "Article#Fixtures");
 $router->get('/Article/WriteAll/', "Article#Write");
 $router->get('/Article/WriteOne/:id', "Article#WriteOne#id");
+$router->get('/Article/WriteOne','Error#ErrorId');
 $router->get('/Article/Read', "Article#Read");
 $router->get('/Article/ListAll','Article#listAll');
 $router->post('/Article/Search','Article#Search');
 $router->get('/Article/Show/:id','Article#ReadArticle#id');
+$router->get('/Article/Show','Error#ErrorId');
 
 //API Methods
 $router->get('/Api/Article', "Api#ArticleGet");
@@ -49,6 +53,7 @@ $router->put('/Api/Article/:id/:json', "Api#ArticlePut#id#json");
 $router->get('/Contact', 'Contact#showForm');
 $router->post('/Contact/sendMail', 'Contact#sendMail');
 $router->get('/Contact/Article/:id', 'Contact#FormId#id');
+$router->get('/Contact/Article','Error#ErrorId');
 
 //User Methods
 $router->get('/Login', 'User#loginForm');
@@ -64,11 +69,16 @@ $router->get('/CreateToken', 'User#setTokenAPI');
 $router->get('/Admin/ListUser/', 'Admin#ListUser');
 $router->get('/Admin/ListArticlesWaiting/', 'Admin#ListArticlesWaiting');
 $router->get('/Admin/ApproveUser/:id', 'Admin#ApproveUser#id');
+$router->get('/Admin/ApproveUser','Error#ErrorId');
 $router->get('/Admin/ApproveArticle/:id','Admin#ApproveArticle#id');
+$router->get('/Admin/ApproveArticle','Error#ErrorId');
 $router->get('/Admin/ChangeRoles/:id', 'Admin#ChangeRolesForm#id');
+$router->get('/Admin/ChangeRoles','Error#ErrorId');
 $router->post('/Admin/ChangeRoles/', 'Admin#ChangeRoles');
 $router->get('/Admin/DeleteUser/:id', 'Admin#DeleteUser#id');
+$router->get('/Admin/DeleteUser','Error#ErrorId');
 $router->get('/Admin/ApproveArticle/:id','Admin#ApproveArticle#id');
+$router->get('/Admin/ApproveArticle','Error#ErrorId');
 $router->get('/Admin/ChangeTheme/','Admin#ChangeTheme');
 $router->post('/Admin/ChangeTheme/','Admin#ChangeTheme');
 
@@ -80,8 +90,12 @@ $router->get('/Category/Article/:id', "Category#ListArticle");
 $router->get('/Category/Add', "Category#Add");
 $router->post('/Category/Add', "Category#Add");
 $router->get('/Category/Update/:id', "Category#Update#id");
+$router->get('/Category/Update','Error#ErrorId');
 $router->post('/Category/Update/:id', "Category#Update#id");
+$router->get('/Category/Update','Error#ErrorId');
 $router->get('/Category/Delete/:id', "Category#Delete#id");
+$router->get('/Category/Delete','Error#ErrorId');
+
 
 
 
